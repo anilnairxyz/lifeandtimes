@@ -190,5 +190,5 @@ A credible tax copilot blends generative language with grounded knowledge and re
 
 ???+ info "Notes"
 
-- “HYDE” refers to Hypothetical Document Embeddings (research technique). Any modern LLM can generate the hypothetical answer used for retrieval.
-- “Browsing LLM” denotes an API that integrates search + page fetching during generation; use judiciously.
+    - “HYDE” refers to Hypothetical Document Embeddings (research technique). Any modern LLM can generate the hypothetical answer used for retrieval.
+    - “Browsing LLM” denotes an API that integrates search + page fetching during generation; use judiciously.

@@ -1,4 +1,15 @@
-## Introduction##
+---
+draft: false
+date: 2025-01-12
+slug: autoregressive 
+categories:
+  - genai
+tags:
+  - ai
+  - neural networks
+---
+
+# Autoregressive models
 
 Autoregressive models as the name implies, generates data by predicting each element sequentially based on the elements previously generated. They are naturally aligned to tasks involving sequential dependence like natural language, audio and time-series data. However, autoregressive models have also been successfully applied to image generation.
 
@@ -6,7 +17,7 @@ Autoregressive models as the name implies, generates data by predicting each ele
 - **PixelCNN and PixelRNN** generate images pixel by pixel, with each pixel depending on the pixels generated before it.
 - **WaveNet** produces audio samples one at a time, with each sample conditioned on prior samples, making it suitable for realistic speech and audio synthesis.
 
-## Factorisation of a probability distribution ##
+## Factorisation of a probability distribution
 
 In the autoregressive approach we are either dealing with an ordered sequence (language) or unordered vector samples (images) and in general the data can be thought of as multi-dimensional vectors and their probability distributions are best represented as joint distributions over all these dimensions. A joint distribution over an n-dimensional vector can be stated accurately using the chain rule of probabilities as
 
@@ -15,7 +26,8 @@ p(x_1, x_2, \dots, x_n) = p(x_n | x_{n-1}, \dots, x_2, x_1) \dots p(x_3 | x_2, x
 $$
 
 The principle behind autoregression is to compute this factorisation sequentially. For large dimensions this factorisation requires an exponentially large number of parameters (number of possible states that the distribution can take, also known as the support of the distribution). A **Bayesian network** is a graphical representation of such a probability distribution and in the unsimplified case above, a fully connected **directed acyclic graph (DAG)** with nodes representing the elements of the vector and the directed edges representing the dependence.
-### Conditional independence in a Bayesian network ###
+
+### Conditional independence in a Bayesian network
 
 One way to simplify the computation of the joint distribution is to assume conditional independence - equivalent to removing certain edges from the Bayesian network. The simplest example of this would be a Markov model where an element (or node in a DAG) is independent of every other (historical) element given the immediate previous one
 
@@ -37,7 +49,7 @@ $$
 
 where $\hat{\mathbf{x}_i}$ denotes the subset of elements of $\mathbf{x}$ on which $x_i$ is conditionally dependent.
 
-## Chain rule based autoregressive generators ##
+## Chain rule based autoregressive generators
 
 Another way to simplify the computation is to assume that there exists a computable function that can closely approximate the conditional probabilities. If we are dealing with discrete variables, then this function is a probability mass function (PMF), while if we are dealing with continuous variables then it is the probability density function (PDF). The structure remains the same and for the case of a fully connected network (chain rule factorisation) the implementation can be represented by the figure below where the $N_i$ blocks represent the individual functional approximations of the conditional probabilities with each model (increasing $i$) being progressively more complex than the previous one.
 
@@ -84,7 +96,8 @@ $$
     activation function (like a sigmoid or ReLU)
 
 Generative models using the chain rule factorisation however require as many neural networks as there are input dimensions - each modelling a single conditional probability.
-### Generating from the autoregressive model ###
+
+### Generating from the autoregressive model
 
 Generating from the chain rule based autoregressive model has a similar architecture to the one used for training.
 
@@ -93,7 +106,8 @@ Generating from the chain rule based autoregressive model has a similar architec
 - This process is repeated sequentially for all $x_{i \le n}$ to obtain the complete generation.
 
 As is obvious from the steps above, the generative process from an autoregressive model is sequential with each $x_i$ from the generated vector, generated sequentially from the previously generated values.
-## Autoencoders as autoregressive generators ##
+
+## Autoencoders as autoregressive generators
 
 Autoencoders are generally used to obtain a compressed representation of the inputs. Their structure being that of a generalised Bayesian network can be used to modify them to function as an autoregressive model under certain constraints. The conditional probabilities are
 

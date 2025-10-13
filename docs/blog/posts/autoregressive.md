@@ -13,6 +13,8 @@ tags:
 
 Autoregressive models as the name implies, generates data by predicting each element sequentially based on the elements previously generated. They are naturally aligned to tasks involving sequential dependence like natural language, audio and time-series data. However, autoregressive models have also been successfully applied to image generation.
 
+<!-- more -->
+
 - **GPT** (Generative Pre-trained Transformer) is a language model that predicts the next word or token based on previously generated text.
 - **PixelCNN and PixelRNN** generate images pixel by pixel, with each pixel depending on the pixels generated before it.
 - **WaveNet** produces audio samples one at a time, with each sample conditioned on prior samples, making it suitable for realistic speech and audio synthesis.

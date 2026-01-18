@@ -1,0 +1,57 @@
+---
+draft: false
+date: 2025-04-05
+slug: gans
+categories:
+  - genai
+tags:
+  - ai
+  - neural networks
+  - gan
+  - adversarial learning
+---
+
+# Generative Adversarial Networks (GANs)
+
+Unlike likelihood-based models (VAEs, Flows, Autoregressive) which try to explicitly model the probability density $p(\mathbf{x})$, **Generative Adversarial Networks (GANs)** take a "likelihood-free" approach. They implicitly learn the distribution by learning to generate samples that are indistinguishable from real data.
+
+<!-- more -->
+
+## The Adversarial Game
+
+GANs consist of two neural networks competing in a minimax game:
+
+1.  **The Generator ($G$)**: Tries to produce realistic "fake" data $\mathbf{x}_{fake} = G(\mathbf{z})$ from random noise $\mathbf{z}$.
+2.  **The Discriminator ($D$)**: Tries to distinguish between real data $\mathbf{x}_{real}$ and fake data $\mathbf{x}_{fake}$.
+
+The training objective is a zero-sum game:
+
+$$
+\min_G \max_D V(D, G) = \mathbb{E}_{\mathbf{x} \sim p_{data}}[\log D(\mathbf{x})] + \mathbb{E}_{\mathbf{z} \sim p_z}[\log(1 - D(G(\mathbf{z})))]
+$$
+
+- The **Discriminator** wants to maximize this value (classify real as 1, fake as 0).
+- The **Generator** wants to minimize it (fool the discriminator).
+
+If the discriminator is optimal, this minimization problem is equivalent to minimizing the **Jensen-Shannon (JS) Divergence** between the data distribution and the generator's distribution.
+
+## Common Problems
+
+While GANs can generate incredibly sharp and realistic images, they are notoriously difficult to train:
+
+-   **Mode Collapse**: The generator finds one or a few outputs that fool the discriminator and keeps producing only them, ignoring the diversity of the real data distribution.
+-   **Unstable Convergence**: The minimax game does not guarantee convergence to a solution; the generator and discriminator can oscillate forever.
+-   **Vanishing Gradients**: If the discriminator is too good, it perfectly separates real from fake, leaving no useful gradient signal for the generator to learn from.
+
+## Wasserstein GAN (WGAN)
+
+To address these stability issues, the **Wasserstein GAN** was introduced. It replaces the JS divergence with the **Earth Mover's (Wasserstein) Distance**, which provides a smoother distance metric even when the real and fake distributions have disjoint supports (no overlap).
+
+In a WGAN:
+- The discriminator is replaced by a **Critic** that scores the "realness" of a sample (not a probability).
+- The critic is constrained to be **1-Lipschitz continuous** (often enforced via gradient clipping or gradient penalty).
+- The loss function correlates better with sample quality, providing more stable training gradients.
+
+## f-GANs
+
+The GAN framework can be generalized to minimize any **f-divergence** (a family of divergences including KL, JS, Pearson $\chi^2$, etc.) using the Fenchel conjugate. This allows for a flexible framework where different divergences can be chosen to suit specific data characteristics or applications.

@@ -3,7 +3,7 @@ draft: false
 date: 2023-10-03
 slug: bv
 categories:
-  - learning
+  - machine learning
 tags:
   - ai
   - ml

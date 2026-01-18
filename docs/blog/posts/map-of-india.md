@@ -3,7 +3,7 @@ title: Map of India - State Level
 date: 2015-01-18
 slug: map-of-india
 categories:
-  - gis
+  - dataviz
 tags:
   - d3
   - gis

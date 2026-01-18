@@ -3,11 +3,10 @@ draft: false
 date: 2023-11-04
 slug: sgd
 categories:
-  - learning
+  - machine learning
 tags:
   - ai
   - ml
-  - neural-net
 ---
 
 # Stochastic gradient descent

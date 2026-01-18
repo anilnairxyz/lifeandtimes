@@ -1,9 +1,9 @@
 ---
 draft: false
 date: 2023-10-08
-slug: gnn
+slug: svm
 categories:
-  - learning
+  - machine learning
 tags:
   - classification
   - ml

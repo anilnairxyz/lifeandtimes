@@ -3,8 +3,7 @@ draft: false
 date: 2023-10-02
 slug: regression
 categories:
-  - learning
-  - neural networks
+  - machine learning
 tags:
   - ai
   - ml

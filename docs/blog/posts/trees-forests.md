@@ -3,7 +3,7 @@ draft: false
 date: 2023-10-05
 slug: trees
 categories:
-  - neural networks
+  - machine learning
 tags:
   - ml
   - classification

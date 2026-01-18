@@ -3,7 +3,7 @@ title: Map of Jammu and Kashmir
 date: 2015-01-07
 slug: map-of-jk
 categories:
-  - gis
+  - dataviz
 tags:
   - d3
   - gis

@@ -17,6 +17,8 @@ This post provides a quick template for generating those tooltips.
 Here the `div` which contains our SVG is named `map`.
 The javascript to generate the tooltip with appropriate transitions:
 
+<!-- more -->
+
 ``` javascript
 selectRect
     .on("mouseover", function(d) {      

@@ -14,10 +14,12 @@ draft: false
 
 Choropleth maps are thematic maps in which areas are shaded according to the strength of a particular feature. Its is a good visualisation to quickly differentiate different regions based on the the property of interest.
 
+<!-- more -->
+
 Here we generate a choropleth map showing district-wise male and female literacy. This is based on similar maps by [Mike Bostock](https://bl.ocks.org/mbostock/4060606). The district map of India is from [DIVA GIS](http://www.diva-gis.org/) while the disputed areas of Jammu and Kashmir have been merged from [Natural Earth](http://www.naturalearthdata.com/). The district-wise literacy data is that of the [2011 Census](http://censusindia.gov.in/).
 
 
-<iframe src="http://cdn.rawgit.com/anilnairxyz/11190f144a89b54c6698699f3a83b315/raw/ba1fc042b61f3651391d3ef21e38358a404093d6/index.html" marginwidth="0" marginheight="0" style="height:700px;width:780px;" scrolling="no"></iframe>
+![](../images/choropleth.webp)
 <br>
 
 The geojson / topjson polygons are rendered to the svg element using d3.

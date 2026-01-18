@@ -14,6 +14,8 @@ draft: false
 
 If we could reliably determine the probable source and destination of a drivers journey, it could help us tackle a number of problems associated with unreliable or inaccurate GPS traces. It would also be useful in extracting information about trip types and patterns related to trip geography. Here we discuss isolating frequent destinations of a user from a database of historic trips that the user has made over the past few weeks.
 
+<!-- more -->
+
 #### Identifying trip end points
 To solve the problem we need to have a catalog of trips. The initial algorithm used to idetify trips could be as simple as using a fixed `dwell_time` which defines a trip boundary. If a user stays at a location for more than the defined `dwell_time`, we could mark the trip as completed.
 ![](../images/clustering_all_trips.jpg)

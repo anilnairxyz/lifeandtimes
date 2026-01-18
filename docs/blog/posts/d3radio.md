@@ -15,6 +15,8 @@ In some of our previous posts on cartograms and choropleth maps we do so using t
 This post provides a brief template for transitioning maps based on user selected parameters.
 Ideally we need the maps to transition instantaneously on the user toggling the radio button.
 
+<!-- more -->
+
 So what exactly does this flow look like. We prefetch all the data - which could simply be multiple columns in a csv file.
 Initially we render the default map based on the default checked radio button.
 Here we have used a function `selectFilter` to render the radio buttons.

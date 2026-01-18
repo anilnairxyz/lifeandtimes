@@ -13,6 +13,8 @@ draft: false
 
 Candlestick charts are a style of financial charts which are useful in visualizing price movements in stocks, commodities or currencies. It is probably the most commonly used chart among traders because several technical trading patterns are more easily visible on these charts compared to others.
 
+<!-- more -->
+
 Each 'candle' represents the open, high, low and closing prices of a stock or currency for a particular period of time, typically a trading day. However other intervals of time are also valid. 
 These are a combination of line charts and bar charts. 
 
@@ -23,7 +25,7 @@ The candlestick chart that we set out to render include:
 * The main candlestick chart
 * Bar charts for Volume and Volatility
 
-<iframe src="http://cdn.rawgit.com/anilnairxyz/a51393d7c51342abe8d4e3f4cbab7ae1/raw/e336bad64f4ba3bec48e57339d4603b27c927535/index.html" marginwidth="0" marginheight="0" style="height:525px;width:780px;" scrolling="no"></iframe>
+![](../images/candlestick.webp)
 <br>
 
 The basic candlestick chart here is made of three overlapping bar charts:

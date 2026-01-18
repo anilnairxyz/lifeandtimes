@@ -1,6 +1,6 @@
 ---
 draft: false
-date: 2025-06-08
+date: 2024-12-11
 slug: diffusion_models
 categories:
   - genai
@@ -15,11 +15,12 @@ tags:
 
 Diffusion models are currently the state-of-the-art in generative AI, powering tools like DALL-E 2, Stable Diffusion, and Imagen. They unify the concepts of Iterative Refinement (from Score-Based Models) and Variational inference.
 
+<!-- more -->
+
 Conceptually, they consist of two processes:
+
 1.  **Forward Process (Diffusion)**: Slowly destroying the data structure by adding noise until it becomes pure static.
 2.  **Reverse Process (Generation)**: Learning to reverse this process to recover structure from noise.
-
-<!-- more -->
 
 ## The Stochastic Differential Equation (SDE) View
 
@@ -42,14 +43,25 @@ This provides a direct link to **Score-Based Models**. To generate data, we just
 ## The Discrete Denoising View (DDPM)
 
 Another perspective, popularized by Denoising Diffusion Probabilistic Models (DDPM), treats time as discrete steps.
-- **Forward**: $q(\mathbf{x}_t | \mathbf{x}_{t-1}) = \mathcal{N}(\mathbf{x}_t; \sqrt{1-\beta_t}\mathbf{x}_{t-1}, \beta_t \mathbf{I})$
-- **Reverse**: We learn to approximate the posterior $q(\mathbf{x}_{t-1} | \mathbf{x}_t)$ using a neural network $p_\theta(\mathbf{x}_{t-1} | \mathbf{x}_t)$.
+
+- **Forward**: 
+
+$$
+q(\mathbf{x}_t | \mathbf{x}_{t-1}) = \mathcal{N}(\mathbf{x}_t; \sqrt{1-\beta_t}\mathbf{x}_{t-1}, \beta_t \mathbf{I})
+$$
+
+- **Reverse**: We learn to approximate the posterior
+
+$$
+q(\mathbf{x}_{t-1} | \mathbf{x}_t)$ using a neural network $p_\theta(\mathbf{x}_{t-1} | \mathbf{x}_t)
+$$
 
 Training this model by maximizing the Variational Lower Bound (ELBO) simplifies mathematically to the same objective as **Denoising Score Matching**: simply training a network to predict the noise $\epsilon$ that was added to the image.
 
 ## Sampling with Predictor-Corrector
 
 Since we have both an SDE and a score function, we can use powerful numerical solvers for sampling.
+
 - **Predictor**: Use a standard numerical SDE solver (like Euler-Maruyama) to take a step in the reverse direction.
 - **Corrector**: Use Langevin Dynamics to "correct" the sample, moving it towards higher probability density at the current noise level before taking the next step.
 

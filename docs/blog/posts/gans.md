@@ -1,6 +1,6 @@
 ---
 draft: false
-date: 2025-04-05
+date: 2024-09-04
 slug: gans
 categories:
   - genai
@@ -48,6 +48,7 @@ While GANs can generate incredibly sharp and realistic images, they are notoriou
 To address these stability issues, the **Wasserstein GAN** was introduced. It replaces the JS divergence with the **Earth Mover's (Wasserstein) Distance**, which provides a smoother distance metric even when the real and fake distributions have disjoint supports (no overlap).
 
 In a WGAN:
+
 - The discriminator is replaced by a **Critic** that scores the "realness" of a sample (not a probability).
 - The critic is constrained to be **1-Lipschitz continuous** (often enforced via gradient clipping or gradient penalty).
 - The loss function correlates better with sample quality, providing more stable training gradients.

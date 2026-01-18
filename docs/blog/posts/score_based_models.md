@@ -1,6 +1,6 @@
 ---
 draft: false
-date: 2025-05-18
+date: 2024-11-06
 slug: score_based_models
 categories:
   - genai
@@ -15,6 +15,8 @@ tags:
 
 **Score-based models** represent a paradigm shift in generative AI. Instead of trying to estimate the probability density function (PDF) directly (like in flows) or implicitly (like in GANs), they focus on learning the **score function**: the geometric "shape" of the data distribution.
 
+<!-- more -->
+
 The score function is defined as the gradient of the log-probability density with respect to the input data:
 
 $$
@@ -22,8 +24,6 @@ $$
 $$
 
 Intuitively, this vector field points in the direction where the data probability increases most rapidly.
-
-<!-- more -->
 
 ## Denoising Score Matching
 
@@ -40,12 +40,14 @@ This essentially trains the network to point back towards the clean data $\mathb
 ## The Manifold Hypothesis and Sampling
 
 Even with a trained score function, generating samples using **Langevin Dynamics** (iteratively following the gradient + adding noise) often fails. This is because real world data (like images) lies on a low-dimensional **manifold** within the high-dimensional pixel space.
+
 - In regions far from the manifold (low density), the score is ill-defined and estimated poorly.
 - The sampling process gets stuck or wanders in these empty regions.
 
 ## Noise Conditional Score Networks (NCSN)
 
 The solution is to use multiple levels of noise.
+
 1.  **Training**: We train a single network conditioned on the noise level $\sigma$, i.e., $s_\theta(\mathbf{x}, \sigma)$, using a weighted sum of denoising objectives across different $\sigma$ levels.
 2.  **Sampling (Annealed Langevin Dynamics)**: We start with high noise (where density covers the whole space) and run Langevin dynamics. We then gradually lower the noise level, using the final sample of the previous step as the starting point for the next.
 

@@ -1,6 +1,6 @@
 ---
 draft: false
-date: 2024-10-08
+date: 2023-10-08
 slug: gnn
 categories:
   - learning

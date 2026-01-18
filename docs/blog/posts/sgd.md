@@ -1,6 +1,6 @@
 ---
 draft: false
-date: 2024-11-04
+date: 2023-11-04
 slug: sgd
 categories:
   - learning

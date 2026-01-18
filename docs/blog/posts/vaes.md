@@ -1,6 +1,6 @@
 ---
 draft: false
-date: 2025-02-23
+date: 2024-07-03
 slug: vaes
 categories:
   - genai
@@ -20,6 +20,7 @@ While autoregressive models generate data sequentially, **Latent Variable Models
 ## The Latent Variable Motivation
 
 The core idea is that complex high-dimensional data (like images) can be described by a smaller set of latent factors (like object type, orientation, color).
+
 - We assume a prior distribution $p(\mathbf{z})$ over latent variables.
 - We model the generation process $p(\mathbf{x}|\mathbf{z})$, which maps latent factors to data.
 
@@ -44,6 +45,7 @@ $$
 $$
 
 This objective has two intuitive terms:
+
 1.  **Reconstruction Term**: $\mathbb{E}_{q}[\log p(\mathbf{x}|\mathbf{z})]$ encourages the model to accurately reconstruct the input $\mathbf{x}$ from the latent code $\mathbf{z}$.
 2.  **Regularization Term**: $-D_{KL}(q || p)$ forces the learned latent distribution $q(\mathbf{z}|\mathbf{x})$ to stay close to the prior $p(\mathbf{z})$ (usually a standard normal distribution).
 

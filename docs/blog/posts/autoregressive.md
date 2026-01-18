@@ -1,6 +1,6 @@
 ---
 draft: false
-date: 2025-01-12
+date: 2024-05-08
 slug: autoregressive 
 categories:
   - genai

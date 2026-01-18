@@ -1,6 +1,6 @@
 ---
 draft: false
-date: 2025-02-02
+date: 2024-06-05
 slug: sequential_models
 categories:
   - genai
@@ -28,6 +28,7 @@ h_t = f(h_{t-1}, x_t)
 $$
 
 However, standard RNNs suffer from significant limitations:
+
 - **Bottleneck**: A single fixed-size hidden vector must store a summary of the entire history, which becomes difficult for long sequences.
 - **Gradient Issues**: Training RNNs on long sequences often leads to **exploding or vanishing gradients**, making it hard to learn long-range dependencies.
 
@@ -36,6 +37,7 @@ However, standard RNNs suffer from significant limitations:
 To overcome the specific limitations of RNNs, **attention mechanisms** were introduced. Instead of relying on a single compressed hidden state to capture the entire history, attention allows the model to dynamically look back at parts of the input sequence that are relevant to the current prediction.
 
 The core idea is to:
+
 1.  Compare the current state to all previous hidden states.
 2.  Compute an **attention distribution** (weights) indicating which previous states are most relevant.
 3.  Construct a context vector as a weighted sum of these previous states.

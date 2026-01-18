@@ -1,6 +1,6 @@
 ---
 draft: false
-date: 2025-06-30
+date: 2025-01-15
 slug: evaluation_metrics
 categories:
   - genai
@@ -32,6 +32,7 @@ For implicit models like GANs, we cannot calculate likelihoods. We must evaluate
 
 ### Inception Score (IS)
 One of the first widely used metrics for images. It uses a pre-trained Inception classifier to measure two things:
+
 1.  **Sharpness**: The classifier should be confident about what object is in the image (low entropy of $p(y|\mathbf{x})$).
 2.  **Diversity**: The distribution of predicted classes across all generated images should be uniform (high entropy of marginal $p(y)$).
 $$
@@ -40,6 +41,7 @@ $$
 
 ### Fréchet Inception Distance (FID)
 FID improves upon IS by comparing the statistics of the generated images against the *real* images, rather than just looking at the generated images in isolation.
+
 - It extracts feature vectors from an intermediate layer of the Inception network.
 - It assumes these features follow a Gaussian distribution.
 - It calculates the Fréchet distance (Wasserstein-2 distance) between the Gaussian of real features and the Gaussian of fake features.

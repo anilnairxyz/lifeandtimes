@@ -1,6 +1,6 @@
 ---
 draft: false
-date: 2025-04-26
+date: 2024-10-09
 slug: energy_based_models
 categories:
   - genai

@@ -1,6 +1,6 @@
 ---
 draft: false
-date: 2024-10-06
+date: 2023-10-06
 slug: gnn
 categories:
   - neural networks

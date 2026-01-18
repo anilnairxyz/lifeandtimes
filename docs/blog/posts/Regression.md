@@ -1,6 +1,6 @@
 ---
 draft: false
-date: 2024-10-02
+date: 2023-10-02
 slug: regression
 categories:
   - learning

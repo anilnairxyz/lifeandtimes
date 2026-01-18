@@ -1,6 +1,6 @@
 ---
 draft: false
-date: 2025-03-15
+date: 2024-08-07
 slug: flow_models
 categories:
   - genai
@@ -39,6 +39,7 @@ The log-likelihood of a data point $\mathbf{x}$ can then be computed exactly by 
 ### The Computational Challenge
 
 For this to be practical, we need transformations where:
+
 1.  **Invertibility** is easy to compute.
 2.  **Jacobian Determinant** is computationally cheap (specifically $O(D)$ rather than $O(D^3)$).
 
@@ -51,16 +52,20 @@ NICE uses **additive coupling layers**. It splits the input vector into two part
 
 ### Real-NVP (Real-valued Non-Volume Preserving)
 Real-NVP extends NICE by using scaling and translation.
+
 $$
 \begin{aligned}
 \mathbf{y}_{1:d} &= \mathbf{x}_{1:d} \\
 \mathbf{y}_{d+1:D} &= \mathbf{x}_{d+1:D} \odot \exp(s(\mathbf{x}_{1:d})) + t(\mathbf{x}_{1:d})
 \end{aligned}
 $$
+
 This allows for more complex deformations of the space while maintaining a triangular Jacobian.
 
 ### Autoregressive Flows (MAF and IAF)
+
 Autoregressive models can also be interpreted as flows.
+
 - **Masked Autoregressive Flow (MAF)**: Fast likelihood evaluation (parallel), but slow sequential sampling. Good for density estimation.
 - **Inverse Autoregressive Flow (IAF)**: Fast parallel sampling, but slow likelihood evaluation. Good for real-time generation.
 

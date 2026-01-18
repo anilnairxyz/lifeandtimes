@@ -1,5 +1,5 @@
-site_name: techtonic
-site_url: https://anilnairxyz.github.io/techtonic
+site_name: "life & times"
+site_url: https://anilnairxyz.github.io/lifeandtimes
 
 theme:
     name: 'material'

@@ -14,12 +14,15 @@ draft: false
 
 # The Predictive Brain
 
-Consciousness as a "controlled hallucination." Living brains don't just see; they predict what they will see to minimize surprise.
+**Question:** Is perception passive reception or active inference?
 
 <!-- more -->
 
-## Core Concepts
-Active Inference, Predictive Coding, Variational Free Energy.
+**Research Abstract:**
+Predictive processing and the free-energy principle model cognition as minimizing prediction error / surprise through perception and action. This reframes “experience” as controlled model-maintenance under uncertainty. ([Nature][6])
 
-## Investigation
-“Surfing Uncertainty” by Andy Clark; work by Karl Friston.
+**Anchor Refs:**
+Friston, “The free-energy principle” (2010); predictive processing literature. ([Nature][6])
+
+**Story Beat:**
+Now we can say what “being in a world” computationally means: continual prediction under constraint.

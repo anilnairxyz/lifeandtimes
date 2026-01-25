@@ -14,12 +14,15 @@ draft: false
 
 # The Monochrome Room
 
-We begin with Mary. She knows every physical fact about light but has never seen color. This essay argues that current AI (LLMs) are "Marys"—they possess exhaustive declarative knowledge but lack the state of experience.
+**Question:** If a system has complete descriptions, what could still be missing?
 
 <!-- more -->
 
-## Core Concepts
-Qualia (subjective experience), Physicalism, Epistemic Gap.
+**Research Abstract:**
+The knowledge argument isolates a gap between **physical description** and **phenomenal acquaintance**. Even if one rejects non-physical qualia, the thought experiment usefully distinguishes *propositional knowledge* from *knowing-what-it’s-like*. ([philpapers.org][1])
 
-## Investigation
-“Epiphenomenal Qualia” by Frank Jackson (1982).
+**Anchor Refs:**
+Jackson, “Epiphenomenal Qualia” (1982). ([philpapers.org][1])
+
+**Story Beat:**
+We discover “complete description” may still fail to deliver “lived understanding.”

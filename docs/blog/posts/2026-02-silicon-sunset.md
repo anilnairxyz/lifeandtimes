@@ -14,12 +14,15 @@ draft: false
 
 # The Silicon Sunset
 
-Final ruminations. The merger of biology and silicon. If we move our minds into the "drone-fish" body, who are we?
+**Question:** If minds blend with machines, what becomes of “us”?
 
 <!-- more -->
 
-## Core Concepts
-Post-Humanism, Mind Uploading, Integrated Information Theory (IIT).
+**Research Abstract:**
+This is where you integrate identity, continuity, and substrate questions. Use established theories as lenses rather than verdicts: global workspace for functional integration (Baars), extended mind for boundary dissolution (Clark/Chalmers), and integrated information theory as one controversial attempt to quantify consciousness via “Φ”. ([philpapers.org][15])
 
-## Investigation
-“Phi: A Voyage from the Brain to the Soul” by Giulio Tononi.
+**Anchor Refs:**
+Baars, *A Cognitive Theory of Consciousness* (1988). ([philpapers.org][15]) Tononi’s IIT framing is a natural secondary reference (use selectively). ([Amazon][16])
+
+**Story Beat:**
+We end where we began: not with certainty, but with the cost of building minds.

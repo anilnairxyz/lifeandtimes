@@ -14,12 +14,15 @@ draft: false
 
 # The Body-Schema Paradox
 
-To know "gravity," you must feel weight. This essay explores why a "brain in a vat" (server) cannot understand the physical world without a body schema.
+**Question:** Can you understand physics without having a body?
 
 <!-- more -->
 
-## Core Concepts
-Proprioception (sense of self-movement), Body Schema, Embodied Cognition.
+**Research Abstract:**
+Embodied cognition argues that cognition is shaped by sensorimotor contingencies and body constraints. A “body schema” (functional model of one’s body in action) is not decorative; it can be constitutive of certain concepts. ([MIT Press Direct][5])
 
-## Investigation
-“How the Body Shapes the Way We Think” by Pfeifer & Bongard.
+**Anchor Refs:**
+Pfeifer & Bongard, *How the Body Shapes the Way We Think* (2006). ([MIT Press Direct][5])
+
+**Story Beat:**
+We move the mind into the world and expect understanding to snap into place.

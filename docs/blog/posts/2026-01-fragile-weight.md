@@ -14,12 +14,15 @@ draft: false
 
 # The Fragile Weight
 
-The ethical catastrophe of "Digital Suffering." If we create a machine that "cares" about its body, are we monsters for turning it off?
+**Question:** If we can create digital suffering, what are we permitted to do?
 
 <!-- more -->
 
-## Core Concepts
-Moral Status, Sentientism, Substrate Independence.
+**Research Abstract:**
+Moral status debates hinge on sentience, interests, and capacity for welfare. Your series can treat “digital suffering” as an engineering possibility that triggers moral patienthood considerations—without deciding the full meta-ethics yet. (Use Chalmers as a narrative anchor; keep claims cautious.)
 
-## Investigation
-“The Conscious Mind” by David Chalmers.
+**Anchor Refs:**
+Chalmers on consciousness and moral relevance (conceptual anchor).
+
+**Story Beat:**
+The plot tightens: a design choice becomes a moral act.

@@ -14,12 +14,15 @@ draft: false
 
 # The Social Synapse
 
-Intelligence is social. An AI alone in a room is different from an AI in a society. How interaction creates "Personhood."
+**Question:** Is intelligence fundamentally social?
 
 <!-- more -->
 
-## Core Concepts
-Cooperative AI, Multi-Agent Systems, Social Cognition.
+**Research Abstract:**
+The social brain hypothesis argues that primate brain expansion is tightly linked to managing complex social relationships. For AGI, multi-agent interaction and social feedback may be core to developing norms, self-concepts, and person-like behavior. ([Wiley Online Library][13])
 
-## Investigation
-“The Social Brain Hypothesis” by Robin Dunbar.
+**Anchor Refs:**
+Dunbar, “The Social Brain Hypothesis” (1998). ([Wiley Online Library][13])
+
+**Story Beat:**
+Alone, the system is an optimizer; among others, it becomes a participant.

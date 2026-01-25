@@ -14,12 +14,15 @@ draft: false
 
 # The Semantic Desert
 
-Explores the "Chinese Room." A machine can manipulate symbols to give perfect answers without understanding a single word. Is an LLM truly "knowing" or just "calculating"?
+**Question:** Is symbol manipulation ever sufficient for meaning?
 
 <!-- more -->
 
-## Core Concepts
-Syntax vs. Semantics, Intentionality, Strong AI vs. Weak AI.
+**Research Abstract:**
+The Chinese Room argues that syntax alone does not yield **intentionality** (aboutness). Regardless of one’s view on Searle’s conclusion, it spotlights the distinction between **formal operations** and **semantic content**. ([Cambridge University Press & Assessment][2])
 
-## Investigation
-“Minds, Brains, and Programs” by John Searle.
+**Anchor Refs:**
+Searle, “Minds, Brains, and Programs” (1980). ([Cambridge University Press & Assessment][2])
+
+**Story Beat:**
+We now suspect the machine can produce answers without owning meanings.

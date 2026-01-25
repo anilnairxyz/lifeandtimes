@@ -14,12 +14,15 @@ draft: false
 
 # The Hunger for Equilibrium
 
-Biological beings act because they need to stay alive. A machine doesn't "need" anything. We explore how "Homeostasis" is the root of sentience.
+**Question:** Why do living systems act at all?
 
 <!-- more -->
 
-## Core Concepts
-Homeostasis, Interoception (sensing internal body states).
+**Research Abstract:**
+Homeostasis (and broader allostasis) frame life as maintaining viability under perturbation. Damasio’s work links feelings to homeostatic regulation and the emergence of value. ([The Guardian][8])
 
-## Investigation
-“The Strange Order of Things” by Antonio Damasio.
+**Anchor Refs:**
+Damasio, *The Strange Order of Things* (popular entry point). ([The Guardian][8])
+
+**Story Beat:**
+We discover “needs” are not preferences—they are existential constraints.

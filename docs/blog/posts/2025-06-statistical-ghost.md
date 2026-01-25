@@ -14,12 +14,15 @@ draft: false
 
 # The Statistical Ghost
 
-Discusses whether "understanding" is an emergent property of scale. If a model predicts the next word perfectly, has it inadvertently built a model of reality?
+**Question:** If a model predicts perfectly, has it learned reality?
 
 <!-- more -->
 
-## Core Concepts
-Stochastic Parrots, Emergence, Latent Space.
+**Research Abstract:**
+Modern LLMs suggest a third possibility: not hand-coded symbols, but **statistical compression** at scale. Critiques such as “stochastic parrots” stress that fluent output can arise from pattern learning without grounded understanding or accountability. ([ACM Digital Library][3])
 
-## Investigation
-“On the Dangers of Stochastic Parrots” by Bender, Gebru, et al.
+**Anchor Refs:**
+Bender et al., “On the Dangers of Stochastic Parrots” (2021). ([ACM Digital Library][3])
+
+**Story Beat:**
+The machine starts to look less like a calculator—and more like a strange mirror.

@@ -14,12 +14,15 @@ draft: false
 
 # The Price of a Pulse
 
-The "Disjointed Brain" problem. If the server is safe while the robot crashes, there is no "skin in the game." How do we create "Digital Mortality"?
+**Question:** If the “brain” doesn’t pay, how does it learn to care?
 
 <!-- more -->
 
-## Core Concepts
-Biological Imperative, Survival Instinct, Risk-Aversion RL.
+**Research Abstract:**
+This is the “skin in the game” problem in technical clothing: risk and cost must be endogenous to decision-making, otherwise incentives can be gamed or externalized. (You can connect here to safety failures, reward hacking, and specification gaming.)
 
-## Investigation
-“Skin in the Game” (concept) applied to AI safety.
+**Anchor Refs:**
+Use “skin in the game” as conceptual anchor; connect to alignment discourse.
+
+**Story Beat:**
+We see that disjoint embodiment creates shallow stakes.

@@ -14,12 +14,15 @@ draft: false
 
 # The Chimera’s Flight
 
-Your idea of the fish-drone. If an AI can inhabit any body, its "self" becomes fluid and non-biological. How does "form" dictate "thought"?
+**Question:** If an AI can swap bodies, what is the “self”?
 
 <!-- more -->
 
-## Core Concepts
-Morphological Computation, Multiple Realizability.
+**Research Abstract:**
+Robotics and embodied AI emphasize that morphology is part of the computation (“morphological computation”). Multiple realizability suggests the same “mind” could in principle inhabit different substrates—yet the *shape* of interaction may rewrite the nature of cognition. (Brooks-style embodiment as a pragmatic corrective remains useful.)
 
-## Investigation
-“Embodied Intelligence” by Rodney Brooks.
+**Anchor Refs:**
+Brooks (embodied robotics) as conceptual anchor.
+
+**Story Beat:**
+The body is no longer a prison; it becomes a palette—and identity starts to wobble.

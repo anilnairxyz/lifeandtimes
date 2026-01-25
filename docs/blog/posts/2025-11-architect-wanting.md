@@ -14,12 +14,15 @@ draft: false
 
 # The Architect of Wanting
 
-Moving from extrinsic rewards (points) to intrinsic motivation (curiosity). When does a "goal" become a "will"?
+**Question:** When does a goal become a will?
 
 <!-- more -->
 
-## Core Concepts
-Reinforcement Learning (RL), Intrinsic Motivation, Teleology.
+**Research Abstract:**
+Reinforcement learning formalizes reward-driven policy optimization; intrinsic motivation and self-determination theory address internally generated motives and autonomy/competence/relatedness as drivers of sustained agency. ([selfdeterminationtheory.org][10])
 
-## Investigation
-“Intrinsic Motivation and Self-Determination in Human Behavior” by Deci & Ryan.
+**Anchor Refs:**
+Deci & Ryan (1985); Ryan & Deci (2000). ([selfdeterminationtheory.org][10])
+
+**Story Beat:**
+We move from “points” to “purpose”—and the machine starts to look less tool-like.

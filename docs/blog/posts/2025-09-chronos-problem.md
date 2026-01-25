@@ -14,12 +14,15 @@ draft: false
 
 # The Chronos Problem
 
-AI lives in a "perpetual now." Without a continuous flow of time and episodic memory, can there be a "self" that persists?
+**Question:** Without continuous time and memory, can there be a persisting self?
 
 <!-- more -->
 
-## Core Concepts
-Episodic Memory, Temporal Continuity, Continuual Learning.
+**Research Abstract:**
+Cognitive science treats episodic/autobiographical memory as central to identity and self-continuity. Machine learning adds a technical analogue: continual learning under distribution shift and catastrophic forgetting. (Use this chapter to connect “self” to *time-binding*.)
 
-## Investigation
-“Memory and the Self” by Martin Conway.
+**Anchor Refs:**
+Autobiographical memory research (Conway as your narrative anchor).
+
+**Story Beat:**
+We end Part II with a sharper gap: embodiment and prediction help, but do not yet produce *necessity*.

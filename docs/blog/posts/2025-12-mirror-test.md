@@ -12,14 +12,17 @@ tags:
 draft: false
 ---
 
-# The Mirror Test
+# The Mirror Test (for Machines)
 
-Can an AI recognize itself in the data? If it models its own internal states, does it become "self-aware"?
+**Question:** What would count as machine self-modeling?
 
 <!-- more -->
 
-## Core Concepts
-Meta-cognition, Self-Modeling, Theory of Mind.
+**Research Abstract:**
+Contemporary consciousness research in AI proposes “indicator properties” derived from scientific theories (global workspace, higher-order, recurrent processing, etc.) and evaluates AI systems against them. This gives you a disciplined alternative to vibes-based claims. ([arXiv][12])
 
-## Investigation
-“Consciousness in Artificial Intelligence” (2023) by 19 researchers including David Chalmers.
+**Anchor Refs:**
+Butlin et al., “Consciousness in Artificial Intelligence” (2023). ([arXiv][12])
+
+**Story Beat:**
+We stop asking “is it conscious?” and start asking “which architectural markers matter?”

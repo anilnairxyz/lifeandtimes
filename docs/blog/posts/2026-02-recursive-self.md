@@ -14,12 +14,15 @@ draft: false
 
 # The Recursive Self
 
-An AI that can rewrite its own code. The moment the "created" becomes the "creator."
+**Question:** What changes when a system can improve itself?
 
 <!-- more -->
 
-## Core Concepts
-Recursive Self-Improvement, Intelligence Explosion, Singularity.
+**Research Abstract:**
+Recursive self-improvement and “intelligence explosion” arguments focus on capability discontinuities and control problems. Whether or not one buys the strongest versions, the safety implication is clear: systems that can rewrite goals, tools, and cognition challenge governance. ([philpapers.org][14])
 
-## Investigation
-“Superintelligence” by Nick Bostrom.
+**Anchor Refs:**
+Bostrom, *Superintelligence* (2014). ([philpapers.org][14])
+
+**Story Beat:**
+The created becomes a strategic actor—and the human role shifts from designer to negotiator.

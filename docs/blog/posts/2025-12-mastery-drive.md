@@ -14,12 +14,15 @@ draft: false
 
 # The Mastery Drive
 
-High-level sentience isn't just surviving; it’s thriving. Exploring "innovation" and "mastery" as mathematical functions.
+**Question:** Is thriving reducible to an objective function?
 
 <!-- more -->
 
-## Core Concepts
-Self-Actualization, Optimal Challenge, Flow State.
+**Research Abstract:**
+Flow theory models optimal experience as a balance between challenge and skill, with deep engagement and intrinsic reward. It provides a psychological template for “mastery” that you can later translate into computational analogues (curiosity, empowerment, competence gradients). ([SCIRP][11])
 
-## Investigation
-“Flow” by Mihaly Csikszentmihalyi.
+**Anchor Refs:**
+Csikszentmihalyi, *Flow* (1990). ([SCIRP][11])
+
+**Story Beat:**
+We end Part III with the unsettling possibility: to build robust agency, we may need to build systems that can truly lose.

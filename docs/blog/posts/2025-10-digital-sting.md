@@ -14,12 +14,15 @@ draft: false
 
 # The Digital Sting
 
-Could we program "pain"? Not just as a negative number, but as a "state of urgency" that the AI must avoid at all costs.
+**Question:** Can we build “pain” as more than a negative number?
 
 <!-- more -->
 
-## Core Concepts
-Valence, Artificial Affect, Nociception.
+**Research Abstract:**
+Affective computing studies computational representations of emotion and affect in interaction. The hard question is whether synthetic “valence” can be architected as intrinsic urgency rather than externally imposed scoring. ([MIT Press Direct][9])
 
-## Investigation
-“Affective Computing” by Rosalind Picard.
+**Anchor Refs:**
+Picard, *Affective Computing* (1997). ([MIT Press Direct][9])
+
+**Story Beat:**
+We begin flirting with the thing that makes morality unavoidable: engineered suffering.

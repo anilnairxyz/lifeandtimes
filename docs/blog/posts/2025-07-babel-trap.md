@@ -14,12 +14,15 @@ draft: false
 
 # The Babel Trap
 
-How language limits the machine. If a machine only knows the world through human descriptions, it is forever trapped in the "human" version of reality.
+**Question:** If your world is learned through language, whose world is it?
 
 <!-- more -->
 
-## Core Concepts
-Linguistic Relativity, Private Language Argument.
+**Research Abstract:**
+Language can scaffold thought but also constrain it: a system trained on human descriptions inherits human ontologies, biases, and blind spots. The philosophical pressure here is that meaning is use-bound and socially embedded (Wittgenstein-style), not merely encoded. (Use Wittgenstein as your conceptual hinge; you need not over-cite.)
 
-## Investigation
-“Philosophical Investigations” by Ludwig Wittgenstein.
+**Anchor Refs:**
+Wittgenstein, *Philosophical Investigations* (1953) (conceptual anchor).
+
+**Story Beat:**
+We end Part I realizing: representation is not enough—something must *situate* it.

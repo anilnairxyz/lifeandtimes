@@ -25,4 +25,4 @@ Language can scaffold thought but also constrain it: a system trained on human d
 Wittgenstein, *Philosophical Investigations* (1953) (conceptual anchor).
 
 **Story Beat:**
-We end Part I realizing: representation is not enough—something must *situate* it.
+We end Part I realising: representation is not enough—something must *situate* it.

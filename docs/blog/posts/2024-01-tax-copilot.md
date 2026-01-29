@@ -20,7 +20,7 @@ The key ideas:
 
 - Retrieval-Augmented Generation (RAG) to ground the model’s answers in relevant documents.
 - HYDE (Hypothetical Document Embeddings) to improve retrieval quality.
-- A vector database (plus Full-Text Search) to organize knowledge.
+- A vector database (plus Full-Text Search) to organise knowledge.
 - Optional web-grounded responses via a browsing LLM.
 - Tool-augmented generation for accurate tax calculations.
 - Guardrails, analytics, and cost/latency awareness to keep the system robust.
@@ -33,7 +33,7 @@ Tax rules are nuanced. People ask natural, messy questions: they combine multipl
 - Provide clear, accurate explanations with citations.
 - Perform calculations (e.g., capital gains tax, take-home pay) reliably and explain the math.
 - Ask clarifying questions when information is missing or ambiguous.
-- Minimize hallucinations by grounding answers in trusted sources.
+- Minimise hallucinations by grounding answers in trusted sources.
 
 
 ## Architecture at a Glance
@@ -101,12 +101,12 @@ Why it helps: documents in “answer space” are often more coherent than docum
 
 Sometimes the best answer is on the open web (e.g., brand‑new guidance). You can:
 
-- Call a browsing LLM (e.g., Perplexity’s API) that fetches sources and synthesizes an answer.
+- Call a browsing LLM (e.g., Perplexity’s API) that fetches sources and synthesises an answer.
 - Or run a lightweight “search + fetch + extract” pipeline with a curated set of domains.
 
 Use this path selectively:
 
-- Favor internal knowledge for stability and consistency.
+- Favour internal knowledge for stability and consistency.
 - Use web answers when freshness is critical; clearly cite sources.
 
 ## Tool‑Augmented Generation (Calculators)
@@ -123,7 +123,7 @@ Example tools (illustrative, not exhaustive):
 - Capital gains tax
 - Take‑home pay / income tax / National Insurance
 - Tax‑free allowance
-- Mortgage amortization
+- Mortgage amortisation
 
 Guardrails:
 
@@ -148,7 +148,7 @@ Guardrails:
 
 ## Privacy & Security
 
-- Store only what you need (minimize PII). Mask or drop sensitive fields.
+- Store only what you need (minimise PII). Mask or drop sensitive fields.
 - Authenticate access to retrieval and tools. Use project‑scoped API keys and per‑environment secrets.
 - Log safely (redact inputs/headers). Align with data retention policies.
 

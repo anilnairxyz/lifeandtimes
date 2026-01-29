@@ -19,7 +19,7 @@ draft: false
 <!-- more -->
 
 **Research Abstract:**
-Robotics and embodied AI emphasize that morphology is part of the computation (“morphological computation”). Multiple realizability suggests the same “mind” could in principle inhabit different substrates—yet the *shape* of interaction may rewrite the nature of cognition. (Brooks-style embodiment as a pragmatic corrective remains useful.)
+Robotics and embodied AI emphasise that morphology is part of the computation (“morphological computation”). Multiple realizability suggests the same “mind” could in principle inhabit different substrates—yet the *shape* of interaction may rewrite the nature of cognition. (Brooks-style embodiment as a pragmatic corrective remains useful.)
 
 **Anchor Refs:**
 Brooks (embodied robotics) as conceptual anchor.

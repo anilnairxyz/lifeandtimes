@@ -10,9 +10,9 @@ tags:
   - normalizing flows
 ---
 
-# Normalizing Flows
+# Normalising Flows
 
-Variational Auto-Encoders (VAEs) approximate the data distribution using a lower bound (ELBO) because the true likelihood is intractable. **Normalizing Flows** take a different path: they define a model where the exact log-likelihood is tractable and can be optimized directly. They achieve this by using a sequence of invertible transformations to map a simple distribution (like a Gaussian) to the complex data distribution.
+Variational Auto-Encoders (VAEs) approximate the data distribution using a lower bound (ELBO) because the true likelihood is intractable. **Normalising Flows** take a different path: they define a model where the exact log-likelihood is tractable and can be optimised directly. They achieve this by using a sequence of invertible transformations to map a simple distribution (like a Gaussian) to the complex data distribution.
 
 <!-- more -->
 
@@ -26,9 +26,9 @@ $$
 
 Here, the second term is the absolute value of the determinant of the **Jacobian matrix** of the inverse transformation. It measures how the transformation expands or contracts the volume of the space.
 
-## Normalizing Flows in Practice
+## Normalising Flows in Practice
 
-A normalizing flow consists of a sequence of $K$ such invertible transformations. We start with a simple base distribution $\mathbf{z}_0 \sim \mathcal{N}(0, I)$ and apply the chain of functions:
+A normalising flow consists of a sequence of $K$ such invertible transformations. We start with a simple base distribution $\mathbf{z}_0 \sim \mathcal{N}(0, I)$ and apply the chain of functions:
 
 $$
 \mathbf{z}_K = f_K \circ \dots \circ f_1(\mathbf{z}_0) = \mathbf{x}
@@ -69,4 +69,4 @@ Autoregressive models can also be interpreted as flows.
 - **Masked Autoregressive Flow (MAF)**: Fast likelihood evaluation (parallel), but slow sequential sampling. Good for density estimation.
 - **Inverse Autoregressive Flow (IAF)**: Fast parallel sampling, but slow likelihood evaluation. Good for real-time generation.
 
-Normalizing flows offer the powerful benefit of **exact likelihood estimation** and efficient latent variable manipulation, though they often require high-dimensional latent spaces (same dimension as input) compared to the compressed latent spaces of VAEs.
+Normalising flows offer the powerful benefit of **exact likelihood estimation** and efficient latent variable manipulation, though they often require high-dimensional latent spaces (same dimension as input) compared to the compressed latent spaces of VAEs.

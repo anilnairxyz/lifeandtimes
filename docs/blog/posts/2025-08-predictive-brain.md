@@ -19,7 +19,7 @@ draft: false
 <!-- more -->
 
 **Research Abstract:**
-Predictive processing and the free-energy principle model cognition as minimizing prediction error / surprise through perception and action. This reframes “experience” as controlled model-maintenance under uncertainty. ([Nature][6])
+Predictive processing and the free-energy principle model cognition as minimising prediction error / surprise through perception and action. This reframes “experience” as controlled model-maintenance under uncertainty. ([Nature][6])
 
 **Anchor Refs:**
 Friston, “The free-energy principle” (2010); predictive processing literature. ([Nature][6])

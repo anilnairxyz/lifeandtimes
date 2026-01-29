@@ -42,7 +42,7 @@ This provides a direct link to **Score-Based Models**. To generate data, we just
 
 ## The Discrete Denoising View (DDPM)
 
-Another perspective, popularized by Denoising Diffusion Probabilistic Models (DDPM), treats time as discrete steps.
+Another perspective, popularised by Denoising Diffusion Probabilistic Models (DDPM), treats time as discrete steps.
 
 - **Forward**: 
 
@@ -56,7 +56,7 @@ $$
 q(\mathbf{x}_{t-1} | \mathbf{x}_t)$ using a neural network $p_\theta(\mathbf{x}_{t-1} | \mathbf{x}_t)
 $$
 
-Training this model by maximizing the Variational Lower Bound (ELBO) simplifies mathematically to the same objective as **Denoising Score Matching**: simply training a network to predict the noise $\epsilon$ that was added to the image.
+Training this model by maximising the Variational Lower Bound (ELBO) simplifies mathematically to the same objective as **Denoising Score Matching**: simply training a network to predict the noise $\epsilon$ that was added to the image.
 
 ## Sampling with Predictor-Corrector
 

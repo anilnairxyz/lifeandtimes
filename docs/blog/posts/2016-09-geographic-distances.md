@@ -21,7 +21,7 @@ When dealing with IoT in the connected car space, most tasks require comparison 
 
 ### Geographic Distance Approximations
 
-The methods described below are summarized from [Movable Type Scripts](http://www.movable-type.co.uk/scripts/latlong.html).
+The methods described below are summarised from [Movable Type Scripts](http://www.movable-type.co.uk/scripts/latlong.html).
 
 ### Equirectangular projection
 

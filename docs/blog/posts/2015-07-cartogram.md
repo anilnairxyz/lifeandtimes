@@ -25,7 +25,7 @@ For the input we use:
   * A json file which gives the relative position of the components in the rendition - our module implements a custom protocol
 
 #### Cartogram
-The d3 module then sizes the individual components based on the parameter values provided in the csv file and positions them based on the values in the json file. Since the positions are relative, the resultant rendition is compact and does not have any spaces between the components.
+The d3 module then sises the individual components based on the parameter values provided in the csv file and positions them based on the values in the json file. Since the positions are relative, the resultant rendition is compact and does not have any spaces between the components.
 
 #### Rendition
 

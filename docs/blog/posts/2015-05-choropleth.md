@@ -29,18 +29,18 @@ svg.selectAll(".district")
             .data(districts.features)
           .enter().append("path")
             .attr("class", "district")
-            .style("fill", function(d) { return d.color; })
+            .style("fill", function(d) { return d.colour; })
             .attr("d", path)
 ```
-The color filling is done by using d3.scale.threshold() function.
+The colour filling is done by using d3.scale.threshold() function.
 ```javascript
 function colorCode(data, filter) {
-    var color = d3.scale.threshold()
+    var colour = d3.scale.threshold()
                   .domain([65, 72, 78, 85])
                   .range(["#111", "#222", "#333", "#444", "#555"]);
     data.forEach(function(d) { 
         if (isNaN(d.properties[filter])){d.properties[filter]=77;}
-        d.color       = color(d.properties[filter]);
+        d.colour       = colour(d.properties[filter]);
     });
 }
 ```

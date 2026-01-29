@@ -48,6 +48,6 @@ FID improves upon IS by comparing the statistics of the generated images against
 - **Lower FID is better**, as it indicates the generated distribution is statistically close to the real distribution.
 
 ## Human Evaluation
-Ultimately, for perceptual tasks, human evaluation remains the gold standard. Methods like **HYPE** (Human eYe Perceptual Evaluation) formalize this testing (e.g., measuring the time it takes for a human to distinguish real from fake).
+Ultimately, for perceptual tasks, human evaluation remains the gold standard. Methods like **HYPE** (Human eYe Perceptual Evaluation) formalise this testing (e.g., measuring the time it takes for a human to distinguish real from fake).
 
 However, human evals are expensive and slow, which keeps automated metrics like FID and Log-Likelihood as the standard workhorses for model development.

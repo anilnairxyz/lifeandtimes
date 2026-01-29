@@ -47,7 +47,7 @@ This mechanism "frees" the model from the bottleneck of a single hidden state, a
 
 ## Generative Transformers
 
-The **Transformer** architecture revolutionized sequential modeling by relying entirely on self-attention mechanisms, discarding recurrence altogether.
+The **Transformer** architecture revolutionised sequential modeling by relying entirely on self-attention mechanisms, discarding recurrence altogether.
 
 - **Self-Attention**: Allows each position in the sequence to attend to all positions, capturing complex relationships regardless of distance.
 - **Masked Self-Attention**: Crucial for generative tasks, masking ensures that the model cannot "see into the future". When predicting position $t$, it can only attend to positions $< t$, preserving the autoregressive property.
@@ -59,7 +59,7 @@ Transformers have become the backbone of modern Large Language Models (LLMs) lik
 While RNNs and Transformers process sequences, **Convolutional Neural Networks (CNNs)**—typically used for images—can also be adapted for sequence generation to overcome the sequential slowness of RNNs.
 
 - **Masked Convolutions**: Standard convolutions use information from surrounding pixels (both past and future in a sequence context). To be autoregressive, convolutions must be masked so that the receptive field at time $t$ only covers inputs from time $< t$.
-- **Parallelism**: Unlike RNNs, convolutional computations can often be parallelized more effectively during training, though generation remains sequential.
+- **Parallelism**: Unlike RNNs, convolutional computations can often be parallelised more effectively during training, though generation remains sequential.
 - **Ordering Issues**: For 2D data like images, defining a strict "order" (e.g., raster scan) is somewhat arbitrary, which remains an open challenge for autoregressive image models.
 
 Sequential generation remains a fundamental constraint of autoregressive models—whether RNN, Transformer, or CNN-based—requiring $O(N)$ steps to generate a sequence of length $N$.

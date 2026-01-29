@@ -11,7 +11,7 @@ tags:
 draft: false
 ---
 
-Heat maps are a popular way of visualizing data in a matrix where the color / brightness of the various cells indicate the strength of a prticular parameter.
+Heat maps are a popular way of visualising data in a matrix where the colour / brightness of the various cells indicate the strength of a prticular parameter.
 Other aspects of the cells like their size and relative position can also be used to relay information to the user.
 
 <!-- more -->
@@ -28,7 +28,7 @@ This heatmap has two levels of hierarchy:
 
 The heatmap is generated using two parameters;
 
-* The color is determined by the gain / loss of the stock during the trading day
+* The colour is determined by the gain / loss of the stock during the trading day
 * The size of the cells is determined by the relative market cap of the stock / sector
 
 ![](../images/heatmap.webp)

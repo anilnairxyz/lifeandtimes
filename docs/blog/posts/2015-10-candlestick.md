@@ -11,7 +11,7 @@ tags:
 draft: false
 ---
 
-Candlestick charts are a style of financial charts which are useful in visualizing price movements in stocks, commodities or currencies. It is probably the most commonly used chart among traders because several technical trading patterns are more easily visible on these charts compared to others.
+Candlestick charts are a style of financial charts which are useful in visualising price movements in stocks, commodities or currencies. It is probably the most commonly used chart among traders because several technical trading patterns are more easily visible on these charts compared to others.
 
 <!-- more -->
 
@@ -30,7 +30,7 @@ The candlestick chart that we set out to render include:
 
 The basic candlestick chart here is made of three overlapping bar charts:
 
-* The first displays the body of the candles (determined by OPEN and CLOSE prices). Notice how the offset of the candle is the higher of OPEN and CLOSE values while the height of the candle is the absolute difference of the two. We also color the candles and the wicks based on whether the price has risen or fallen during the day by using appropriate classes in css.
+* The first displays the body of the candles (determined by OPEN and CLOSE prices). Notice how the offset of the candle is the higher of OPEN and CLOSE values while the height of the candle is the absolute difference of the two. We also colour the candles and the wicks based on whether the price has risen or fallen during the day by using appropriate classes in css.
 
 ```javascript
 candle.selectAll("rect")

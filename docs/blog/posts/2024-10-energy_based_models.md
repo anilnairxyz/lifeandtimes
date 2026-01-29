@@ -23,7 +23,7 @@ $$
 p_\theta(\mathbf{x}) = \frac{1}{Z(\theta)} \exp(-E_\theta(\mathbf{x}))
 $$
 
-Here, $E_\theta(\mathbf{x})$ is the energy function (parameterized by a neural network), and $Z(\theta)$ is the **partition function** (normalization constant):
+Here, $E_\theta(\mathbf{x})$ is the energy function (parameterised by a neural network), and $Z(\theta)$ is the **partition function** (normalisation constant):
 
 $$
 Z(\theta) = \int \exp(-E_\theta(\mathbf{x})) d\mathbf{x}
@@ -31,7 +31,7 @@ $$
 
 ## The Partition Function Problem
 
-The flexibility of EBMs comes at a cost: $Z(\theta)$ is an integral over the entire high-dimensional input space, making it **intractable** to compute or optimize directly. This leads to the "Curse of Dimensionality" where standard Maximum Likelihood Estimation is difficult because we cannot calculate the likelihood.
+The flexibility of EBMs comes at a cost: $Z(\theta)$ is an integral over the entire high-dimensional input space, making it **intractable** to compute or optimise directly. This leads to the "Curse of Dimensionality" where standard Maximum Likelihood Estimation is difficult because we cannot calculate the likelihood.
 
 ## Training EBMs
 
@@ -53,6 +53,6 @@ $$
 s_\theta(\mathbf{x}) = \nabla_\mathbf{x} \log p_\theta(\mathbf{x}) = -\nabla_\mathbf{x} E_\theta(\mathbf{x})
 $$
 
-Notice that $\nabla_\mathbf{x} \log Z(\theta) = 0$ because $Z(\theta)$ is constant with respect to $\mathbf{x}$. This elegantly removes the partition function from the equation. Training involves minimizing the **Fisher Divergence** between the model score and the data score (which requires some tricks like denoising or sliced score matching to implement efficiently).
+Notice that $\nabla_\mathbf{x} \log Z(\theta) = 0$ because $Z(\theta)$ is constant with respect to $\mathbf{x}$. This elegantly removes the partition function from the equation. Training involves minimising the **Fisher Divergence** between the model score and the data score (which requires some tricks like denoising or sliced score matching to implement efficiently).
 
 Sampling from trained EBMs usually relies on **Langevin Dynamics**, an iterative process using the gradients of the energy function to move random noise towards low-energy (high-probability) regions.

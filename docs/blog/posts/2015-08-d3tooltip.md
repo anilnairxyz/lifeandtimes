@@ -11,7 +11,7 @@ draft: false
 ---
 
 In some of our previous posts on cartograms and choropleth maps we were able to display dynamic tooltips using d3.
-D3 being a visualization package, well designed tooltips provide a way to pack a lot more information without being overly intrusive.
+D3 being a visualisation package, well designed tooltips provide a way to pack a lot more information without being overly intrusive.
 Suitable transitions can also be built into the tooltip generation to aid in the smoothness of the view.
 This post provides a quick template for generating those tooltips.
 Here the `div` which contains our SVG is named `map`.
@@ -64,7 +64,7 @@ The styling can be done using the follwoing css.
         font: 12px sans-serif;        
         width:auto;
         padding:4px;
-        color:white;
+        colour:white;
         opacity:0;
         pointer-events: none;         
 }

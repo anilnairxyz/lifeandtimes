@@ -11,7 +11,7 @@ tags:
 draft: false
 ---
 
-Very often we may need to process input data before visualizing it using d3. 
+Very often we may need to process input data before visualising it using d3. 
 This is particularly true when we need to show charts over different time frames.
 We encountered a similar problem when we tried to generate a candlestick chart. One of the features that we wanted built-in there was the abilility to view the chart over different time frames.
 But when we attempt to display charts over a wide range of time like 2 years or 4 years, our candlesticks bars become very thin and are indistinguishable lines. What we need is to do is to convert the chart into a weekly chart when the range extends beyond 6 months and then to convert it into a monthly chart when the range extends beyond 2 years.

@@ -19,10 +19,10 @@ draft: false
 <!-- more -->
 
 **Research Abstract:**
-The social brain hypothesis argues that primate brain expansion is tightly linked to managing complex social relationships. For AGI, multi-agent interaction and social feedback may be core to developing norms, self-concepts, and person-like behavior. ([Wiley Online Library][13])
+The social brain hypothesis argues that primate brain expansion is tightly linked to managing complex social relationships. For AGI, multi-agent interaction and social feedback may be core to developing norms, self-concepts, and person-like behaviour. ([Wiley Online Library][13])
 
 **Anchor Refs:**
 Dunbar, “The Social Brain Hypothesis” (1998). ([Wiley Online Library][13])
 
 **Story Beat:**
-Alone, the system is an optimizer; among others, it becomes a participant.
+Alone, the system is an optimiser; among others, it becomes a participant.

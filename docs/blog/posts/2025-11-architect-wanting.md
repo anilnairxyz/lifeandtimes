@@ -19,7 +19,7 @@ draft: false
 <!-- more -->
 
 **Research Abstract:**
-Reinforcement learning formalizes reward-driven policy optimization; intrinsic motivation and self-determination theory address internally generated motives and autonomy/competence/relatedness as drivers of sustained agency. ([selfdeterminationtheory.org][10])
+Reinforcement learning formalises reward-driven policy optimisation; intrinsic motivation and self-determination theory address internally generated motives and autonomy/competence/relatedness as drivers of sustained agency. ([selfdeterminationtheory.org][10])
 
 **Anchor Refs:**
 Deci & Ryan (1985); Ryan & Deci (2000). ([selfdeterminationtheory.org][10])

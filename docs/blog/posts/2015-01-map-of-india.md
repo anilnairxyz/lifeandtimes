@@ -31,4 +31,4 @@ The map is rendered using d3.
 ![](../images/map-of-india.webp)
 
 #### Source
-The code and the results can be viewed at [**GitHub**](https://gist.github.com/anilnairxyz/1ca20f47982712cf6d4128064e3a6feb) or [**bl.ocks**](https://bl.ocks.org/anilnairxyz/1ca20f47982712cf6d4128064e3a6feb)
+The code and the results can be viewed at [**GitHub**](https://gist.github.com/anilnairxyz/1ca20f47982712cf6d4128064e3a6feb)

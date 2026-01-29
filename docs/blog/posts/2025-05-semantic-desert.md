@@ -19,10 +19,10 @@ draft: false
 <!-- more -->
 
 **Research Abstract:**
-The Chinese Room argues that syntax alone does not yield **intentionality** (aboutness). Regardless of one’s view on Searle’s conclusion, it spotlights the distinction between **formal operations** and **semantic content**. ([Cambridge University Press & Assessment][2])
+The Chinese Room argues that syntax alone does not yield **intentionality** (aboutness). Regardless of one’s view on Searle’s conclusion, it spotlights the distinction between **formal operations** and **semantic content**.
 
 **Anchor Refs:**
-Searle, “Minds, Brains, and Programs” (1980). ([Cambridge University Press & Assessment][2])
+Searle, “Minds, Brains, and Programs” (1980).
 
 **Story Beat:**
 We now suspect the machine can produce answers without owning meanings.

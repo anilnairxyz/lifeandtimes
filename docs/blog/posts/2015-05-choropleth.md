@@ -48,4 +48,4 @@ The map above clearly shows the regions where the literacy rate is high concentr
 
 Here we see that only the state states of Kerala, Mizoram and Tripura have very high literacy rates.
 
-The code and the results can be viewed at [**GitHub**](https://gist.github.com/anilnairxyz/11190f144a89b54c6698699f3a83b315) or [**bl.ocks**](https://bl.ocks.org/anilnairxyz/11190f144a89b54c6698699f3a83b315)
+The code and the results can be viewed at [**GitHub**](https://gist.github.com/anilnairxyz/11190f144a89b54c6698699f3a83b315)

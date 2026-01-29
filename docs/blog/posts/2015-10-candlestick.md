@@ -65,4 +65,4 @@ bands.selectAll("rect")
     .attr("height", Bheight)
 ```
 
-The code and its rendering can be viewed at [**GitHub**](https://gist.github.com/anilnairxyz/a51393d7c51342abe8d4e3f4cbab7ae1) or [**bl.ocks**](https://bl.ocks.org/anilnairxyz/a51393d7c51342abe8d4e3f4cbab7ae1)
+The code and its rendering can be viewed at [**GitHub**](https://gist.github.com/anilnairxyz/a51393d7c51342abe8d4e3f4cbab7ae1)

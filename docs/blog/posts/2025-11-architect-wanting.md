@@ -19,10 +19,10 @@ draft: false
 <!-- more -->
 
 **Research Abstract:**
-Reinforcement learning formalises reward-driven policy optimisation; intrinsic motivation and self-determination theory address internally generated motives and autonomy/competence/relatedness as drivers of sustained agency. ([selfdeterminationtheory.org][10])
+Reinforcement learning formalises reward-driven policy optimisation; intrinsic motivation and self-determination theory address internally generated motives and autonomy/competence/relatedness as drivers of sustained agency.
 
 **Anchor Refs:**
-Deci & Ryan (1985); Ryan & Deci (2000). ([selfdeterminationtheory.org][10])
+Ryan & Deci (2000).
 
 **Story Beat:**
-We move from “points” to “purpose”—and the machine starts to look less tool-like.
+We move from “points” to “purpose” and the machine starts to look less tool-like.

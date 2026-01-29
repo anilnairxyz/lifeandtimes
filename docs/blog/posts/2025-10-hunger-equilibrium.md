@@ -19,10 +19,10 @@ draft: false
 <!-- more -->
 
 **Research Abstract:**
-Homeostasis (and broader allostasis) frame life as maintaining viability under perturbation. Damasio’s work links feelings to homeostatic regulation and the emergence of value. ([The Guardian][8])
+Homeostasis (and broader allostasis) frame life as maintaining viability under perturbation. Damasio’s work links feelings to homeostatic regulation and the emergence of value.
 
 **Anchor Refs:**
-Damasio, *The Strange Order of Things* (popular entry point). ([The Guardian][8])
+Damasio, *The Strange Order of Things*
 
 **Story Beat:**
-We discover “needs” are not preferences—they are existential constraints.
+We discover “needs” are not preferences; instead, they are existential constraints.

@@ -34,4 +34,4 @@ The heatmap is generated using two parameters;
 ![](../images/heatmap.webp)
 <br>
 
-The code and its rendering can be viewed at [**GitHub**](https://gist.github.com/anilnairxyz/754723d31dd14d50a3142e65d47c1057) or [**bl.ocks**](https://bl.ocks.org/anilnairxyz/754723d31dd14d50a3142e65d47c1057)
+The code and its rendering can be viewed at [**GitHub**](https://gist.github.com/anilnairxyz/754723d31dd14d50a3142e65d47c1057)

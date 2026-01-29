@@ -19,10 +19,10 @@ draft: false
 <!-- more -->
 
 **Research Abstract:**
-The knowledge argument isolates a gap between **physical description** and **phenomenal acquaintance**. Even if one rejects non-physical qualia, the thought experiment usefully distinguishes *propositional knowledge* from *knowing-what-it’s-like*. ([philpapers.org][1])
+The knowledge argument isolates a gap between **physical description** and **phenomenal acquaintance**. Even if one rejects non-physical qualia, the thought experiment usefully distinguishes *propositional knowledge* from *knowing-what-it’s-like*.
 
 **Anchor Refs:**
-Jackson, “Epiphenomenal Qualia” (1982). ([philpapers.org][1])
+Jackson, “Epiphenomenal Qualia” (1982).
 
 **Story Beat:**
-We discover “complete description” may still fail to deliver “lived understanding.”
+We discover that “complete description” may still fail to deliver “lived understanding.”

@@ -19,7 +19,7 @@ draft: false
 <!-- more -->
 
 **Research Abstract:**
-Moral status debates hinge on sentience, interests, and capacity for welfare. Your series can treat “digital suffering” as an engineering possibility that triggers moral patienthood considerations—without deciding the full meta-ethics yet. (Use Chalmers as a narrative anchor; keep claims cautious.)
+Moral status debates hinge on sentience, interests, and capacity for welfare. Your series can treat “digital suffering” as an engineering possibility that triggers moral patienthood considerations—without deciding the full meta-ethics yet. (We use Chalmers as our narrative anchor.)
 
 **Anchor Refs:**
 Chalmers on consciousness and moral relevance (conceptual anchor).

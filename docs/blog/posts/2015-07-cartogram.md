@@ -34,4 +34,4 @@ This sample is based on the map of India with the cartograms showing the relativ
 ![](../images/cartogram.gif)
 
 #### Source
-The code and the results can be viewed at [**GitHub**](https://gist.github.com/anilnairxyz/79ec2746e0c5468edb3a85e5e4da1595) or [**bl.ocks**](https://bl.ocks.org/anilnairxyz/79ec2746e0c5468edb3a85e5e4da1595)
+The code and the results can be viewed at [**GitHub**](https://gist.github.com/anilnairxyz/79ec2746e0c5468edb3a85e5e4da1595)

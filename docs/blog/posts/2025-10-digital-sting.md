@@ -19,10 +19,10 @@ draft: false
 <!-- more -->
 
 **Research Abstract:**
-Affective computing studies computational representations of emotion and affect in interaction. The hard question is whether synthetic “valence” can be architected as intrinsic urgency rather than externally imposed scoring. ([MIT Press Direct][9])
+Affective computing studies computational representations of emotion and affect in interaction. The hard question is whether synthetic “valence” can be architected as intrinsic urgency rather than externally imposed scoring.
 
 **Anchor Refs:**
-Picard, *Affective Computing* (1997). ([MIT Press Direct][9])
+Picard, *Affective Computing* (1997).
 
 **Story Beat:**
 We begin flirting with the thing that makes morality unavoidable: engineered suffering.

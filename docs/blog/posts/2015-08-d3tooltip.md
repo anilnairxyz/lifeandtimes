@@ -82,4 +82,4 @@ And here is how it would appear on a map.
 ![](../images/tooltips.png)
 
 
-The code above is used in the cartogram at [**GitHub**](https://gist.github.com/anilnairxyz/79ec2746e0c5468edb3a85e5e4da1595) or [**bl.ocks**](https://bl.ocks.org/anilnairxyz/79ec2746e0c5468edb3a85e5e4da1595)
+The code above is used in the cartogram at [**GitHub**](https://gist.github.com/anilnairxyz/79ec2746e0c5468edb3a85e5e4da1595)

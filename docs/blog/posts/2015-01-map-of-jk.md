@@ -40,4 +40,4 @@ The superpolygon is then obtained which is the official bound of the Indian stat
 ![](../images/jandkmap-3.webp)
 
 #### Source Code
-The code and the results can be viewed at [**GitHub**](https://gist.github.com/anilnairxyz/9148bbbd31b00fabc3ef2a34c8aaa9b6) or [**bl.ocks**](https://bl.ocks.org/anilnairxyz/9148bbbd31b00fabc3ef2a34c8aaa9b6)
+The code and the results can be viewed at [**GitHub**](https://gist.github.com/anilnairxyz/9148bbbd31b00fabc3ef2a34c8aaa9b6)

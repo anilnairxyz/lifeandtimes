@@ -19,10 +19,10 @@ draft: false
 <!-- more -->
 
 **Research Abstract:**
-Modern LLMs suggest a third possibility: not hand-coded symbols, but **statistical compression** at scale. Critiques such as “stochastic parrots” stress that fluent output can arise from pattern learning without grounded understanding or accountability. ([ACM Digital Library][3])
+Modern LLMs suggest a third possibility: not hand-coded symbols, but **statistical compression** at scale. Critiques such as “stochastic parrots” stress that fluent output can arise from pattern learning without grounded understanding or accountability.
 
 **Anchor Refs:**
-Bender et al., “On the Dangers of Stochastic Parrots” (2021). ([ACM Digital Library][3])
+Bender et al., “On the Dangers of Stochastic Parrots” (2021).
 
 **Story Beat:**
-The machine starts to look less like a calculator—and more like a strange mirror.
+The machine starts to look less like a calculator and more like a strange mirror.

@@ -14,15 +14,15 @@ draft: false
 
 # The Body-Schema Paradox
 
-**Question:** Can you understand physics without having a body?
+**Question:** Can we understand physics without having a body?
 
 <!-- more -->
 
 **Research Abstract:**
-Embodied cognition argues that cognition is shaped by sensorimotor contingencies and body constraints. A “body schema” (functional model of one’s body in action) is not decorative; it can be constitutive of certain concepts. ([MIT Press Direct][5])
+Embodied cognition argues that cognition is shaped by sensorimotor contingencies and body constraints. A “body schema” (functional model of one’s body in action) is not decorative; it can be constitutive of certain concepts.
 
 **Anchor Refs:**
-Pfeifer & Bongard, *How the Body Shapes the Way We Think* (2006). ([MIT Press Direct][5])
+Pfeifer & Bongard, *How the Body Shapes the Way We Think* (2006).
 
 **Story Beat:**
 We move the mind into the world and expect understanding to snap into place.

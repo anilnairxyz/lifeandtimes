@@ -19,10 +19,10 @@ draft: false
 <!-- more -->
 
 **Research Abstract:**
-Vision-language models operationalise cross-modal alignment (e.g., contrastive objectives) and enable robust transfer. But richer input channels do not automatically generate *subjective significance*; they may just expand the representational surface area. ([arXiv][4])
+Vision-language models operationalise cross-modal alignment (e.g., contrastive objectives) and enable robust transfer. But richer input channels do not automatically generate *subjective significance*; they may just expand the representational surface area.
 
 **Anchor Refs:**
-Radford et al., CLIP (2021). ([arXiv][4])
+Radford et al., CLIP (2021).
 
 **Story Beat:**
 We add eyes and ears and still can’t find the “someone” inside.

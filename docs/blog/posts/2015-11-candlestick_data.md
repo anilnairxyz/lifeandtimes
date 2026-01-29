@@ -75,4 +75,4 @@ function timeCompare(date, interval) {
 The rendering is clean and intuitive.
 
 ![](../images/candlestick_data.png)
-The entire code and its rendering can be viewed at [**GitHub**](https://gist.github.com/anilnairxyz/a51393d7c51342abe8d4e3f4cbab7ae1) or [**bl.ocks**](https://bl.ocks.org/anilnairxyz/a51393d7c51342abe8d4e3f4cbab7ae1)
+The entire code and its rendering can be viewed at [**GitHub**](https://gist.github.com/anilnairxyz/a51393d7c51342abe8d4e3f4cbab7ae1)

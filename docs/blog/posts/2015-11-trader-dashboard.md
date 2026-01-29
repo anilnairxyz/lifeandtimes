@@ -28,4 +28,4 @@ At the same time, the individual bars on the side reflect the values of Volume, 
 ![](../images/trading-dashboard.webp)
 <br>
 
-The code and its rendering can be viewed at [**GitHub**](https://gist.github.com/anilnairxyz/9ec4b56f33ce0cd072b7f40504ed7858) or [**bl.ocks**](https://bl.ocks.org/anilnairxyz/9ec4b56f33ce0cd072b7f40504ed7858)
+The code and its rendering can be viewed at [**GitHub**](https://gist.github.com/anilnairxyz/9ec4b56f33ce0cd072b7f40504ed7858)

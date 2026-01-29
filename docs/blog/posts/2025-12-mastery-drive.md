@@ -19,10 +19,10 @@ draft: false
 <!-- more -->
 
 **Research Abstract:**
-Flow theory models optimal experience as a balance between challenge and skill, with deep engagement and intrinsic reward. It provides a psychological template for “mastery” that you can later translate into computational analogues (curiosity, empowerment, competence gradients). ([SCIRP][11])
+Flow theory models optimal experience as a balance between challenge and skill, with deep engagement and intrinsic reward. It provides a psychological template for “mastery” that we can later translate into computational analogues (curiosity, empowerment, competence gradients).
 
 **Anchor Refs:**
-Csikszentmihalyi, *Flow* (1990). ([SCIRP][11])
+Csikszentmihalyi, *Flow* (1990).
 
 **Story Beat:**
 We end Part III with the unsettling possibility: to build robust agency, we may need to build systems that can truly lose.

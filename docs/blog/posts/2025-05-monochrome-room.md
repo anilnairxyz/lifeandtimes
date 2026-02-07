@@ -28,7 +28,7 @@ It is this weaker conclusion that I find most plausible. I am not persuaded that
 
 It is precisely this gap, stripped of its metaphysical excesses, that becomes illuminating when we turn to artificial intelligence, especially the LLMs that seem to be the most popular candidates in the public perception to acquire general intelligence capabilities.
 
-### Description without presence
+### Description Without Presence
 
 Large Language Models are trained through the large-scale compression of descriptions: text produced by humans about the world, about themselves, and about their experiences. From this training, they acquire impressive declarative knowledge. They can answer factual questions, wrestle with abstract concepts, and even recount plausible narratives that resemble episodic memory.
 
@@ -54,7 +54,7 @@ But this is a category error. Multimodality expands the surface area of represen
 
 What is missing is not information, but presence.
 
-### Hitting the epistemological wall
+### Hitting the Epistemological Wall
 
 These deliberations lead us to the inevitable conclusion that AI systems trained on current paradigms will invariably hit the epistemological wall.
 

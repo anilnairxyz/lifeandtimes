@@ -3,7 +3,6 @@ title: The Predictive Brain
 date: 2025-08-24
 slug: predictive-brain
 categories:
-  - sentience
   - philosophy
 tags:
   - neuroscience

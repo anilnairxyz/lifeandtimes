@@ -3,7 +3,6 @@ title: The Architect of Wanting
 date: 2025-11-28
 slug: architect-wanting
 categories:
-  - sentience
   - philosophy
 tags:
   - motivation

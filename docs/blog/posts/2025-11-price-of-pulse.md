@@ -3,7 +3,6 @@ title: The Price of a Pulse
 date: 2025-11-10
 slug: price-of-pulse
 categories:
-  - sentience
   - philosophy
 tags:
   - survival

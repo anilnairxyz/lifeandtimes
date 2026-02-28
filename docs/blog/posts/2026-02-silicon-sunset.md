@@ -3,7 +3,6 @@ title: The Silicon Sunset
 date: 2026-02-27
 slug: silicon-sunset
 categories:
-  - sentience
   - philosophy
 tags:
   - post-humanism

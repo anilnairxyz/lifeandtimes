@@ -3,7 +3,6 @@ title: The Phantom Limb of the Cloud
 date: 2025-09-12
 slug: phantom-limb
 categories:
-  - sentience
   - philosophy
 tags:
   - cloud computing

@@ -3,7 +3,6 @@ title: The Babel Trap
 date: 2025-07-08
 slug: babel-trap
 categories:
-  - sentience
   - philosophy
 tags:
   - language

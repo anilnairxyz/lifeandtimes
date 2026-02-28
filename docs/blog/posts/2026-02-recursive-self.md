@@ -3,7 +3,6 @@ title: The Recursive Self
 date: 2026-02-12
 slug: recursive-self
 categories:
-  - sentience
   - philosophy
 tags:
   - singularity

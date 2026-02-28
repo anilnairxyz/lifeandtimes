@@ -3,7 +3,6 @@ title: The Body-Schema Paradox
 date: 2025-07-28
 slug: body-schema
 categories:
-  - sentience
   - philosophy
 tags:
   - embodiment

@@ -3,7 +3,6 @@ title: The Mastery Drive
 date: 2025-12-07
 slug: mastery-drive
 categories:
-  - sentience
   - philosophy
 tags:
   - flow

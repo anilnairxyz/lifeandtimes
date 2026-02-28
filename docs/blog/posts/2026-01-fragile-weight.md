@@ -3,7 +3,6 @@ title: The Fragile Weight
 date: 2026-01-26
 slug: fragile-weight
 categories:
-  - sentience
   - philosophy
 tags:
   - ethics

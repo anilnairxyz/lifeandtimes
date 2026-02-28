@@ -3,7 +3,6 @@ title: The Chronos Problem
 date: 2025-09-29
 slug: chronos-problem
 categories:
-  - sentience
   - philosophy
 tags:
   - time

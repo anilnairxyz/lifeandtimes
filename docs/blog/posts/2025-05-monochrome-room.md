@@ -3,8 +3,8 @@ title: The Monochrome Room
 date: 2025-05-05
 slug: monochrome-room
 categories:
-  - sentience
   - philosophy
+  - sentience
 tags:
   - qualia
   - physicalism

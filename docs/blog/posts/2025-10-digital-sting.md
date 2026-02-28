@@ -3,7 +3,6 @@ title: The Digital Sting
 date: 2025-10-25
 slug: digital-sting
 categories:
-  - sentience
   - philosophy
 tags:
   - pain

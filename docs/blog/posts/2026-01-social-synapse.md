@@ -3,7 +3,6 @@ title: The Social Synapse
 date: 2026-01-08
 slug: social-synapse
 categories:
-  - sentience
   - philosophy
 tags:
   - social

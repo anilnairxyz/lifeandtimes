@@ -3,7 +3,6 @@ title: The Mirror Test
 date: 2025-12-23
 slug: mirror-test
 categories:
-  - sentience
   - philosophy
 tags:
   - consciousness

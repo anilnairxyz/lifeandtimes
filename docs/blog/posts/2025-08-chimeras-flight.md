@@ -3,7 +3,6 @@ title: The Chimera’s Flight
 date: 2025-08-09
 slug: chimeras-flight
 categories:
-  - sentience
   - philosophy
 tags:
   - morphology

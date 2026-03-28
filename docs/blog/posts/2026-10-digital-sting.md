@@ -1,6 +1,6 @@
 ---
 title: The Digital Sting
-date: 2025-10-25
+date: 2026-10-25
 slug: digital-sting
 categories:
   - philosophy

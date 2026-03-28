@@ -1,6 +1,6 @@
 ---
 title: The Architect of Wanting
-date: 2025-11-28
+date: 2026-11-28
 slug: architect-wanting
 categories:
   - philosophy

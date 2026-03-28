@@ -1,6 +1,6 @@
 ---
 title: The Monochrome Room
-date: 2025-05-05
+date: 2026-05-05
 slug: monochrome-room
 categories:
   - philosophy

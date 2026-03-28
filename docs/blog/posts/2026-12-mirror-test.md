@@ -1,6 +1,6 @@
 ---
 title: The Mirror Test
-date: 2025-12-23
+date: 2026-12-23
 slug: mirror-test
 categories:
   - philosophy

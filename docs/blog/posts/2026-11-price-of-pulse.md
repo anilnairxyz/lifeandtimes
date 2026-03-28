@@ -1,6 +1,6 @@
 ---
 title: The Price of a Pulse
-date: 2025-11-10
+date: 2026-11-10
 slug: price-of-pulse
 categories:
   - philosophy

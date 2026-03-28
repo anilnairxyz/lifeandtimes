@@ -1,6 +1,6 @@
 ---
 title: The Sensorium
-date: 2025-06-25
+date: 2026-06-25
 slug: sensorium
 categories:
   - philosophy

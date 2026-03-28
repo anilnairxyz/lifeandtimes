@@ -1,6 +1,6 @@
 ---
 title: The Mastery Drive
-date: 2025-12-07
+date: 2026-12-07
 slug: mastery-drive
 categories:
   - philosophy

@@ -1,6 +1,6 @@
 ---
 title: The Stochastic Echo
-date: 2025-05-22
+date: 2026-05-22
 slug: stochastic-echo
 categories:
   - philosophy

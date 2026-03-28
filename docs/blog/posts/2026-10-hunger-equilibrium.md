@@ -1,6 +1,6 @@
 ---
 title: The Hunger for Equilibrium
-date: 2025-10-14
+date: 2026-10-14
 slug: hunger-equilibrium
 categories:
   - philosophy

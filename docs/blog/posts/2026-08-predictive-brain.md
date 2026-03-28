@@ -1,6 +1,6 @@
 ---
 title: The Predictive Brain
-date: 2025-08-24
+date: 2026-08-24
 slug: predictive-brain
 categories:
   - philosophy

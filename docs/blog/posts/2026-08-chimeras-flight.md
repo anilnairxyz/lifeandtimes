@@ -1,6 +1,6 @@
 ---
 title: The Chimera’s Flight
-date: 2025-08-09
+date: 2026-08-09
 slug: chimeras-flight
 categories:
   - philosophy

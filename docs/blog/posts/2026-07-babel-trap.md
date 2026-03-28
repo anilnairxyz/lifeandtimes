@@ -1,6 +1,6 @@
 ---
 title: The Babel Trap
-date: 2025-07-08
+date: 2026-07-08
 slug: babel-trap
 categories:
   - philosophy

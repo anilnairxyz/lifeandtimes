@@ -1,6 +1,6 @@
 ---
 title: The Phantom Limb of the Cloud
-date: 2025-09-12
+date: 2026-09-12
 slug: phantom-limb
 categories:
   - philosophy

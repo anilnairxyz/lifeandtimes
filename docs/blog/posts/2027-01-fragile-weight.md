@@ -1,6 +1,6 @@
 ---
 title: The Fragile Weight
-date: 2026-01-26
+date: 2027-01-26
 slug: fragile-weight
 categories:
   - philosophy

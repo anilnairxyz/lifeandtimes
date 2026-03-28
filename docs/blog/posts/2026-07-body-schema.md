@@ -1,6 +1,6 @@
 ---
 title: The Body-Schema Paradox
-date: 2025-07-28
+date: 2026-07-28
 slug: body-schema
 categories:
   - philosophy

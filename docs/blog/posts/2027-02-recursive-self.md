@@ -1,6 +1,6 @@
 ---
 title: The Recursive Self
-date: 2026-02-12
+date: 2027-02-12
 slug: recursive-self
 categories:
   - philosophy

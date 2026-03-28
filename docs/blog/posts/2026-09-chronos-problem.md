@@ -1,6 +1,6 @@
 ---
 title: The Chronos Problem
-date: 2025-09-29
+date: 2026-09-29
 slug: chronos-problem
 categories:
   - philosophy

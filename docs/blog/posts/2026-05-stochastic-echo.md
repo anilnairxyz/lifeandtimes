@@ -1,6 +1,6 @@
 ---
 title: The Stochastic Echo
-date: 2026-05-22
+date: 2026-05-08
 slug: stochastic-echo
 categories:
   - philosophy
@@ -14,7 +14,7 @@ draft: false
 
 # The Stochastic Echo
 
-If The Monochrome Room exposes a gap between complete representation and lived experience, The Stochastic Echo exposes a different and equally unsettling gap: the gap between formal competence and true meaning. Where the Mary’s Room experiment asks whether knowledge without experience is enough for understanding, the Chinese Room experiment which we will explore in this post asks whether correct behaviour is enough for substantivity. The question is no longer what it is like to say or display something. It is what it takes for symbols to mean anything at all.
+If The Monochrome Room exposes a gap between complete representation and lived experience, here we expose a different and equally unsettling gap: the gap between formal competence and true meaning. Where the Mary’s Room experiment asks whether knowledge without experience is enough for understanding, the Chinese Room experiment which we will explore in this post asks whether correct behaviour is enough for substantivity. The question is no longer what it is like to say or display something. It is what it takes for symbols to mean anything at all.
 
 <!-- more -->
 

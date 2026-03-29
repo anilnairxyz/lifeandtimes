@@ -2,6 +2,7 @@
 title: The Monochrome Room
 date: 2026-05-05
 slug: monochrome-room
+description: Why models can know everything and still understand nothing
 categories:
   - philosophy
   - sentience

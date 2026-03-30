@@ -2,6 +2,7 @@
 title: The Semantic Desert
 date: 2026-05-22
 slug: semantic-desert
+description: If a model predicts perfectly, has it learned reality?
 categories:
   - philosophy
   - sentience

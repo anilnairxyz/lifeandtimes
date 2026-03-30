@@ -2,6 +2,7 @@
 title: The Stochastic Echo
 date: 2026-05-08
 slug: stochastic-echo
+description: If a system behaves as if it understands, does it understand?
 categories:
   - philosophy
   - sentience

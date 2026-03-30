@@ -2,6 +2,7 @@
 title: The Babel Trap
 date: 2026-06-08
 slug: babel-trap
+description: If our world is learned through language, whose world is it?
 categories:
   - philosophy
   - sentience

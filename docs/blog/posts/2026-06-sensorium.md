@@ -2,6 +2,7 @@
 title: The Sensorium
 date: 2026-06-25
 slug: sensorium
+description: If a system can perceive and act, does it have a point of view?
 categories:
   - philosophy
 tags:
@@ -15,21 +16,25 @@ draft: false
 
 There is an obvious reply to the concerns raised so far. If language models remain ungrounded because they operate purely over descriptions, then the solution appears straightforward: connect them to the world. Give them vision, sound, touch. Embody them. Allow them to act, to perceive, and to learn from the consequences of those actions.
 
+This is not a speculative direction. It is already underway.
+
 <!-- more -->
 
-Unlike earlier suggestions that relied primarily on increasing scale, this shift toward multimodality and embodiment is not superficial. Vision–language models already demonstrate that textual representations can be aligned with perceptual inputs through contrastive objectives. Robotic systems extend this further by closing the loop between perception and action, learning how interventions in the world reshape subsequent responses to sensory input. A system trained in this way does not merely model descriptions of objects; it begins to register regularities in how the world itself responds.
+Models such as CLIP learn to align images and language within a shared representational space, bringing perceptual inputs into relation with textual descriptions. More recent multimodal systems extend this further, integrating vision, audio, and language into unified predictive frameworks that can describe scenes, answer questions about them, and reason across modalities.
 
-This, by no means can be dismissed as more of the same. There is a genuine transition here. A language model has no world. A multimodal model has a rather tenuous one, assembled through correlations between modalities. An embodied system, by contrast, is situated within an environment that constrains and responds to it. It occupies a position, persists through time, and operates within a space defined by what it can and cannot do.
+In these systems, the world begins to enter the loop — not merely as something described, but as something perceived.
+
+The transition becomes more pronounced in embodied agents. In robotic systems, perception and action are coupled: the system does not simply classify an object but attempts to grasp it, navigate around it, or manipulate it. Action alters perception, and perception guides action in return. The model is no longer only predicting descriptions of the world; it is, in a limited but meaningful sense, constrained by the world itself.
+
+This, by no means, can be dismissed as more of the same. There is a genuine transition here. A language model has no world. A multimodal model has a rather tenuous one, assembled through correlations between modalities. An embodied system, by contrast, is situated within an environment that constrains and responds to it. It occupies a position, persists through time, and operates within a space defined by what it can and cannot do.
 
 ### From Description to Contact
 
-In The Monochrome Room, the argument was that description does not yield acquaintance. A model can encode every fact about colour and still never see red.
-
-Here, we must concede something important.
+In The Monochrome Room, the argument was that description does not yield acquaintance. A model can encode every fact about colour and still never see red. Here, for the first time, description gives way to contact.
 
 A system that sees and acts is not merely describing the world. It is situated within it. It has a here and a now. Objects are no longer merely represented; they are located relative to the system’s own position and capacities. A surface may be reachable or not, an obstacle avoidable or not, a path open or blocked.
 
-Perception and action begin to interlock. Movement changes what is seen, and what is seen informs subsequent movement.
+Perception and action begin to interlock. Movement changes what is seen, and what is seen informs subsequent movement. The system’s representations are no longer entirely free-floating; they are tethered, however loosely, to the dynamics of an environment that responds.
 
 ### The Emergence of Perspective
 
@@ -39,25 +44,31 @@ This is already a meaningful departure from the systems considered earlier. The 
 
 ### Coordinates Without a Center
 
-And yet, even at this point, something remains unresolved.
+And yet, even at this point, something remains unresolved, particularly in the current paradigms of embodied systems.
 
-The introduction of a body and sensory channels provides the system with coordinates, but it is not obvious that it provides it with a centre. The system’s internal states may be organised around its position, but this organisation may still be exhaustively described from the outside. One can specify its inputs, its transformations, and its outputs without needing to appeal to anything like an experienced point of view.
+The introduction of a body and sensory channels provides the system with coordinates, but it is not obvious that it provides it with a centre. The system’s internal states may be organised around its position, its actions, and its evolving relation to the environment. It may construct increasingly sophisticated self-referential models — tracking its own location, capabilities, and even internal variables over time.
 
-This is not to deny that the system behaves as if it has a perspective. It clearly does. But the question is whether this perspective is merely operational or whether it constitutes something more substantial—whether there is, in any meaningful sense, something it is like to be that system.
+All of this is, in principle, extendable. One can imagine richer training regimes, more complex feedback loops, and architectures that explicitly encode self-models or internal state monitoring. But even granting these possibilities, the question does not disappear. It sharpens.
+
+The organisation of information around a system is not yet the same as there being something for which that organisation is present. A coordinate frame can be specified, updated, and exploited without there being anything that occupies it. The system behaves as if it has a perspective — but whether this perspective is merely functional or amounts to a point of view in any stronger sense remains unclear.
+
+This is not a claim about what such systems can never become. It is a claim about what does not obviously follow from situatedness alone.
 
 ### Salience Without Significance
 
-The distinction becomes clearer when we consider how significance enters perception. For a biological organism, perception is not neutral. Objects and events appear within a field structured by relevance. A falling glass is not simply a trajectory; it is an impending disruption. A moving object may be threatening or inconsequential depending on the organism’s needs and vulnerabilities.
+A similar ambiguity arises when we consider how significance enters perception.
 
-An embodied artificial system may register the same event and respond to it effectively. It may predict the fall, intervene to prevent it, or adjust its behaviour in response to the outcome. But the significance of the event remains externally assigned. It is encoded in reward functions, loss penalties, or task specifications. Nothing is at stake for the system beyond the optimisation criteria imposed upon it.
+In biological organisms, perception is not objectively neutral. The world appears structured by relevance. Objects and events are not simply registered; they matter. A falling glass is not merely a trajectory but an impending disruption. A moving object may be threatening or inconsequential depending on the organism’s needs, vulnerabilities, and history.
 
-Salience can be engineered. But significance, in this stronger sense, does not obviously follow.
+Artificial systems can be engineered to track and respond to such distinctions. Through reward functions, loss signals, or more sophisticated objectives, certain outcomes can be prioritised over others. One can imagine increasingly complex formulations — intrinsic motivation, self-supervised goals, or adaptive value systems that evolve over time. But here too, a distinction persists.
 
-### Perception Without Presence
+These mechanisms assign salience. They shape behaviour. They guide optimisation. Yet it is not clear that they introduce significance in the stronger sense — that anything is at stake for the system itself. The criteria of success and failure remain externally specified, even when they are dynamically updated or internally represented.
 
-A related issue concerns the structure of perception itself. Human experience presents the world as a unified field. Objects are not processed in isolation; they appear together, within a shared horizon that is implicitly organised around the perceiver.
+The system can act as if outcomes matter, and it may do so with increasing sophistication. But whether this amounts to anything like concern, importance, or lived relevance is not settled by the presence of optimisation alone.
 
-In current systems, by contrast, representations remain distributed across layers and components. There is no clear locus at which the world gathers as a single, coherent scene. There is processing, integration, and response — but it is not clear that there is anything like presence.
+A related issue concerns the structure of perception itself. Human experience presents the world as a unified field — a coherent scene within which objects appear together, organised around the perceiver. In current systems, representations remain distributed, compositional, and task-oriented. Integration occurs, but it does not obviously culminate in anything like a single, considered presence.
+
+Perception is processed. It is not clear that it is had.
 
 ### The Remaining Gap
 

@@ -1,6 +1,6 @@
 ---
 title: The Babel Trap
-date: 2026-06-08
+date: 2026-05-08
 slug: babel-trap
 description: If our world is learned through language, whose world is it?
 categories:
@@ -15,7 +15,7 @@ draft: false
 
 # The Babel Trap
 
-The preceding discussions have focused on the limitations of representation, prediction, and compression. One might reasonably respond that these limitations begin to dissolve once models become sufficiently capable — once they predict well enough, align across modalities, and integrate information at scale.
+We have explored how modern AI systems describe the world, reproduce its patterns, and compress its structure into increasingly powerful internal models. Each stage deepens capability, and with it, the expectation that understanding will emerge. It is tempting to believe that, beyond some threshold of scale and integration, these limitations dissolve — that sufficiently capable systems will simply emerge into a more complete grasp of the world.
 
 But if our world is learned through language, whose world is it?
 

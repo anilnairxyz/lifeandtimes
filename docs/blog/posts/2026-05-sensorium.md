@@ -1,6 +1,6 @@
 ---
 title: The Sensorium
-date: 2026-06-25
+date: 2026-05-25
 slug: sensorium
 description: If a system can perceive and act, does it have a point of view?
 categories:
@@ -14,7 +14,7 @@ draft: false
 
 # The Sensorium
 
-There is an obvious reply to the concerns raised so far. If language models remain ungrounded because they operate purely over descriptions, then the solution appears straightforward: connect them to the world. Give them vision, sound, touch. Embody them. Allow them to act, to perceive, and to learn from the consequences of those actions.
+If language models remain ungrounded because they operate purely over descriptions, then the solution appears straightforward: connect them to the world. Give them vision, sound, touch. Embody them. Allow them to act, to perceive, and to learn from the consequences of those actions.
 
 This is not a speculative direction. It is already underway.
 

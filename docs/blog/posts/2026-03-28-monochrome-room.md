@@ -1,6 +1,6 @@
 ---
 title: The Monochrome Room
-date: 2026-05-05
+date: 2026-03-28
 slug: monochrome-room
 description: Why models can know everything and still understand nothing
 categories:

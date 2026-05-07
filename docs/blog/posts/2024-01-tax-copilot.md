@@ -12,7 +12,7 @@ tags:
 
 # Building a Tax Copilot: A Practical Guide to Trustworthy AI for Tax Questions
 
-Modern language models can converse fluently, but trustworthy answers to tax questions require more than eloquence. This post outlines a pragmatic, production-oriented approach to building a tax copilot that answers questions and performs calculations reliably. It is based on the approach we implemented for Earnr, a finance and tax app for the self employed indivuals and their accountants in the UK. It focuses on the technology and the philosophy behind the system, not any specific implementation details.
+Modern language models can converse fluently, but trustworthy answers to tax questions require more than eloquence. This post outlines a pragmatic, production-oriented approach to building a tax copilot that answers questions and performs calculations reliably. It is based on the approach we implemented for Earnr, a finance and tax app for the self employed individuals and their accountants in the UK. It focuses on the technology and the philosophy behind the system, not any specific implementation details.
 
 <!-- more -->
 

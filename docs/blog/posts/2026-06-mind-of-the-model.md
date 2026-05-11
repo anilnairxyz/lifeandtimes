@@ -16,15 +16,13 @@ draft: false
 
 # The Mind of the Model
 
-Systems trained on a seemingly narrow objective — next-token prediction in foundational language models — exhibit behaviours that resemble reasoning, abstraction, and adaptation. They can solve problems they were not explicitly trained on, follow instructions in unfamiliar formats, and even adjust their behaviour within the span of a single prompt. These capabilities are not easily explained by a naive picture of statistical lookup or pattern matching.
+Foundational language models, though trained on a seemingly narrow objective of next-token prediction, exhibit behaviours that resemble reasoning, abstraction, and adaptation. They can solve problems they were not explicitly trained on, follow instructions in unfamiliar formats, and even adjust their behaviour within the span of a single prompt. These capabilities are not easily explained by a naive picture of statistical lookup or pattern matching.
 
 These systems are perhaps not minds in the sense we ordinarily recognise. But then, what kind of mind are they?
 
-<!-- more -->
+Thus far we have focused on what contemporary AI systems lack, namely acquaintance without description, meaning without syntax, discovery without compression, participation without inheritance, perspective without embodiment. But as these models scale, it becomes increasingly difficult to dismiss their capabilities, particularly their ability to adapt within context or the unusual polysemantic structure through which those capabilities seem to be realised.
 
-Thus far we have focused on what contemporary AI systems lack: acquaintance without description, meaning without syntax, discovery without compression, participation without inheritance, perspective without embodiment. But as these models scale, it becomes increasingly difficult to dismiss their capabilities, particularly their ability to adapt within context or the unusual polysemantic structure through which those capabilities are realised.
-
-The puzzle, then, is not whether these systems are intelligent in a familiar sense. It is how far the underlying mechanism — large-scale statistical prediction — can be pushed, and what kind of internal organisation it gives rise to.
+The puzzle, then, is not whether these systems are intelligent in a familiar sense. It is how far the underlying mechanism i.e. large-scale statistical prediction can be pushed, and what kind of internal organisation does it give rise to.
 
 ### The Prediction Machine
 
@@ -32,23 +30,21 @@ At its core, a large language model is trained to estimate a conditional probabi
 
 And yet, in order to succeed at this task across diverse corpora, the model is forced to internalise a vast range of regularities. Language does not exist in isolation. It carries traces of physical processes, social structures, causal relations, and human intentions. To predict text well, the model must capture patterns that reflect these underlying structures.
 
-In this sense, the model comes to encode something like a “world model.” But this phrase must be handled carefully. What it acquires is not a model of the world as directly encountered, but a model of the world as it is described. Its internal representations are shaped not by interaction with reality, but by exposure to the distribution of statements about reality.
-
-The distinction is subtle, but it has consequences.
+In this sense, the model comes to encode something like a “world model”, which it creates as told.
 
 ### The Unexpected Competence
 
 If the story ended here, we might still regard the model as an elaborate compression mechanism. What complicates this view is the emergence of behaviours that are not obviously reducible to memorisation or interpolation.
 
-One such behaviour is in-context learning. When provided with a few examples within a prompt, the model can often generalise to new instances of the same pattern, without any change to its parameters. It appears to “learn” from the prompt itself, adapting its responses based on local context. This is not learning in the conventional sense — no weights are updated — and yet the effect is functionally similar to fast adaptation.
+One such behaviour is **in-context learning**. When provided with a few examples within a prompt, the model can often generalise to new instances of the same pattern, without any change to its parameters. It appears to “learn” from the prompt itself, adapting its responses based on local context. This is not learning in the conventional sense because no weights are updated, and yet the effect is functionally similar to fast adaptation.
 
-Another source of surprise lies in the scaling of capabilities. As models grow in size and are trained on larger datasets, new behaviours become reliable: multi-step reasoning, code generation, tool use, and structured problem solving. Whether these capabilities emerge abruptly or gradually remains a matter of debate, but the qualitative shift is difficult to ignore. Systems that were once brittle begin to exhibit a degree of flexibility that invites comparison with general intelligence.
+Another source of surprise lies in the scaling of capabilities. As models grow in size and are trained on larger datasets, new behaviours become reliable: compositional or multi-step reasoning, code generation, tool use, and structured problem solving. Whether these capabilities emerge abruptly or gradually remains a matter of debate, but the qualitative shift is difficult to ignore. Systems that were once brittle begin to exhibit a degree of flexibility that invites comparison with general intelligence.
 
-These phenomena do not overturn the underlying training paradigm. They arise from it. The model is still optimising a predictive objective. But the internal structures required to support that objective become increasingly rich.
+These phenomena do not rely on overturning the underlying training paradigm. They arise from it. The model is still optimising a predictive objective. But the internal structures required to support that objective become increasingly rich without deliberation.
 
 ### Learning Without Learning
 
-In-context learning is particularly revealing because it blurs a distinction that has long been central to machine learning: the separation between training and inference.
+In-context learning is particularly revealing because it blurs a distinction that has long been central to machine learning, the separation between training and inference.
 
 Traditionally, learning occurs during training, through gradient updates. Inference is the application of learned parameters to new inputs. In large language models, this boundary becomes less rigid. The model appears capable of performing a form of implicit learning during inference, using the prompt as a temporary dataset.
 
@@ -56,15 +52,15 @@ One way to interpret this is through the lens of meta-learning. During training,
 
 From the outside, this looks like learning. From the inside, it is a trajectory through a fixed parameter space, conditioned on the prompt.
 
-The distinction is not merely technical. It suggests that the model’s “knowledge” is not static. It can be reconfigured dynamically, without altering its underlying weights. The prompt becomes a mechanism for steering the model through different regions of its latent space, effectively inducing temporary behaviours.
+In modern LLMs this capability is being developed towards continuous learning, where the model updates its knowledge dynamically. This includes "self-evolving" traits where the agent autonomously updates its memory and adapts its internal model based on environmental feedback.
 
 ### Structure Without Symbols
 
 If these systems exhibit something like learning and reasoning, where are these processes located? What does the internal organisation of the model look like?
 
-Work in mechanistic interpretability suggests that the answer is not straightforward. The model does not store concepts as discrete, well-defined entities. Instead, representations are distributed across many dimensions, and individual neurons or features often participate in multiple functions. This phenomenon — sometimes referred to as superposition or polysemanticity — indicates that the model compresses many overlapping patterns into shared representational resources.
+Work in mechanistic interpretability suggests that the answer is not straightforward. The model does not store concepts as discrete, well-defined entities. Instead, representations are distributed across many dimensions, and individual neurons or features often participate in multiple functions. This phenomenon, sometimes referred to as superposition or polysemanticity, indicates that the model compresses many overlapping patterns into shared representational resources.
 
-Rather than a clean ontology of concepts, we find a dense, entangled field of features. A single direction in embedding space may correspond to multiple related ideas, and a single idea may be represented across many directions. Circuits emerge that perform specific transformations, but these circuits are composed of components that are reused and recombined across contexts.
+Rather than a clean ontology of concepts, we find a dense, entangled field of features. A single direction in embedding space may correspond to multiple related ideas, and a single idea may be represented across many directions. Circuits emerge as interpretable substructures within the transformer architecture that implement specific algorithmic functions, but these circuits are composed of components that are reused and recombined across contexts.
 
 This organisation is efficient, but it is also alien. It does not resemble the symbolic structures often assumed in classical AI, nor does it map neatly onto intuitive notions of concepts and beliefs. The model’s “understanding,” insofar as that term applies, is encoded in patterns of activation that are both distributed and context-dependent.
 
@@ -84,7 +80,7 @@ If current trends continue, these systems will become increasingly coherent and 
 
 At the same time, multimodal extensions are beginning to reshape the internal landscape of these models. Systems trained across text, images, audio, and video do not simply accumulate additional inputs; they align these modalities into a shared representational space. Concepts are no longer purely linguistic. They begin to acquire a form of perceptual anchoring, even if that anchoring remains indirect. A “dog” is not just a token sequence, but a region within a manifold that spans language and image.
 
-There are also indications that models can be induced to perform more deliberate forms of computation at inference time. Techniques that encourage intermediate reasoning — whether through structured prompting or explicit search over candidate solutions — suggest that the same underlying model can be made to explore multiple trajectories before committing to an output. This does not introduce a new kind of intelligence, but it changes how the existing structure is deployed. The model is no longer a single pass through a distribution, but a system that can be made to traverse it more selectively.
+There are also indications that models can be induced to perform more deliberate forms of computation at inference time, by not limiting it to a single pass through a distribution, but as a system that can be made to traverse it more selectively.
 
 Taken together, these directions point toward systems that are less like static predictors and more like general-purpose cognitive interfaces. They can synthesise information across domains, simulate specialised expertise, generate and evaluate alternatives, and act as intermediaries between humans and increasingly complex bodies of knowledge. In practice, this is already visible in domains such as code generation, scientific assistance, design, and decision support, where the model functions less as a tool and more as a collaborator.
 
@@ -96,4 +92,4 @@ The model continues to operate over distributions of data, not over direct engag
 
 This gives the paradigm both its power and its constraint. It can approximate a vast range of human activities because so much of what we do leaves traces in language and related media. But it remains bounded by those traces. The mind that emerges from this trajectory, is a mind of a particular kind: one shaped by prediction, compression, and correlation, capable of remarkable flexibility, yet grounded in a structure that is, in important respects, orthogonal to the conditions under which minds like ours arise.
 
-Whether that structure can be extended into something more — or whether it must be supplemented by fundamentally different principles — remains an open question.
+Whether that structure can be extended into something more, or whether it must be supplemented by fundamentally different principles remains an open question.

@@ -14,31 +14,29 @@ draft: false
 
 # The Sensorium
 
-If language models remain ungrounded because they operate purely over descriptions, then the solution appears straightforward: connect them to the world. Give them vision, sound, touch. Embody them. Allow them to act, to perceive, and to learn from the consequences of those actions. This is not a speculative direction. It is already underway.
+If language models remain ungrounded because they operate purely over textual descriptions, then what about connecting them to the world. Give them vision, sound, touch. Embody them. Allow them to act, to perceive, and to learn from the consequences of those actions. This is, of course, already in the works for some time now.
 
 <!-- more -->
 
 Models such as CLIP learn to align images and language within a shared representational space, bringing perceptual inputs into relation with textual descriptions. More recent multimodal systems extend this further, integrating vision, audio, and language into unified predictive frameworks that can describe scenes, answer questions about them, and reason across modalities.
 
-In these systems, the world begins to enter the loop — not merely as something described, but as something perceived.
+In these systems, the world begins to enter the loop, not merely as something described, but as something perceived. The transition becomes more pronounced in embodied agents. In robotic systems, perception and action are coupled. The system does not simply classify an object but attempts to grasp it, navigate around it, or manipulate it. Action alters perception, and perception guides action in return. The model is no longer only predicting descriptions of the world. It is, in a limited but meaningful sense, constrained by the world itself.
 
-The transition becomes more pronounced in embodied agents. In robotic systems, perception and action are coupled: the system does not simply classify an object but attempts to grasp it, navigate around it, or manipulate it. Action alters perception, and perception guides action in return. The model is no longer only predicting descriptions of the world; it is, in a limited but meaningful sense, constrained by the world itself.
-
-This, by no means, can be dismissed as more of the same. There is a genuine transition here. A language model has no world. A multimodal model has a rather tenuous one, assembled through correlations between modalities. An embodied system, by contrast, is situated within an environment that constrains and responds to it. It occupies a position, persists through time, and operates within a space defined by what it can and cannot do.
+This, by no means, can be dismissed as more of the same. There is a genuine transition here. Where a language model has no world, a multimodal model has a rather tenuous one, assembled through correlations between modalities. An embodied system, by contrast, is situated within an environment that constrains and responds to it. It occupies a position, persists through time, and operates within a space defined by what it can and cannot do.
 
 ### From Description to Contact
 
 In The Monochrome Room, the argument was that description does not yield acquaintance. A model can encode every fact about colour and still never see red. Here, for the first time, description gives way to contact.
 
-A system that sees and acts is not merely describing the world. It is situated within it. It has a here and a now. Objects are no longer merely represented; they are located relative to the system’s own position and capacities. A surface may be reachable or not, an obstacle avoidable or not, a path open or blocked.
+A system that sees and acts is not merely describing the world. It is situated within it. It has a here and a now. Objects are no longer merely represented, rather they are located relative to the system’s own position and capacities. A surface may be reachable or not, an obstacle avoidable or not, a path open or blocked.
 
-Perception and action begin to interlock. Movement changes what is seen, and what is seen informs subsequent movement. The system’s representations are no longer entirely free-floating; they are tethered, however loosely, to the dynamics of an environment that responds.
+Perception and action begin to interlock. Movement changes what is seen, and what is seen informs subsequent movement. The system’s representations are no longer entirely free-floating. They are tethered, however loosely, to the dynamics of an environment that responds.
 
 ### The Emergence of Perspective
 
-In this sense, the system acquires what might reasonably be described as a form of perspective. It does not simply encode relations between entities; it navigates relations organised around itself. The world is no longer entirely external to the system’s operation. It is structured, at least in part, by the system’s own presence within it.
+In this sense, the system acquires what might reasonably be described as a form of perspective. It does not simply encode relations between entities, it navigates relations organised around itself. The world is no longer entirely external to the system’s operation. It is structured, at least in part, by the system’s own presence within it.
 
-This is already a meaningful departure from the systems considered earlier. The critique that applied cleanly to language models—that they possess descriptions without any locus in the world described—cannot be carried over without modification. An embodied system is not entirely absent. It is, in a limited but non-trivial sense, there.
+This is already a meaningful departure from the systems considered earlier. The critique that applied cleanly to language models, that they possess descriptions without any locus in the world described, cannot be carried over without modification. An embodied system is not entirely absent. It is, in a limited but non-trivial sense, there.
 
 ### Coordinates Without a Center
 

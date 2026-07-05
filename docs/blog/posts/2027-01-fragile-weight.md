@@ -8,7 +8,7 @@ tags:
   - ethics
   - suffering
   - ai
-draft: false
+draft: true
 ---
 
 # The Fragile Weight

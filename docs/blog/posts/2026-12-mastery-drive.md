@@ -8,7 +8,7 @@ tags:
   - flow
   - mastery
   - ai
-draft: false
+draft: true
 ---
 
 # The Mastery Drive

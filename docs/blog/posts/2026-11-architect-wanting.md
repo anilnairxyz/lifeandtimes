@@ -8,7 +8,7 @@ tags:
   - motivation
   - curiosity
   - ai
-draft: false
+draft: true
 ---
 
 # The Architect of Wanting

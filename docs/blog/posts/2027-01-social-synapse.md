@@ -8,7 +8,7 @@ tags:
   - social
   - cooperation
   - ai
-draft: false
+draft: true
 ---
 
 # The Social Synapse

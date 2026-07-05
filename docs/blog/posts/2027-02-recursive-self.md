@@ -8,7 +8,7 @@ tags:
   - singularity
   - recursion
   - ai
-draft: false
+draft: true
 ---
 
 # The Recursive Self

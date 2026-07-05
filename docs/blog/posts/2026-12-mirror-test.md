@@ -8,7 +8,7 @@ tags:
   - consciousness
   - self-awareness
   - ai
-draft: false
+draft: true
 ---
 
 # The Mirror Test (for Machines)

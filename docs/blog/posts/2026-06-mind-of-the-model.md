@@ -20,6 +20,8 @@ Foundational language models, though trained on a seemingly narrow objective of 
 
 These systems are perhaps not minds in the sense we ordinarily recognise. But then, what kind of mind are they?
 
+<!-- more -->
+
 Thus far we have focused on what contemporary AI systems lack, namely acquaintance without description, meaning without syntax, discovery without compression, participation without inheritance, perspective without embodiment. But as these models scale, it becomes increasingly difficult to dismiss their capabilities, particularly their ability to adapt within context or the unusual polysemantic structure through which those capabilities seem to be realised.
 
 The puzzle, then, is not whether these systems are intelligent in a familiar sense. It is how far the underlying mechanism i.e. large-scale statistical prediction can be pushed, and what kind of internal organisation does it give rise to.

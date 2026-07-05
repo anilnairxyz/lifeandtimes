@@ -8,7 +8,7 @@ tags:
   - embodiment
   - cognition
   - ai
-draft: false
+draft: true
 ---
 
 # The Body-Schema Paradox

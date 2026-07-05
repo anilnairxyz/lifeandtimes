@@ -8,7 +8,7 @@ tags:
   - survival
   - risk
   - ai
-draft: false
+draft: true
 ---
 
 # The Price of a Pulse

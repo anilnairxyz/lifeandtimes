@@ -8,7 +8,7 @@ tags:
   - post-humanism
   - soul
   - ai
-draft: false
+draft: true
 ---
 
 # The Silicon Sunset

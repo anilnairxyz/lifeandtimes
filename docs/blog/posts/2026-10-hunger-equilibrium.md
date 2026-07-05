@@ -8,7 +8,7 @@ tags:
   - homeostasis
   - biology
   - ai
-draft: false
+draft: true
 ---
 
 # The Hunger for Equilibrium

@@ -8,7 +8,7 @@ tags:
   - neuroscience
   - prediction
   - ai
-draft: false
+draft: true
 ---
 
 # The Predictive Brain

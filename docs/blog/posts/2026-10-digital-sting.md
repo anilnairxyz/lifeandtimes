@@ -8,7 +8,7 @@ tags:
   - pain
   - urgency
   - ai
-draft: false
+draft: true
 ---
 
 # The Digital Sting

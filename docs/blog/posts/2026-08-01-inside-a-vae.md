@@ -16,22 +16,22 @@ tags:
 
 # Seeing Inside a VAE: Experiments in a 2D Latent Space
 
-[Previously](2024-07-vaes.md) we had worked through the theory of the variational auto-encoder: the latent-variable motivation, the intractable marginal likelihood, and the ELBO with its two terms — a reconstruction term and a KL term that pulls the approximate posterior towards the prior. Here, rather than diving more into the equations, we try to figure what happens when you actually build the thing. To visualise things deliberately cripple it down to a **two-dimensional** latent space, and look at what it learned.
+[Previously](2024-07-vaes.md) we had worked through the theory of the variational auto-encoder: the latent-variable motivation, the intractable marginal likelihood, and the ELBO with its two terms — a reconstruction term and a KL term that pulls the approximate posterior towards the prior. Here, rather than diving more into the equations, we try to figure what happens when we actually build the thing. To visualise things deliberately cripple it down to a **two-dimensional** latent space, and look at what it learned.
 
 <!-- more -->
 
-The reason to force just two latent dimensions is that two numbers can be plotted. Everything a normal VAE keeps hidden in a 32- or 128-dimensional code becomes a picture you can point at. The cost is a brutal bottleneck — the whole of a handwritten digit squeezed through two numbers and rebuilt — but that cost is exactly what makes the concepts tangible.
+The reason to force just two latent dimensions is that two numbers can be plotted on a graph. Everything a normal VAE keeps hidden in a 32- or 128-dimensional code becomes a picture we can point at in 2D. The cost is a brutal bottleneck, the whole of a handwritten digit squeezed through two numbers and rebuilt.
 
 ## The setup
 
 The model is as small as it can be while still being a VAE: an MLP encoder `784 → 400 → {μ, logvar}` with a two-dimensional latent, and a mirror-image decoder `2 → 400 → 784`. Trained on MNIST for 30 epochs at $\beta = 1$ (the honest ELBO), it reaches a test ELBO of about **−151 nats per image**.
 
-One thing to hold onto throughout: **the model never sees the digit labels.** Its only objective is to compress each image and reconstruct it. Wherever a digit appears in what follows, the labels were attached *afterwards*, purely to colour the plots. Any structure you see is structure the model discovered on its own.
+One thing to hold onto throughout: **the model never sees the digit labels.** Its only objective is to compress each image and reconstruct it. Wherever a digit appears in what follows, the labels were attached *afterwards*, purely to colour the plots. Any structure we see is structure the model discovered on its own.
 
 ???+ info "The trap that ruins most MNIST VAEs"
 
     The reconstruction term must be *summed* over the 784 pixels and only then
-    averaged over the batch. Use `reduction='mean'` and you silently divide it by
+    averaged over the batch. Use `reduction='mean'` and we silently divide it by
     784, the KL term dominates by three orders of magnitude, and the model
     collapses to blurry digit-averages. The tell is the loss at initialisation:
     it should read ~540 nats ($784 \cdot \ln 2$), not ~0.7.
@@ -44,7 +44,7 @@ The first experiment is the simplest. Encode all 10,000 test images, take each o
 
 Ten clusters, drawn by a model that was never told there were ten of anything. This is the moment the VAE "clicks": the compression objective alone — *pack these images into two numbers so you can rebuild them* — forces visually similar digits to nearby locations, and the classes fall out for free.
 
-The overlaps are as informative as the separations. **0** and **1** sit in clean, distinct territory; **3/5/8** and **4/9** bleed into each other, because those digits genuinely look alike and the model, reasoning only from pixels, placed similar shapes together. Notice too that the points spill well outside the dashed circles marking the $1\sigma$ and $2\sigma$ contours of the $\mathcal{N}(0, I)$ prior. That gap — the aggregate posterior sitting wider than the prior says it should — is the **prior hole**, and it explains a failure we will hit shortly.
+The overlaps are as informative as the separations. **7** and **1** sit in clean, distinct territory; **3/5/8/0** and **4/9** bleed into each other, because those digits genuinely look alike and the model, reasoning only from pixels, placed similar shapes together. Notice too that the points spill well outside the dashed circles marking the $1\sigma$ and $2\sigma$ contours of the $\mathcal{N}(0, I)$ prior. That gap — the aggregate posterior sitting wider than the prior says it should — is the **prior hole**, and it explains a failure we will hit shortly.
 
 ## The manifold
 
@@ -54,7 +54,7 @@ The scatter shows where real digits *land*. The complementary view is what the d
 
 This is "the manifold" everyone talks about, made literal — a continuous sheet on which every writable digit lives somewhere, with smooth morphs between neighbours and no hard boundaries. Not one of these little images is real; each is the decoder's answer to *if a digit lived at this coordinate, what would it look like?*
 
-Two details worth reading off it. The clean, canonical digits sit toward the **periphery** (the interiors of the clusters), while the ambiguous blends sit in the **centre** — the crossroads where several clusters meet. That is counterintuitive until you remember the prior hole: the clusters were pushed *outward*, so the origin, which is where prior sampling is densest, is exactly where the least digit-like mush lives.
+Two details worth reading off it. The clean, canonical digits sit toward the **periphery** (the interiors of the clusters), while the ambiguous blends sit in the **centre** — the crossroads where several clusters meet. That is counterintuitive until we remember the prior hole: the clusters were pushed *outward*, so the origin, which is where prior sampling is densest, is exactly where the least digit-like mush lives.
 
 ???+ info "Why not just space the grid evenly?"
 
@@ -69,7 +69,7 @@ If the 3-cluster lives in one region and the 8-cluster in another, can we *gener
 
 ![](../images/vae_class_samples.png)
 
-Each row samples near one digit's centroid. Most rows are exactly what you'd hope — recognisable, consistent digits. But look at the rows for **4** and **5**.
+Each row samples near one digit's centroid. Most rows are exactly what we'd hope — recognisable, consistent digits. But look at the rows for **4** and **5**.
 
 ![](../images/vae_hit_rate.png)
 
@@ -96,7 +96,7 @@ The numbers across the sweep tell the same story from another angle:
 | 32 | −99 | 31 / 32 | 89% |
 | 128 | −99 | **30 / 128** | 94% |
 
-The ELBO plateaus by $L = 32$ — a 4× bigger latent buys nothing more, because the model was already using only ~30 dimensions. (The "linear probe" is the accuracy of a linear classifier trained on the frozen latent; at $L = 2$ it sits *below* a 91% raw-pixel baseline, a blunt reminder that aggressive compression can throw away exactly the information you might have wanted.)
+The ELBO plateaus by $L = 32$ — a 4× bigger latent buys nothing more, because the model was already using only ~30 dimensions. (The "linear probe" is the accuracy of a linear classifier trained on the frozen latent; at $L = 2$ it sits *below* a 91% raw-pixel baseline, a blunt reminder that aggressive compression can throw away exactly the information we might have wanted.)
 
 ## Compression versus reconstruction: the β knob
 
@@ -104,13 +104,13 @@ The KL term has a weight, $\beta$, and it is the dial on the whole enterprise. H
 
 ![](../images/vae_rate_distortion.png)
 
-Every $\beta$ is one operating point on a convex frontier; you cannot have both low rate and low distortion, and $\beta$ chooses where you sit. The reconstructions across the same sweep make it visceral:
+Every $\beta$ is one operating point on a convex frontier; we cannot have both low rate and low distortion, and $\beta$ chooses where we sit. The reconstructions across the same sweep make it visceral:
 
 ![](../images/vae_beta_reconstructions.png)
 
 Small $\beta$ gives sharp reconstructions; large $\beta$ smears digits toward blurry averages as the latent is abandoned. The two endpoints are each instructive failures:
 
-- **$\beta = 0$** removes the KL brake entirely. Reconstruction is sharpest, but the latent now carries **634 nats ≈ 914 bits** to represent a **784-bit** image. That is not compression — it is *expansion*. Without the KL penalty the encoder makes ultra-precise, prior-mismatched codes; from a Shannon standpoint you would do better sending the raw pixels.
+- **$\beta = 0$** removes the KL brake entirely. Reconstruction is sharpest, but the latent now carries **634 nats ≈ 914 bits** to represent a **784-bit** image. That is not compression — it is *expansion*. Without the KL penalty the encoder makes ultra-precise, prior-mismatched codes; from a Shannon standpoint we would do better sending the raw pixels.
 - **$\beta = 20$** over-penalises rate, and the latent **collapses** — active units fall from 31 to 2, and the reconstructions become near-identical mush regardless of the input.
 
 The useful representation lives at the knee. $\beta = 1$ is exactly ELBO-optimal, compressing a 784-bit image down to about 30 nats of shared, generalisable structure.
@@ -118,8 +118,8 @@ The useful representation lives at the knee. $\beta = 1$ is exactly ELBO-optimal
 ???+ info "This is where Shannon meets the ELBO"
 
     $-\text{ELBO} = D + R$. The rate $R$ is literally the channel rate through the
-    latent — the bits you would spend transmitting the code — and $D$ is the
-    residual you must patch up afterwards. $\beta$ trades one against the other.
+    latent — the bits we would spend transmitting the code — and $D$ is the
+    residual we must patch up afterwards. $\beta$ trades one against the other.
     This is the central figure of Alemi et al.'s *Fixing a Broken ELBO*.
 
 ## Watching features emerge
@@ -130,7 +130,7 @@ A final experiment, and my favourite. The 2D model was checkpointed on a log-spa
 
 Emergence is **not monotonic**, which surprised me. **1** and **7** — the most visually distinctive digits — resolve at the very first epoch and stay put; they are the easy features, learned first. The crowded middle (0/2/3/5/6/8) starts as an undifferentiated blob and separates slowly and only partially. And **4** and **9** appear cleanly separated *early*, then **re-entangle** as training proceeds: an early, crude arrangement gets overwritten as the model optimises globally under the two-dimensional constraint, sacrificing the 4/9 split (cheap to give up, since they look alike) to make room for the harder digits.
 
-If you only looked at the final epoch, you would conclude "4 and 9 overlap because they're similar" — true, but you would miss that the model *tried* separating them and backed out. Features form, drift, merge, and sometimes vanish. That the training dynamics reorganise a representation rather than simply sharpening it is the whole reason the longitudinal view is worth keeping.
+If we only looked at the final epoch, we would conclude "4 and 9 overlap because they're similar" — true, but we would miss that the model *tried* separating them and backed out. Features form, drift, merge, and sometimes vanish. That the training dynamics reorganise a representation rather than simply sharpening it is the whole reason the longitudinal view is worth keeping.
 
 ## What a representation keeps
 

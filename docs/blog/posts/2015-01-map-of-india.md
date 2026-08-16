@@ -15,7 +15,7 @@ Here we attempt to generate a map of India showing all the states and the union 
 <!-- more -->
 
 #### The source
-For the state level administrative map of India, we use [Natural Earth](http://www.naturalearthdata.com). The steps needed to obtain an officially acceptable map of the state of Jammu and Kashmir are already outlined in a the post for [Map of J&K](map-of-jk.md).
+For the state level administrative map of India, we use [Natural Earth](http://www.naturalearthdata.com). The steps needed to obtain an officially acceptable map of the state of Jammu and Kashmir are already outlined in a the post for [Map of J&K](2015-01-map-of-jk.md).
 
 #### Conversions
 The shapefiles downloaded from Natural Earth are first converted to GeoJSON using [ogr2ogr](http://www.gdal.org/ogr2ogr.html).

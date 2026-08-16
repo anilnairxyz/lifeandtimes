@@ -3,7 +3,7 @@ date: 2025-04-12
 slug: "enterprise-knowledge-fabric"
 categories:
   - Engineering
-  - AI
+  - genai
 tags:
   - RAG
   - LLM

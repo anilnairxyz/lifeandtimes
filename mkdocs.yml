@@ -3,6 +3,15 @@ site_url: https://anilnairxyz.github.io/lifeandtimes
 
 theme:
     name: 'material'
+    features:
+      - navigation.sections
+      - navigation.expand
+      - navigation.top
+      - navigation.indexes
+      - toc.follow
+      - search.suggest
+      - search.highlight
+      - content.code.copy
     palette:
 
     # Light mode
@@ -71,6 +80,9 @@ plugins:
   - roamlinks
   - blog:
       draft_if_future_date: true
+      categories_toc: true
+      archive_toc: true
+      pagination_per_page: 10
   - rss:
       match_path: blog/posts/.* 
       date_from_meta:

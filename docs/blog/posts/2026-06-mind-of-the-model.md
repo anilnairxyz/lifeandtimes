@@ -5,7 +5,7 @@ slug: mind-of-the-model
 description: If a mind can arise from prediction alone, what kind of mind is it?
 categories:
   - philosophy
-  - ai
+  - genai
 tags:
   - machine learning
   - prediction

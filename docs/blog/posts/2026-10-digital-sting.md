@@ -5,6 +5,7 @@ slug: digital-sting
 categories:
   - philosophy
 tags:
+  - sentience
   - pain
   - urgency
   - ai

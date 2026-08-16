@@ -5,7 +5,7 @@ date: 2026-08-17
 slug: inside-simsiam
 description: Training SimSiam on CIFAR-10 without a single negative example, matching SimCLR's representation quality through a completely different mechanism — then breaking it two independent ways and watching collapse happen on purpose
 categories:
-  - genai
+  - representations
 tags:
   - ai
   - neural networks

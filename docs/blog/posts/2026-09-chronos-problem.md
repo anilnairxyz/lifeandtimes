@@ -5,6 +5,7 @@ slug: chronos-problem
 categories:
   - philosophy
 tags:
+  - sentience
   - time
   - memory
   - ai

@@ -5,11 +5,11 @@ slug: semantic-desert
 description: If a model predicts perfectly, has it learned reality?
 categories:
   - philosophy
-  - sentience
 tags:
   - emergence
   - statistics
   - ai
+  - sentience
 draft: false
 ---
 

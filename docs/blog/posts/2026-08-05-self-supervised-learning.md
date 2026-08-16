@@ -5,7 +5,7 @@ date: 2026-08-05
 slug: self-supervised-learning
 description: How contrastive and non-contrastive methods learn representations without labels, and how each of them avoids collapse
 categories:
-  - genai
+  - representations
 tags:
   - ai
   - neural networks

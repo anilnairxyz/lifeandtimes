@@ -5,6 +5,7 @@ slug: fragile-weight
 categories:
   - philosophy
 tags:
+  - sentience
   - ethics
   - suffering
   - ai

@@ -5,6 +5,7 @@ slug: silicon-sunset
 categories:
   - philosophy
 tags:
+  - sentience
   - post-humanism
   - soul
   - ai

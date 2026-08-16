@@ -5,6 +5,7 @@ slug: phantom-limb
 categories:
   - philosophy
 tags:
+  - sentience
   - cloud computing
   - agency
   - ai

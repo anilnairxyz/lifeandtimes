@@ -5,6 +5,7 @@ slug: chimeras-flight
 categories:
   - philosophy
 tags:
+  - sentience
   - morphology
   - robotics
   - ai

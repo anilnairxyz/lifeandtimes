@@ -5,6 +5,7 @@ slug: social-synapse
 categories:
   - philosophy
 tags:
+  - sentience
   - social
   - cooperation
   - ai

@@ -3,7 +3,7 @@ draft: false
 date: 2024-06-05
 slug: sequential_models
 categories:
-  - genai
+  - generative ai
 tags:
   - ai
   - neural networks

@@ -5,7 +5,7 @@ date: 2026-08-01
 slug: inside-a-vae
 description: Building a tiny VAE on MNIST and making its latent space visible — clusters, the manifold, class sampling, the information bottleneck, and the rate–distortion trade-off
 categories:
-  - genai
+  - representations
 tags:
   - ai
   - neural networks

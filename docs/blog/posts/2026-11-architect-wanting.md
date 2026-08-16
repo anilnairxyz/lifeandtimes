@@ -5,6 +5,7 @@ slug: architect-wanting
 categories:
   - philosophy
 tags:
+  - sentience
   - motivation
   - curiosity
   - ai

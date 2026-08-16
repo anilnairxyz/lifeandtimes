@@ -5,6 +5,7 @@ slug: hunger-equilibrium
 categories:
   - philosophy
 tags:
+  - sentience
   - homeostasis
   - biology
   - ai

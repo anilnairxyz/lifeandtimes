@@ -5,11 +5,11 @@ slug: babel-trap
 description: If our world is learned through language, whose world is it?
 categories:
   - philosophy
-  - sentience
 tags:
   - language
   - wittgenstein
   - ai
+  - sentience
 draft: false
 ---
 

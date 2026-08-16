@@ -5,6 +5,7 @@ slug: price-of-pulse
 categories:
   - philosophy
 tags:
+  - sentience
   - survival
   - risk
   - ai

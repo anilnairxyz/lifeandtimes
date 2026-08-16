@@ -3,7 +3,7 @@ draft: false
 date: 2024-08-07
 slug: flow_models
 categories:
-  - genai
+  - generative ai
 tags:
   - ai
   - neural networks

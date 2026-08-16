@@ -3,7 +3,7 @@ draft: false
 date: 2025-01-15
 slug: evaluation_metrics
 categories:
-  - genai
+  - generative ai
 tags:
   - ai
   - neural networks

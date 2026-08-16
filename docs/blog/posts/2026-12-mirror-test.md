@@ -5,6 +5,7 @@ slug: mirror-test
 categories:
   - philosophy
 tags:
+  - sentience
   - consciousness
   - self-awareness
   - ai

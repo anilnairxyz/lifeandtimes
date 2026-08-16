@@ -3,11 +3,12 @@ draft: false
 date: 2024-01-24
 slug: tax_copilot 
 categories:
-  - genai
+  - engineering
 tags:
   - ai
   - agent
   - rag
+  - genai
 ---
 
 # Building a Tax Copilot: A Practical Guide to Trustworthy AI for Tax Questions

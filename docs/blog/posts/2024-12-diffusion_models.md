@@ -3,7 +3,7 @@ draft: false
 date: 2024-12-11
 slug: diffusion_models
 categories:
-  - genai
+  - generative ai
 tags:
   - ai
   - neural networks

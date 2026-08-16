@@ -5,6 +5,7 @@ slug: mastery-drive
 categories:
   - philosophy
 tags:
+  - sentience
   - flow
   - mastery
   - ai

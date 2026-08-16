@@ -5,6 +5,7 @@ slug: recursive-self
 categories:
   - philosophy
 tags:
+  - sentience
   - singularity
   - recursion
   - ai

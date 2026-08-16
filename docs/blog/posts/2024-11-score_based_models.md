@@ -3,7 +3,7 @@ draft: false
 date: 2024-11-06
 slug: score_based_models
 categories:
-  - genai
+  - generative ai
 tags:
   - ai
   - neural networks

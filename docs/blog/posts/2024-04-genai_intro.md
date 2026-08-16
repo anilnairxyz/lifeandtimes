@@ -3,7 +3,7 @@ draft: false
 date: 2024-04-10
 slug: genai_intro 
 categories:
-  - genai
+  - generative ai
 tags:
   - ai
   - neural networks

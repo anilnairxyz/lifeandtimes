@@ -5,6 +5,7 @@ slug: predictive-brain
 categories:
   - philosophy
 tags:
+  - sentience
   - neuroscience
   - prediction
   - ai

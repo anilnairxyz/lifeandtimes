@@ -3,7 +3,7 @@ draft: false
 date: 2024-10-09
 slug: energy_based_models
 categories:
-  - genai
+  - generative ai
 tags:
   - ai
   - neural networks

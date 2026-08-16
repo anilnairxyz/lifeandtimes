@@ -5,11 +5,11 @@ slug: monochrome-room
 description: Why models can know everything and still understand nothing
 categories:
   - philosophy
-  - sentience
 tags:
   - qualia
   - physicalism
   - ai
+  - sentience
 draft: false
 ---
 

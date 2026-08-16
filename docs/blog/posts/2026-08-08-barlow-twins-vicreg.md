@@ -5,7 +5,7 @@ date: 2026-08-08
 slug: barlow-twins-vicreg
 description: A third family of self-supervised methods that prevents representation collapse by constraining the statistics of the latent space directly, rather than through negatives or optimisation asymmetry
 categories:
-  - genai
+  - representations
 tags:
   - ai
   - neural networks

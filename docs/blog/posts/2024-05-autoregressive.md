@@ -3,7 +3,7 @@ draft: false
 date: 2024-05-08
 slug: autoregressive 
 categories:
-  - genai
+  - generative ai
 tags:
   - ai
   - neural networks

@@ -5,7 +5,7 @@ date: 2026-08-15
 slug: inside-simclr
 description: Training SimCLR on CIFAR-10 and checking what a contrastive, label-free objective actually keeps — the random-init floor, the collapse-proof math, and a per-class picture of what gets confused with what
 categories:
-  - genai
+  - representations
 tags:
   - ai
   - neural networks

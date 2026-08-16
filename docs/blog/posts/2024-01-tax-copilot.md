@@ -1,18 +1,15 @@
 ---
+title: "Building a Tax Copilot: A Practical Guide to Trustworthy AI for Tax Questions"
 draft: false
 date: 2024-01-24
-slug: tax_copilot 
+slug: tax_copilot
 categories:
   - engineering
 tags:
   - ai
   - agent
   - rag
-  - genai
 ---
-
-# Building a Tax Copilot: A Practical Guide to Trustworthy AI for Tax Questions
-
 Modern language models can converse fluently, but trustworthy answers to tax questions require more than eloquence. This post outlines a pragmatic, production-oriented approach to building a tax copilot that answers questions and performs calculations reliably. It is based on the approach we implemented for Earnr, a finance and tax app for the self employed individuals and their accountants in the UK. It focuses on the technology and the philosophy behind the system, not any specific implementation details.
 
 <!-- more -->
@@ -21,7 +18,7 @@ The key ideas:
 
 - Retrieval-Augmented Generation (RAG) to ground the model’s answers in relevant documents.
 - HYDE (Hypothetical Document Embeddings) to improve retrieval quality.
-- A vector database (plus full-fext search) to organise knowledge.
+- A vector database (plus full-text search) to organise knowledge.
 - Optional web-grounded responses via a browsing LLM.
 - Tool-augmented generation for accurate tax calculations.
 - Guardrails, analytics, and cost/latency awareness to keep the system robust.

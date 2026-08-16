@@ -1,4 +1,5 @@
 ---
+title: Patching broken trip information in GPS traces
 draft: false
 date: 2016-11-09
 slug: broken_trips
@@ -7,9 +8,6 @@ categories:
 tags:
   - gis
 ---
-
-# Patching broken trip information in GPS traces
-
 GPS traces have gaps in transmission. These often occur, but are not confined to the beginning of a trip.
 
 <!-- more -->

@@ -6,11 +6,8 @@ categories:
   - cryptography
 tags:
   - security
-  - public key
-  - merkle tree
 draft: false
 ---
-
 The problem of secure communication and digital contracts is fundamental to secure electronic data interchange.
 
 <!-- more -->

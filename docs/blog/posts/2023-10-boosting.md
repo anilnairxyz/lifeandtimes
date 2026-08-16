@@ -1,4 +1,5 @@
 ---
+title: Gradient boosting
 draft: false
 date: 2023-10-06
 slug: boosting
@@ -9,10 +10,6 @@ tags:
   - classification
   - ensemble
 ---
-
-
-# Gradient boosting
-
 [Gradient boosting](https://explained.ai/gradient-boosting/) is an ensemble technique that creates strong learning models by iteratively adding the predictions from weak learners. 
 
 <!-- more -->

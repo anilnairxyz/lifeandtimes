@@ -7,10 +7,8 @@ categories:
 tags:
   - d3
   - javascript
-  - data visualization
 draft: false
 ---
-
 We have previously seen how to make a responsive candlestick chart using d3. The next step is to have multiple responsive charts arranged to form a dashboard such that every chart synchronously varies state depending on mouse hover, clicks and selections.
 
 <!-- more -->

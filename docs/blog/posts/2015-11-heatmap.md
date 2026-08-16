@@ -7,10 +7,8 @@ categories:
 tags:
   - d3
   - javascript
-  - data visualization
 draft: false
 ---
-
 Heat maps are a popular way of visualising data in a matrix where the colour / brightness of the various cells indicate the strength of a prticular parameter.
 Other aspects of the cells like their size and relative position can also be used to relay information to the user.
 

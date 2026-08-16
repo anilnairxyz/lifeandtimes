@@ -7,18 +7,13 @@ categories:
 tags:
   - d3
   - javascript
-  - data visualization
 draft: false
 ---
-
-Very often we may need to process input data before visualising it using d3. 
-This is particularly true when we need to show charts over different time frames.
-We encountered a similar problem when we tried to generate a candlestick chart. One of the features that we wanted built-in there was the abilility to view the chart over different time frames.
-But when we attempt to display charts over a wide range of time like 2 years or 4 years, our candlesticks bars become very thin and are indistinguishable lines. What we need is to do is to convert the chart into a weekly chart when the range extends beyond 6 months and then to convert it into a monthly chart when the range extends beyond 2 years.
+Very often we may need to process input data before visualising it using d3. This is particularly true when we need to show charts over different time frames. We encountered a similar problem when we tried to generate a candlestick chart. One of the features that we wanted built-in there was the ability to view the chart over different time frames.
 
 <!-- more -->
 
-Fortunately this can be conveniently acccomplished using the d3.rollup function.
+But when we attempt to display charts over a wide range of time like 2 years or 4 years, our candlesticks bars become very thin and are indistinguishable lines. What we need is to do is to convert the chart into a weekly chart when the range extends beyond 6 months and then to convert it into a monthly chart when the range extends beyond 2 years. Fortunately this can be conveniently accomplished using the d3.rollup function.
 
 First the csv file containing the stock price and other information is read using d3.csv and the data is preprocessed using an accessor function (here genType) and the returned data object is passed on to the callback function.
 

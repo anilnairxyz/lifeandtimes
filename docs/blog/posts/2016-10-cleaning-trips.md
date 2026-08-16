@@ -1,4 +1,5 @@
 ---
+title: Cleaning GPS traces for accurate routes and distances
 draft: false
 date: 2016-10-10
 slug: clean_trips
@@ -7,9 +8,6 @@ categories:
 tags:
   - gis
 ---
-
-# Cleaning GPS traces for accurate routes and distances
-
 Inaccuracies and errors in GPS data are common and pose a unique challenge to trip and route processing.
 
 <!-- more -->

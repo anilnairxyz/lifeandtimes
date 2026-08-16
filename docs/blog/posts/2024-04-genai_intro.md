@@ -1,4 +1,5 @@
 ---
+title: Goals of a generative model
 draft: false
 date: 2024-04-10
 slug: genai_intro 
@@ -6,11 +7,8 @@ categories:
   - generative ai
 tags:
   - ai
-  - neural networks
+  - neuralnetworks
 ---
-
-# Goals of a generative model
-
 The primary objective of a generative model (with parameters $\theta$) is to approximate via $P_\theta(\mathbf{x})$ the data distribution $P_{data}(\mathbf{x})$ given a sufficiently large set of training samples from an independent and identically distributed training distribution $P_{train}(\mathbf{x})$. 
 
 <!-- more -->

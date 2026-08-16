@@ -8,10 +8,8 @@ tags:
   - d3
   - gis
   - javascript
-  - data visualization
 draft: false
 ---
-
 Choropleth maps are thematic maps in which areas are shaded according to the strength of a particular feature. Its is a good visualisation to quickly differentiate different regions based on the the property of interest.
 
 <!-- more -->

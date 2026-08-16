@@ -9,7 +9,6 @@ tags:
   - gis
 draft: false
 ---
-
 Obtaining a reliable map of India is a challenge because of the status of disputed territories and their interpretation by different sources. The main difficulty is in combining the different regions of Jammu and Kashmir which are controlled by three different countries namely India, Pakistan and China. Here we attempt to generate a single GeoJSON to include the entire state of Jammu and Kashmir as acceptable under the rules laid down by the government of India for use within the country.
 
 <!-- more -->

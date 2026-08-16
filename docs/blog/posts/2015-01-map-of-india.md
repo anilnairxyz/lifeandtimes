@@ -9,7 +9,6 @@ tags:
   - gis
 draft: false
 ---
-
 Here we attempt to generate a map of India showing all the states and the union territories.
 
 <!-- more -->

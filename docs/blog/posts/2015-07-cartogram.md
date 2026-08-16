@@ -8,10 +8,8 @@ tags:
   - d3
   - gis
   - javascript
-  - data visualization
 draft: false
 ---
-
 Most cartograms that you find on the web are continuous area cartograms like [**this excellent one by Max Galka**](http://metrocosm.com/world-population-history-map/). Although it has many positives, the problem with this form of the cartogram is that the shapes are distorted and the smaller components are difficult to observe. The relative areas are not clearly visible since the rendition has to remain loyal to the original shape of the components to a certain extent. On the other hand it is better than simple scaling of the components as it makes more use of the visible areas.
 
 <!-- more -->

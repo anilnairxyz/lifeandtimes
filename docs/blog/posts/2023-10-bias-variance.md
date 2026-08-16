@@ -1,16 +1,13 @@
 ---
+title: Bias variance tradeoff 
 draft: false
 date: 2023-10-03
 slug: bv
 categories:
   - machine learning
 tags:
-  - ai
   - ml
 ---
-
-# Bias variance tradeoff 
-
 The bias-variance tradeoff explains the relationship between a model's complexity and predictive capability vs it's generalisation capabilities. It provides us a framework to balance overfitting and underfitting.
 
 <!-- more -->

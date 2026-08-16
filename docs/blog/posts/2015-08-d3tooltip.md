@@ -6,7 +6,7 @@ categories:
   - dataviz
 tags:
   - d3
-  - data visualization
+  - gis
 draft: false
 ---
 

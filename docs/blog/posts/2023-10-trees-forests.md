@@ -1,4 +1,5 @@
 ---
+title: Decision trees and forests
 draft: false
 date: 2023-10-05
 slug: trees
@@ -9,10 +10,6 @@ tags:
   - classification
   - ensemble
 ---
-
-
-# Decision trees and forests
-
 Decision trees are hierarchical rule based models that provided an advancement over logistic regression in classification problems - for example in solving the XOR problem.
 
 <!-- more -->

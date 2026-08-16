@@ -1,17 +1,13 @@
 ---
+title:  Linear and logistic regression
 draft: false
 date: 2023-10-02
 slug: regression
 categories:
   - machine learning
 tags:
-  - ai
   - ml
 ---
-
-
-# Linear and logistic regression
-
 Linear and logistic regression are the simplest models used in supervised learning tasks like modelling a dependent variable and classification.
 
 <!-- more -->
@@ -71,7 +67,7 @@ The main aim of regularisation is to prevent overfitting and improve generalisat
 
 ## Limitations ##
 
-There is a limited subset of problems that lend itself to a ** linear decision boundary**. For example the simple XOR problem cannot be solved by logistic regression.
+There is a limited subset of problems that lend itself to a **linear decision boundary**. For example the simple XOR problem cannot be solved by logistic regression.
 
 Another limitation is the sensitivity to feature scaling. Normalisation techniques can help here, but at the end of the day we are tampering with the input data thereby introducing inefficiencies.
 

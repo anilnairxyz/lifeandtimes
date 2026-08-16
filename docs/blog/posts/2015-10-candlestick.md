@@ -7,10 +7,8 @@ categories:
 tags:
   - d3
   - javascript
-  - data visualization
 draft: false
 ---
-
 Candlestick charts are a style of financial charts which are useful in visualising price movements in stocks, commodities or currencies. It is probably the most commonly used chart among traders because several technical trading patterns are more easily visible on these charts compared to others.
 
 <!-- more -->

@@ -1,4 +1,5 @@
 ---
+title: Geographic distances
 draft: false
 date: 2016-09-18
 slug: gis_distance
@@ -7,14 +8,11 @@ categories:
 tags:
   - gis
 ---
-
-# Geographic distances
-
 Geographic distances are those on spherical geometry, but not quite.
 
 <!-- more -->
 
-When dealing with IoT in the connected car space, most tasks require comparison between routes or segments of the journey ([lat, long] pair strings) for similarity. We also need accurate distance measurements to calculate higer order functions like speed and acceleration. There are two primary distances we need to compute when making sense of GPS traces - all others are a function of these two.
+When dealing with IoT in the connected car space, most tasks require comparison between routes or segments of the journey ([lat, long] pair strings) for similarity. We also need accurate distance measurements to calculate higher order functions like speed and acceleration. There are two primary distances we need to compute when making sense of GPS traces - all others are a function of these two.
 
  * The first is the distance between two points and 
  * The second one is the minimum distance between a point and a line segment.
@@ -25,7 +23,7 @@ The methods described below are summarised from [Movable Type Scripts](http://ww
 
 ### Equirectangular projection
 
-In this method the geographic coordinates on the surface of the earth are projected onto an equirectangular plane and then the distances are measured as if on a plane surface. For distances of even a few hundred km this gives negligible errors compared to the more complicated haversine and should serve our purpose very well. Where this method fails is when we need to compute variables that are a function of more than one distance measure like the angle between segments. In this case the tiny errors magnify and make the resultant computation inaccurate and sometimes absurd.
+In this method the geographic coordinates on the surface of the earth are projected onto an equirectangular plane and then the distances are measured as if on a plane surface. For distances of even a few hundred km this gives negligible errors compared to the more complicated Haversine and should serve our purpose very well. Where this method fails is when we need to compute variables that are a function of more than one distance measure like the angle between segments. In this case the tiny errors magnify and make the resultant computation inaccurate and sometimes absurd.
 
 ```python
 def equirectangular(pointA, pointB):

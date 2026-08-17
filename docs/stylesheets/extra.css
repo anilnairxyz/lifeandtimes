@@ -1,0 +1,29 @@
+/* Muted rust/terracotta highlight, via attr_list attached to an existing
+   inline element, e.g. **text**{: .rust } or *text*{: .rust }.
+   Warm against the theme's cool blue-grey/teal palette, so it never reads as a link. */
+.rust {
+  color: #a1522c;
+}
+[data-md-color-scheme="slate"] .rust {
+  color: #e08b6f;
+}
+
+/* Light mode: two distinct shades of blue for base link vs. hover,
+   replacing the default indigo base + teal hover pairing. */
+[data-md-color-scheme="default"][data-md-color-primary="blue-grey"] {
+  --md-typeset-a-color: #1976d2;
+}
+[data-md-color-scheme="default"] .md-typeset a:hover {
+  color: #42a5f5;
+}
+
+/* Dark mode: base link color replaces the default, which inherits the
+   primary color (blue-grey) and reads as blue on a dark background.
+   Hover gets its own distinct light-blue, since the theme's accent teal
+   was too close to the muted-teal base to read as a state change. */
+[data-md-color-scheme="slate"][data-md-color-primary="blue-grey"] {
+  --md-typeset-a-color: #4db6ac;
+}
+[data-md-color-scheme="slate"] .md-typeset a:hover {
+  color: #4fc3f7;
+}

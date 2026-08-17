@@ -1,6 +1,11 @@
 site_name: "life & times"
 site_url: https://anilnairxyz.github.io/lifeandtimes
 
+nav:
+  - About This Site: index.md
+  - Essays:
+    - blog/index.md
+
 theme:
     name: 'material'
     features:
@@ -81,7 +86,7 @@ plugins:
   - blog:
       draft_if_future_date: true
       categories_toc: true
-      archive_toc: false
+      archive: false
       pagination_per_page: 20
   - tags
   - rss:

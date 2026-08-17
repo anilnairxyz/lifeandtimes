@@ -27,3 +27,8 @@
 [data-md-color-scheme="slate"] .md-typeset a:hover {
   color: #4fc3f7;
 }
+
+/* Bold the "Essays" top-level entry in the primary sidebar to draw attention. */
+.md-nav--primary a.md-nav__link[href$="blog/"] {
+  font-weight: 700;
+}

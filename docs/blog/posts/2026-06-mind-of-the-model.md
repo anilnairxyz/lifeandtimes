@@ -16,17 +16,17 @@ These systems are perhaps not minds in the sense we ordinarily recognise. But th
 
 <!-- more -->
 
-Thus far we have focused on what contemporary AI systems lack, namely acquaintance without description, meaning without syntax, discovery without compression, participation without inheritance, perspective without embodiment. But as these models scale, it becomes increasingly difficult to dismiss their capabilities, particularly their ability to adapt within context or the unusual polysemantic structure through which those capabilities seem to be realised.
+Thus far we have, perhaps in a rather harshly critical way, looked exclusively at what contemporary AI systems lack, namely acquaintance without description, meaning without syntax, discovery without compression, participation without inheritance, perspective without embodiment. But as these models scale, it becomes increasingly difficult to dismiss their capabilities, particularly their ability to **adapt within context** or the unusual ***polysemantic*** structure through which those capabilities seem to be realised.
 
 The puzzle, then, is not whether these systems are intelligent in a familiar sense. It is how far the underlying mechanism i.e. large-scale statistical prediction can be pushed, and what kind of internal organisation does it give rise to.
 
 ### The Prediction Machine
 
-At its core, a large language model is trained to estimate a conditional probability distribution over tokens. Given a sequence, it learns to predict the next token. This objective is deceptively simple. It does not explicitly encode concepts, rules, or world dynamics. It does not distinguish between truth and falsehood, nor between signal and noise. It rewards only one thing: reducing uncertainty about what comes next.
+At its core, a large language model is trained to estimate a conditional probability distribution over tokens. Given a sequence, it learns to predict the next token. This objective is deceptively simple. It does not explicitly encode concepts, rules, or world dynamics. It does not distinguish between truth and falsehood, nor between signal and noise. It rewards only one thing: predicting what comes next over all possibilities.
 
-And yet, in order to succeed at this task across diverse corpora, the model is forced to internalise a vast range of regularities. Language does not exist in isolation. It carries traces of physical processes, social structures, causal relations, and human intentions. To predict text well, the model must capture patterns that reflect these underlying structures.
+And yet, in order to succeed at this task across diverse corpora, the model is forced to internalise a vast range of regularities. Language at its heart is an encoder. It carries traces of physical processes, social structures, causal relations, and human intentions. To predict text well, the model must capture patterns that reflect these underlying structures.
 
-In this sense, the model comes to encode something like a “world model”, which it creates as told.
+In this sense, the model comes to encode something like a *world model*, which it creates as *told*.
 
 ### The Unexpected Competence
 

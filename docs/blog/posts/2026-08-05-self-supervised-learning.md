@@ -1,5 +1,5 @@
 ---
-title: "Self-Supervised Learning: from SimCLR to SimSiam"
+title: "Self-Supervised Learning: Contrastive and non-contrastive"
 draft: false
 date: 2026-08-05
 slug: self-supervised-learning

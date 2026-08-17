@@ -1,5 +1,5 @@
 ---
-title: "Barlow Twins and VICReg: Regularising the Latent Space"
+title: "Self-Supervised Learning: Regularising the Latent Space"
 draft: false
 date: 2026-08-08
 slug: barlow-twins-vicreg

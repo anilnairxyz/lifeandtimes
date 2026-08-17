@@ -1,5 +1,5 @@
 ---
-title: "Seeing Inside a VAE: Experiments in a 2D Latent Space"
+title: "What's inside a VAE: A peep into the Latent Space"
 draft: false
 date: 2026-08-01
 slug: inside-a-vae

@@ -27,6 +27,10 @@ SimCLR, MoCo, BYOL and SimSiam are four different answers to this one problem.
 
 SimCLR is a **contrastive** method. It prevents collapse by explicitly comparing each image against the other images in the minibatch.
 
+!!! quote "Reference"
+
+    Chen, Kornblith, Norouzi & Hinton (2020), [*A Simple Framework for Contrastive Learning of Visual Representations*](https://arxiv.org/abs/2002.05709), ICML.
+
 For every original image $\mathbf{x}$, two random augmentations are drawn from a family $\mathcal{T}$:
 
 $$
@@ -96,6 +100,10 @@ After training, the projector is discarded and the encoder output $\mathbf{h}$ i
 
 SimCLR obtains its negatives from the current minibatch, so using more negatives normally requires a larger batch and more GPU memory. **Momentum Contrast (MoCo)** keeps the contrastive objective but changes how negatives are supplied. It introduces two separate paths: a *query* encoder and projector, and a *key* encoder and projector.
 
+!!! quote "Reference"
+
+    He, Fan, Wu, Xie & Girshick (2020), [*Momentum Contrast for Unsupervised Visual Representation Learning*](https://arxiv.org/abs/1911.05722), CVPR.
+
 ```mermaid
 graph LR
     X((x)) --> AQ[Query augmentation]
@@ -145,6 +153,10 @@ MoCo does not eliminate the need for negatives. It provides a memory-efficient w
 ## BYOL: learning without negatives
 
 **Bootstrap Your Own Latent (BYOL)** asks whether useful representations can be learned without explicitly pushing independent images apart. It has two paths: an *online* path updated by gradient descent, and a *target* path updated through an exponential moving average.
+
+!!! quote "Reference"
+
+    Grill et al. (2020), [*Bootstrap Your Own Latent: A New Approach to Self-Supervised Learning*](https://arxiv.org/abs/2006.07733), NeurIPS.
 
 ```mermaid
 graph LR
@@ -196,6 +208,10 @@ BYOL contains several candidate anti-collapse mechanisms:
 - an EMA target network.
 
 SimSiam removes the momentum encoder and shows that useful representations can still be learned. Both views now pass through the **same shared encoder and projector**.
+
+!!! quote "Reference"
+
+    Chen & He (2021), [*Exploring Simple Siamese Representation Learning*](https://arxiv.org/abs/2011.10566), CVPR.
 
 ```mermaid
 graph LR

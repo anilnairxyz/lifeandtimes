@@ -45,6 +45,10 @@ graph LR
 
 Barlow Twins draws two augmented views $x_A = t_A(x)$ and $x_B = t_B(x)$, embeds both to $z_A, z_B$, and — after standardising each embedding dimension along the batch — computes the **cross-correlation matrix** between the dimensions of the two views:
 
+!!! quote "Reference"
+
+    Zbontar, Jing, Misra, LeCun & Deny (2021), [*Barlow Twins: Self-Supervised Learning via Redundancy Reduction*](https://arxiv.org/abs/2103.03230), ICML.
+
 $$
 C_{ij} = \frac{\sum_b z^A_{b,i}\, z^B_{b,j}}{\sqrt{\sum_b (z^A_{b,i})^2}\;\sqrt{\sum_b (z^B_{b,j})^2}}
 $$
@@ -77,6 +81,10 @@ It is worth being precise about what Barlow Twins is *not* doing. It is not tryi
 ## VICReg: variance, invariance, covariance
 
 VICReg (**V**ariance-**I**nvariance-**C**ovariance **Reg**ularisation) makes the anti-collapse mechanism fully explicit by splitting it into three named terms applied to the batch of embeddings.
+
+!!! quote "Reference"
+
+    Bardes, Ponce & LeCun (2022), [*VICReg: Variance-Invariance-Covariance Regularization for Self-Supervised Learning*](https://arxiv.org/abs/2105.04906), ICLR.
 
 **1. Invariance** — the usual SSL objective, that two views agree:
 

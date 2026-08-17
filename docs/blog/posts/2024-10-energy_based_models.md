@@ -1,5 +1,5 @@
 ---
-title: "Energy-Based Models (EBMs)"
+title: Energy-Based Models (EBMs)
 draft: false
 date: 2024-10-09
 slug: energy_based_models
@@ -7,9 +7,8 @@ categories:
   - generative ai
 tags:
   - ai
-  - neural networks
   - ebm
-  - energy-based models
+  - genai
 ---
 **Energy-Based Models (EBMs)** offer a highly flexible framework for generative modeling. While VAEs and Flows restrict the model architecture to ensure tractability, EBMs allow us to use *any* function $f_\theta(\mathbf{x})$ to define a probability distribution.
 

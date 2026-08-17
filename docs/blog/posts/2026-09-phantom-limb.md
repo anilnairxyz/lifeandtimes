@@ -6,7 +6,6 @@ categories:
   - philosophy
 tags:
   - sentience
-  - cloud computing
   - agency
   - ai
 draft: true

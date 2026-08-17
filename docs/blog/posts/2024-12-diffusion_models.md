@@ -1,5 +1,5 @@
 ---
-title: "Score-Based Diffusion Models"
+title: Score-Based Diffusion Models
 draft: false
 date: 2024-12-11
 slug: diffusion_models
@@ -7,9 +7,8 @@ categories:
   - generative ai
 tags:
   - ai
-  - neural networks
-  - diffusion models
   - sde
+  - genai
 ---
 Diffusion models are currently the state-of-the-art in generative AI, powering tools like DALL-E 2, Stable Diffusion, and Imagen. They unify the concepts of Iterative Refinement (from Score-Based Models) and Variational inference.
 

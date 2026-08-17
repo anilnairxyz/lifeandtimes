@@ -6,8 +6,6 @@ description: Why models can know everything and still understand nothing
 categories:
   - philosophy
 tags:
-  - qualia
-  - physicalism
   - ai
   - sentience
 draft: false

@@ -6,8 +6,6 @@ description: If a model predicts perfectly, has it learned reality?
 categories:
   - philosophy
 tags:
-  - emergence
-  - statistics
   - ai
   - sentience
 draft: false

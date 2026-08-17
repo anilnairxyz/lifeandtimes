@@ -2,12 +2,13 @@
 title: Autoregressive models
 draft: false
 date: 2024-05-08
-slug: autoregressive 
+slug: autoregressive
 categories:
   - generative ai
 tags:
   - ai
-  - neural networks
+  - neuralnetworks
+  - genai
 ---
 Autoregressive models as the name implies, generates data by predicting each element sequentially based on the elements previously generated. They are naturally aligned to tasks involving sequential dependence like natural language, audio and time-series data. However, autoregressive models have also been successfully applied to image generation.
 

@@ -6,8 +6,6 @@ description: If a system behaves as if it understands, does it understand?
 categories:
   - philosophy
 tags:
-  - semantics
-  - chinese room
   - ai
   - sentience
 draft: false

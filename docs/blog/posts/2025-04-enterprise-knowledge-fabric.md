@@ -1,14 +1,15 @@
 ---
 title: "Building the Enterprise Knowledge Fabric: From Scattered Data to Grounded Answers"
 date: 2025-04-12
-slug: "enterprise-knowledge-fabric"
+slug: enterprise-knowledge-fabric
 categories:
   - engineering
 tags:
   - RAG
   - LLM
-  - Enterprise Search
   - genai
+  - agent
+  - ai
 draft: false
 ---
 In large-scale organisations, institutional knowledge is often "dark matter." It exists in wikis, Jira tickets, Slack threads and metadata catalogs, but finding it when you need it is a common bottleneck.

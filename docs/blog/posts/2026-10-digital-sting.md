@@ -7,7 +7,6 @@ categories:
 tags:
   - sentience
   - pain
-  - urgency
   - ai
 draft: true
 ---

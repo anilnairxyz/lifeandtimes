@@ -6,9 +6,8 @@ description: If a system can perceive and act, does it have a point of view?
 categories:
   - philosophy
 tags:
-  - multimodal
-  - perception
   - ai
+  - sentience
 draft: false
 ---
 If language models remain ungrounded because they operate purely over textual descriptions, then what about connecting them to the world. Give them vision, sound, touch. Embody them. Allow them to act, to perceive, and to learn from the consequences of those actions. This is, of course, already in the works for some time now.

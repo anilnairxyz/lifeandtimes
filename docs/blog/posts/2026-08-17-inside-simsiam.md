@@ -8,9 +8,10 @@ categories:
   - representations
 tags:
   - ai
-  - neural networks
-  - self-supervised learning
-  - representation learning
+  - representational-learning
+  - self-supervised-learning
+  - mechanistic-interpretability
+  - genai
 ---
 [SimCLR](2026-08-15-inside-simclr.md) prevents representation collapse with negatives: every other image in the batch is actively pushed away, so mapping everything to one point makes the loss worse, not better. [SimSiam](2026-08-05-self-supervised-learning.md) has no negatives at all — no queue, no momentum encoder, nothing pulling different images apart. Its only defence is architectural: a predictor on one branch, and a stop-gradient on the other. That is a strictly weaker-sounding safety net, and it raises an obvious pair of questions. Does it actually work? And what happens if we take the safety net away?
 

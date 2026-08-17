@@ -7,9 +7,9 @@ categories:
   - generative ai
 tags:
   - ai
-  - neural networks
   - transformers
   - rnn
+  - neuralnetworks
 ---
 Autoregressive models inherently rely on sequential generation, where each new element is conditioned on the history of previously generated elements. While simple architectures like FVSBN and NADE demonstrate this principle, scaling to complex data like text and audio requires more sophisticated architectures capable of handling long-range dependencies and sequential data structures.
 

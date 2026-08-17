@@ -11,9 +11,6 @@ tags:
   - ai
 draft: true
 ---
-
-# The Social Synapse
-
 **Question:** Is intelligence fundamentally social?
 
 <!-- more -->

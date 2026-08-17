@@ -11,9 +11,6 @@ tags:
   - ai
 draft: true
 ---
-
-# The Fragile Weight
-
 **Question:** If we can create digital suffering, what are we permitted to do?
 
 <!-- more -->

@@ -11,9 +11,6 @@ tags:
   - ai
 draft: true
 ---
-
-# The Chronos Problem
-
 **Question:** Without continuous time and memory, can there be a persisting self?
 
 <!-- more -->

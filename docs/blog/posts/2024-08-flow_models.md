@@ -1,4 +1,5 @@
 ---
+title: "Normalising Flows"
 draft: false
 date: 2024-08-07
 slug: flow_models
@@ -9,9 +10,6 @@ tags:
   - neural networks
   - normalizing flows
 ---
-
-# Normalising Flows
-
 Variational Auto-Encoders (VAEs) approximate the data distribution using a lower bound (ELBO) because the true likelihood is intractable. **Normalising Flows** take a different path: they define a model where the exact log-likelihood is tractable and can be optimised directly. They achieve this by using a sequence of invertible transformations to map a simple distribution (like a Gaussian) to the complex data distribution.
 
 <!-- more -->

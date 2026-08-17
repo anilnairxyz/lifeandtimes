@@ -11,9 +11,6 @@ tags:
   - ai
 draft: false
 ---
-
-# The Sensorium
-
 If language models remain ungrounded because they operate purely over textual descriptions, then what about connecting them to the world. Give them vision, sound, touch. Embody them. Allow them to act, to perceive, and to learn from the consequences of those actions. This is, of course, already in the works for some time now.
 
 <!-- more -->

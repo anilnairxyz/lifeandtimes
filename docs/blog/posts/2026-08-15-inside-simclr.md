@@ -13,8 +13,6 @@ tags:
   - contrastive learning
   - representation learning
 ---
-# Inside SimCLR: What a Contrastive Objective Actually Learns
-
 [Earlier](2026-08-01-inside-a-vae.md) we asked what a *generative* objective keeps: train a VAE to reconstruct MNIST digits from a two-dimensional bottleneck, and about thirty dimensions' worth of shared structure survives while the rest gets discarded. That post closed with an obvious next question — what does a completely different objective keep, one with no decoder and no pixels to rebuild at all, just the constraint that two views of an image should agree? [SimCLR](2026-08-05-self-supervised-learning.md), the simplest contrastive method, is where we actually build that and observe.
 
 <!-- more -->

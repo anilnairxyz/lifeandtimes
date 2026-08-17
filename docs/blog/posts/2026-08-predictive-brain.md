@@ -11,9 +11,6 @@ tags:
   - ai
 draft: true
 ---
-
-# The Predictive Brain
-
 **Question:** Is perception passive reception or active inference?
 
 <!-- more -->

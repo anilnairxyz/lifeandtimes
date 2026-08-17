@@ -11,9 +11,6 @@ tags:
   - ai
 draft: true
 ---
-
-# The Price of a Pulse
-
 **Question:** If the “brain” doesn’t pay, how does it learn to care?
 
 <!-- more -->

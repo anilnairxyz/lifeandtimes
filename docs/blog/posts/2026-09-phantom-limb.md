@@ -11,9 +11,6 @@ tags:
   - ai
 draft: true
 ---
-
-# The Phantom Limb of the Cloud
-
 **Question:** Can agency survive latency and distributed control?
 
 <!-- more -->

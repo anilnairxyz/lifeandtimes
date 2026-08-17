@@ -1,4 +1,5 @@
 ---
+title: "Building the Enterprise Knowledge Fabric: From Scattered Data to Grounded Answers"
 date: 2025-04-12
 slug: "enterprise-knowledge-fabric"
 categories:
@@ -10,9 +11,6 @@ tags:
   - genai
 draft: false
 ---
-
-# Building the Enterprise Knowledge Fabric: From Scattered Data to Grounded Answers
-
 In large-scale organisations, institutional knowledge is often "dark matter." It exists in wikis, Jira tickets, Slack threads and metadata catalogs, but finding it when you need it is a common bottleneck.
 
 Over the past year, I led the engineering effort to build the **Enterprise Knowledge Fabric (EKF)**. EKF is an internal AI layer designed to turn fragmented data into trustworthy, cited answers. By leveraging Retrieval-Augmented Generation (RAG), we've created a system that helps teams find designs, policies, and operational details through a secure, conversational interface.

@@ -10,9 +10,6 @@ tags:
   - ai
 draft: true
 ---
-
-# The Body-Schema Paradox
-
 **Question:** Can we understand physics without having a body?
 
 <!-- more -->

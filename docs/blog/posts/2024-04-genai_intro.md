@@ -9,7 +9,7 @@ tags:
   - ai
   - neuralnetworks
 ---
-The primary objective of a generative model (with parameters $\theta$) is to approximate via $P_\theta(\mathbf{x})$ the data distribution $P_{data}(\mathbf{x})$ given a sufficiently large set of training samples from an independent and identically distributed training distribution $P_{train}(\mathbf{x})$. 
+0The primary objective of a generative model (with parameters $\theta$) is to approximate via $P_\theta(\mathbf{x})$ the data distribution $P_{data}(\mathbf{x})$ given a sufficiently large set of training samples from an independent and identically distributed training distribution $P_{train}(\mathbf{x})$. 
 
 <!-- more -->
 

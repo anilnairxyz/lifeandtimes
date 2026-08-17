@@ -11,9 +11,6 @@ tags:
   - ai
 draft: true
 ---
-
-# The Mirror Test (for Machines)
-
 **Question:** What would count as machine self-modeling?
 
 <!-- more -->

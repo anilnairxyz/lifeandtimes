@@ -12,9 +12,6 @@ tags:
   - sentience
 draft: false
 ---
-
-# The Babel Trap
-
 We have explored how modern AI systems describe the world, reproduce its patterns, and compress its structure into increasingly powerful internal models. Each stage deepens capability, and with it, the expectation that understanding will emerge. It is tempting to believe that, beyond some threshold of scale and integration, these limitations dissolve, that sufficiently capable systems will simply emerge into a more complete grasp of the world.
 
 But if our world is learned through language, whose world is it?

@@ -11,9 +11,6 @@ tags:
   - ai
 draft: true
 ---
-
-# The Recursive Self
-
 **Question:** What changes when a system can improve itself?
 
 <!-- more -->

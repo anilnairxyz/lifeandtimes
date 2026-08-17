@@ -11,9 +11,6 @@ tags:
   - ai
 draft: true
 ---
-
-# The Silicon Sunset
-
 **Question:** If minds blend with machines, what becomes of “us”?
 
 <!-- more -->

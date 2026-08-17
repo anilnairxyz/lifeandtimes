@@ -12,8 +12,6 @@ tags:
   - self-supervised learning
   - representation learning
 ---
-# Regularising the Latent Space
-
 The [previous post](2026-08-05-self-supervised-learning.md) framed self-supervised learning as a set of different answers to one problem: how to make two views of an image agree *without* mapping every image to the same constant vector — **representation collapse**. Contrastive methods (SimCLR, MoCo) answered from the *sample side*, using negatives to force independent images apart. Non-contrastive methods (BYOL, SimSiam) answered from the *optimisation side*, using a predictor and stop-gradient to make collapse dynamically unreachable. Barlow Twins and VICReg are a third family, and their answer is the most direct of the three: constrain the *statistics of the latent space* so that a collapsed representation is explicitly penalised.
 
 <!-- more -->

@@ -11,9 +11,6 @@ tags:
   - ai
 draft: true
 ---
-
-# The Architect of Wanting
-
 **Question:** When does a goal become a will?
 
 <!-- more -->

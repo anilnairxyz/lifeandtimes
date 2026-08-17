@@ -11,9 +11,6 @@ tags:
   - ai
 draft: true
 ---
-
-# The Hunger for Equilibrium
-
 **Question:** Why do living systems act at all?
 
 <!-- more -->

@@ -11,9 +11,6 @@ tags:
   - ai
 draft: true
 ---
-
-# The Digital Sting
-
 **Question:** Can we build “pain” as more than a negative number?
 
 <!-- more -->

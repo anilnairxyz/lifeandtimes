@@ -13,9 +13,6 @@ tags:
   - contrastive learning
   - representation learning
 ---
-
-# Self-Supervised Learning: from SimCLR to SimSiam
-
 The central purpose of self-supervised representation learning is to train an encoder that extracts useful features from an image without requiring human-provided labels. The features, not the samples, are the product. 
 
 <!-- more -->

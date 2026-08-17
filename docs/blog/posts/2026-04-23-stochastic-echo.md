@@ -12,9 +12,6 @@ tags:
   - sentience
 draft: false
 ---
-
-# The Stochastic Echo
-
 If The Monochrome Room exposes a gap between complete representation and lived experience, here we delve into a subtly different gap, the one between formal competence and true understanding. Where the Mary’s Room experiment asks whether knowledge without experience is enough for understanding, the Chinese Room experiment, which we explore in this post asks whether correct behaviour is enough for substantivity. The question is no longer what it is like to say or display something meaningful. It is instead, what it takes for symbols to mean anything at all.
 
 <!-- more -->

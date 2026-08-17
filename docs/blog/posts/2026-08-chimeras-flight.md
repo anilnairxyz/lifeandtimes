@@ -11,9 +11,6 @@ tags:
   - ai
 draft: true
 ---
-
-# The Chimera’s Flight
-
 **Question:** If an AI can swap bodies, what is the “self”?
 
 <!-- more -->

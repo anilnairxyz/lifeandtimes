@@ -12,9 +12,7 @@ tags:
   - sentience
 draft: false
 ---
-
-# The Monochrome Room
-
+4on
 Today, a friend and I were discussing the Mary’s Room thought experiment. Despite its age, and the dramatically different world in which it was conceived, the experiment continues to resurface whenever questions of consciousness, understanding and sentience arise. And for good reason. It isolates an important tension between systems imbibing a complete description of the world and being acquainted with it through experience. That tension turns out to be especially relevant in how modern AI systems are trained and what kind of “knowledge” they can plausibly acquire.
 
 <!-- more -->

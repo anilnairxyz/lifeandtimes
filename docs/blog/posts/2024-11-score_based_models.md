@@ -1,4 +1,5 @@
 ---
+title: "Score-Based Generative Models"
 draft: false
 date: 2024-11-06
 slug: score_based_models
@@ -10,9 +11,6 @@ tags:
   - score-based models
   - langevin dynamics
 ---
-
-# Score-Based Generative Models
-
 **Score-based models** represent a paradigm shift in generative AI. Instead of trying to estimate the probability density function (PDF) directly (like in flows) or implicitly (like in GANs), they focus on learning the **score function**: the geometric "shape" of the data distribution.
 
 <!-- more -->

@@ -1,4 +1,5 @@
 ---
+title: "Energy-Based Models (EBMs)"
 draft: false
 date: 2024-10-09
 slug: energy_based_models
@@ -10,9 +11,6 @@ tags:
   - ebm
   - energy-based models
 ---
-
-# Energy-Based Models (EBMs)
-
 **Energy-Based Models (EBMs)** offer a highly flexible framework for generative modeling. While VAEs and Flows restrict the model architecture to ensure tractability, EBMs allow us to use *any* function $f_\theta(\mathbf{x})$ to define a probability distribution.
 
 The core idea is borrowed from Boltzmann distributions in physics: we assign a scalar "energy" to every configuration $\mathbf{x}$, where lower energy corresponds to higher probability.

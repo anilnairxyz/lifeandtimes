@@ -13,9 +13,6 @@ tags:
   - latent variable models
   - representation learning
 ---
-
-# Seeing Inside a VAE: Experiments in a 2D Latent Space
-
 [Previously](2024-07-vaes.md) we had worked through the theory of the variational auto-encoder: the latent-variable motivation, the intractable marginal likelihood, and the ELBO with its two terms — a reconstruction term and a KL term that pulls the approximate posterior towards the prior. Here, rather than diving more into the equations, we try to figure what happens when we actually build the thing. To visualise things deliberately cripple it down to a **two-dimensional** latent space, and look at what it learned.
 
 <!-- more -->

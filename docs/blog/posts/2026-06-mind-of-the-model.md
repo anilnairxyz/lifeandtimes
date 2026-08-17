@@ -13,9 +13,6 @@ tags:
   - genai
 draft: false
 ---
-
-# The Mind of the Model
-
 Foundational language models, though trained on a seemingly narrow objective of next-token prediction, exhibit behaviours that resemble reasoning, abstraction, and adaptation. They can solve problems they were not explicitly trained on, follow instructions in unfamiliar formats, and even adjust their behaviour within the span of a single prompt. These capabilities are not easily explained by a naive picture of statistical lookup or pattern matching.
 
 These systems are perhaps not minds in the sense we ordinarily recognise. But then, what kind of mind are they?

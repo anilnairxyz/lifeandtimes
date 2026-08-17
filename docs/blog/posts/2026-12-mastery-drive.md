@@ -11,9 +11,6 @@ tags:
   - ai
 draft: true
 ---
-
-# The Mastery Drive
-
 **Question:** Is thriving reducible to an objective function?
 
 <!-- more -->

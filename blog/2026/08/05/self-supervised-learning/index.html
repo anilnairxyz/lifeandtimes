@@ -1,0 +1,1317 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="How contrastive and non-contrastive methods learn representations without labels, and how each of them avoids collapse">
+      
+      
+      
+        <link rel="canonical" href="https://anilnairxyz.github.io/lifeandtimes/blog/2026/08/05/self-supervised-learning/">
+      
+      
+        <link rel="prev" href="../../01/inside-a-vae/">
+      
+      
+        <link rel="next" href="../../08/barlow-twins-vicreg/">
+      
+      
+        
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Self-Supervised Learning: Contrastive and non-contrastive - life & times</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1%207.775V2.75C1%201.784%201.784%201%202.75%201h5.025c.464%200%20.91.184%201.238.513l6.25%206.25a1.75%201.75%200%200%201%200%202.474l-5.026%205.026a1.75%201.75%200%200%201-2.474%200l-6.25-6.25A1.75%201.75%200%200%201%201%207.775m1.5%200c0%20.066.026.13.073.177l6.25%206.25a.25.25%200%200%200%20.354%200l5.025-5.025a.25.25%200%200%200%200-.354l-6.25-6.25a.25.25%200%200%200-.177-.073H2.75a.25.25%200%200%200-.25.25ZM6%205a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.5%201.75v11.5c0%20.138.112.25.25.25h3.17a.75.75%200%200%201%200%201.5H2.75A1.75%201.75%200%200%201%201%2013.25V1.75C1%20.784%201.784%200%202.75%200h8.5C12.216%200%2013%20.784%2013%201.75v7.736a.75.75%200%200%201-1.5%200V1.75a.25.25%200%200%200-.25-.25h-8.5a.25.25%200%200%200-.25.25m13.274%209.537zl-4.557%204.45a.75.75%200%200%201-1.055-.008l-1.943-1.95a.75.75%200%200%201%201.062-1.058l1.419%201.425%204.026-3.932a.75.75%200%201%201%201.048%201.074M4.75%204h4.5a.75.75%200%200%201%200%201.5h-4.5a.75.75%200%200%201%200-1.5M4%207.75A.75.75%200%200%201%204.75%207h2a.75.75%200%200%201%200%201.5h-2A.75.75%200%200%201%204%207.75%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.5%207.75A.75.75%200%200%201%207.25%207h1a.75.75%200%200%201%20.75.75v2.75h.25a.75.75%200%200%201%200%201.5h-2a.75.75%200%200%201%200-1.5h.25v-2h-.25a.75.75%200%200%201-.75-.75M8%206a1%201%200%201%201%200-2%201%201%200%200%201%200%202%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M3.499.75a.75.75%200%200%201%201.5%200v.996C5.9%202.903%206.793%203.65%207.662%204.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873%2010.794-.045%2012.622.26%2014.408.558%2016%201.94%2016%204.25c0%201.278-.954%202.575-2.44%202.734l.146.508.065.22c.203.701.412%201.455.476%202.226.142%201.707-.4%203.03-1.487%203.898C11.714%2014.671%2010.27%2015%208.75%2015h-6a.75.75%200%200%201%200-1.5h1.376a4.5%204.5%200%200%201-.563-1.191%203.84%203.84%200%200%201-.05-2.063%204.65%204.65%200%200%201-2.025-.293.75.75%200%200%201%20.525-1.406c1.357.507%202.376-.006%202.698-.318l.009-.01a.747.747%200%200%201%201.06%200%20.75.75%200%200%201-.012%201.074c-.912.92-.992%201.835-.768%202.586.221.74.745%201.337%201.196%201.621H8.75c1.343%200%202.398-.296%203.074-.836.635-.507%201.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.4%202.4%200%200%201-.507-.441%203.1%203.1%200%200%201-.633-1.248.75.75%200%200%201%201.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738%200%201.25-.615%201.25-1.25%200-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706%201.345-.46.92-.27%201.774.019%203.062l.042.19.01.05c.348.443.666.949.94%201.553a.75.75%200%201%201-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7%205.527c-.814-.68-1.75-1.462-2.692-2.619a3.7%203.7%200%200%200-1.023.88c-.406.495-.663%201.036-.722%201.508.116.122.306.21.591.239.388.038.797-.06%201.032-.19a.75.75%200%200%201%20.728%201.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75%205.677V5.5c0-.984.48-1.94%201.077-2.664.46-.559%201.05-1.055%201.673-1.353z%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M13.78%204.22a.75.75%200%200%201%200%201.06l-7.25%207.25a.75.75%200%200%201-1.06%200L2.22%209.28a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018L6%2010.94l6.72-6.72a.75.75%200%200%201%201.06%200%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.92%206.085h.001a.749.749%200%201%201-1.342-.67c.169-.339.436-.701.849-.977C6.845%204.16%207.369%204%208%204a2.76%202.76%200%200%201%201.637.525c.503.377.863.965.863%201.725%200%20.448-.115.83-.329%201.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6%206%200%200%200-.26.16%201%201%200%200%200-.276.245.75.75%200%200%201-1.248-.832c.184-.264.42-.489.692-.661q.154-.1.313-.195l.007-.004c.1-.061.182-.11.258-.161a1%201%200%200%200%20.277-.245C8.96%206.514%209%206.427%209%206.25a.61.61%200%200%200-.262-.525A1.27%201.27%200%200%200%208%205.5c-.369%200-.595.09-.74.187a1%201%200%200%200-.34.398M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M6.457%201.047c.659-1.234%202.427-1.234%203.086%200l6.082%2011.378A1.75%201.75%200%200%201%2014.082%2015H1.918a1.75%201.75%200%200%201-1.543-2.575Zm1.763.707a.25.25%200%200%200-.44%200L1.698%2013.132a.25.25%200%200%200%20.22.368h12.164a.25.25%200%200%200%20.22-.368Zm.53%203.996v2.5a.75.75%200%200%201-1.5%200v-2.5a.75.75%200%200%201%201.5%200M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.344%202.343za8%208%200%200%201%2011.314%2011.314A8.002%208.002%200%200%201%20.234%2010.089a8%208%200%200%201%202.11-7.746m1.06%2010.253a6.5%206.5%200%201%200%209.108-9.275%206.5%206.5%200%200%200-9.108%209.275M6.03%204.97%208%206.94l1.97-1.97a.749.749%200%200%201%201.275.326.75.75%200%200%201-.215.734L9.06%208l1.97%201.97a.749.749%200%200%201-.326%201.275.75.75%200%200%201-.734-.215L8%209.06l-1.97%201.97a.749.749%200%200%201-1.275-.326.75.75%200%200%201%20.215-.734L6.94%208%204.97%206.03a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M9.504.43a1.516%201.516%200%200%201%202.437%201.713L10.415%205.5h2.123c1.57%200%202.346%201.909%201.22%203.004l-7.34%207.142a1.25%201.25%200%200%201-.871.354h-.302a1.25%201.25%200%200%201-1.157-1.723L5.633%2010.5H3.462c-1.57%200-2.346-1.909-1.22-3.004zm1.047%201.074L3.286%208.571A.25.25%200%200%200%203.462%209H6.75a.75.75%200%200%201%20.694%201.034l-1.713%204.188%206.982-6.793A.25.25%200%200%200%2012.538%207H9.25a.75.75%200%200%201-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005%200-.009.004%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M4.72.22a.75.75%200%200%201%201.06%200l1%20.999a3.5%203.5%200%200%201%202.441%200l.999-1a.748.748%200%200%201%201.265.332.75.75%200%200%201-.205.729l-.775.776c.616.63.995%201.493.995%202.444v.327q0%20.15-.025.292c.408.14.764.392%201.029.722l1.968-.787a.75.75%200%200%201%20.556%201.392L13%207.258V9h2.25a.75.75%200%200%201%200%201.5H13v.5q-.002.615-.141%201.186l2.17.868a.75.75%200%200%201-.557%201.392l-2.184-.873A5%205%200%200%201%208%2016a5%205%200%200%201-4.288-2.427l-2.183.873a.75.75%200%200%201-.558-1.392l2.17-.868A5%205%200%200%201%203%2011v-.5H.75a.75.75%200%200%201%200-1.5H3V7.258L.971%206.446a.75.75%200%200%201%20.558-1.392l1.967.787c.265-.33.62-.583%201.03-.722a1.7%201.7%200%200%201-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72%201.28a.75.75%200%200%201%200-1.06m.53%206.28a.75.75%200%200%200-.75.75V11a3.5%203.5%200%201%200%207%200V7.25a.75.75%200%200%200-.75-.75ZM6.173%205h3.654A.17.17%200%200%200%2010%204.827V4.5a2%202%200%201%200-4%200v.327c0%20.096.077.173.173.173%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5%205.782V2.5h-.25a.75.75%200%200%201%200-1.5h6.5a.75.75%200%200%201%200%201.5H11v3.282l3.666%205.76C15.619%2013.04%2014.543%2015%2012.767%2015H3.233c-1.776%200-2.852-1.96-1.899-3.458Zm-2.4%206.565a.75.75%200%200%200%20.633%201.153h9.534a.75.75%200%200%200%20.633-1.153L12.225%2010.5h-8.45ZM9.5%202.5h-3V6c0%20.143-.04.283-.117.403L4.73%209h6.54L9.617%206.403A.75.75%200%200%201%209.5%206Z%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1.75%202.5h10.5a.75.75%200%200%201%200%201.5H1.75a.75.75%200%200%201%200-1.5m4%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5m0%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5M2.5%207.75v6a.75.75%200%200%201-1.5%200v-6a.75.75%200%200%201%201.5%200%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#simclr-identify-the-matching-view" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="life &amp; times" class="md-header__button md-logo" aria-label="life & times" data-md-component="logo">
+      
+  <img src="../../../../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            life & times
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Self-Supervised Learning: Contrastive and non-contrastive
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="life &amp; times" class="md-nav__button md-logo" aria-label="life & times" data-md-component="logo">
+      
+  <img src="../../../../../logo.png" alt="logo">
+
+    </a>
+    life & times
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About This Site
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Essays
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Essays
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Categories
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Categories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/cryptography/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cryptography
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/dataviz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dataviz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    engineering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/generative-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    generative ai
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/gis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/machine-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    machine learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/philosophy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    philosophy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/representations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    representations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#simclr-identify-the-matching-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SimCLR: identify the matching view
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SimCLR: identify the matching view">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-separate-the-representation-and-the-projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why separate the representation and the projection?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moco-a-queue-of-historical-negatives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MoCo: a queue of historical negatives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#byol-learning-without-negatives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BYOL: learning without negatives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simsiam-stripping-byol-down-to-its-essentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SimSiam: stripping BYOL down to its essentials
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SimSiam: stripping BYOL down to its essentials">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-stop-gradient-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What stop-gradient changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-this-differs-from-byol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How this differs from BYOL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-does-simsiam-reveal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What does SimSiam reveal?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#four-answers-to-the-same-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Four answers to the same problem
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2026-08-05 00:00:00+00:00" class="md-ellipsis">August 5, 2026</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/representations/">representations</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              9 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:ai" class="md-tag">ai</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:genai" class="md-tag">genai</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:mechanistic-interpretability" class="md-tag">mechanistic-interpretability</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:representational-learning" class="md-tag">representational-learning</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:self-supervised-learning" class="md-tag">self-supervised-learning</a>
+      
+    
+  </nav>
+
+
+
+  <h1>Self-Supervised Learning: Contrastive and non-contrastive</h1>
+
+<p>The central purpose of self-supervised representation learning is to train an encoder that extracts useful features from an image without requiring human-provided labels. The features, not the samples, are the product. </p>
+<!-- more -->
+
+<p>The basic idea is to take one image and generate multiple transformed views of it through cropping, blurring, colour jitter, flipping or similar augmentations. The pixels may change considerably, but the underlying image identity does not. A useful encoder should therefore produce representations that are stable under these transformations: different views of the same image should map to similar representations, while independent images should remain distinguishable.</p>
+<p>The difficulty is <strong>representation collapse</strong>. If the only objective were to make two views of the same image similar, the encoder could map every image to the same constant vector. Every pair would then match perfectly, but the representation would carry no information at all.</p>
+<p>SimCLR, MoCo, BYOL and SimSiam are four different answers to this one problem.</p>
+<h2 id="simclr-identify-the-matching-view">SimCLR: identify the matching view<a class="headerlink" href="#simclr-identify-the-matching-view" title="Permanent link">&para;</a></h2>
+<p>SimCLR is a <strong>contrastive</strong> method. It prevents collapse by explicitly comparing each image against the other images in the minibatch.</p>
+<div class="admonition quote">
+<p class="admonition-title">Reference</p>
+<p>Chen, Kornblith, Norouzi &amp; Hinton (2020), <a href="https://arxiv.org/abs/2002.05709"><em>A Simple Framework for Contrastive Learning of Visual Representations</em></a>, ICML.</p>
+</div>
+<p>For every original image <span class="arithmatex">\(\mathbf{x}\)</span>, two random augmentations are drawn from a family <span class="arithmatex">\(\mathcal{T}\)</span>:</p>
+<div class="arithmatex">\[
+\mathbf{x}_1 = t_1(\mathbf{x}), \qquad \mathbf{x}_2 = t_2(\mathbf{x}), \qquad t_1, t_2 \sim \mathcal{T}
+\]</div>
+<p>Each view passes through the same two-stage neural network: an encoder <span class="arithmatex">\(f\)</span>, usually a convolutional network, and a projection head <span class="arithmatex">\(g\)</span>, usually a small multilayer perceptron.</p>
+<pre class="mermaid"><code>graph LR
+    X((x)) --&gt; A1[Augmentation 1]
+    X((x)) --&gt; A2[Augmentation 2]
+
+    A1 --&gt; F1[Shared encoder f]
+    A2 --&gt; F2[Shared encoder f]
+
+    F1 --&gt; H1((h₁))
+    F2 --&gt; H2((h₂))
+
+    H1 --&gt; G1[Shared projector g]
+    H2 --&gt; G2[Shared projector g]
+
+    G1 --&gt; Z1((z₁))
+    G2 --&gt; Z2((z₂))
+
+    Z1 --&gt; L[Contrastive loss]
+    Z2 --&gt; L
+    N[Other images in batch] --&gt; L</code></pre>
+<p>The encoder produces <span class="arithmatex">\(\mathbf{h} = f(\mathbf{x})\)</span> and the projector produces <span class="arithmatex">\(\mathbf{z} = g(\mathbf{h})\)</span>. The contrastive loss operates on <span class="arithmatex">\(\mathbf{z}\)</span>, while <span class="arithmatex">\(\mathbf{h}\)</span> is retained as the representation for downstream applications.</p>
+<p>For one anchor <span class="arithmatex">\(\mathbf{z}_i\)</span>, the loss asks the model to identify its corresponding view <span class="arithmatex">\(\mathbf{z}_j\)</span> among all other views in the batch:</p>
+<div class="arithmatex">\[
+\ell_{i,j} = -\log \frac{\exp \big( \text{sim}(\mathbf{z}_i, \mathbf{z}_j) / \tau \big)}{\sum_{k \neq i} \exp \big( \text{sim}(\mathbf{z}_i, \mathbf{z}_k) / \tau \big)}
+\]</div>
+<p>where <span class="arithmatex">\(\text{sim}(\mathbf{u}, \mathbf{v}) = \mathbf{u}^\top \mathbf{v} / (\|\mathbf{u}\| \|\mathbf{v}\|)\)</span> is cosine similarity and <span class="arithmatex">\(\tau\)</span> is a temperature.</p>
+<details class="info" open="open">
+<summary>InfoNCE</summary>
+<p>This objective is the <strong>InfoNCE</strong> loss, which arises from noise-contrastive
+estimation. It is a softmax cross-entropy over a set of candidates in which
+the "correct class" is the matching view. Minimising it maximises a lower
+bound on the mutual information between the two views.</p>
+</details>
+<p>This is effectively a classification problem: <em>which of the available representations is the other view of this image?</em> The positive pair should have high similarity, while representations of independent images act as negatives.</p>
+<p>If every input collapsed to the same vector, all similarities would be equal, the model could not identify the positive pair, and it would do no better than random guessing. Negatives therefore make total collapse incompatible with a low loss.</p>
+<h3 id="why-separate-the-representation-and-the-projection">Why separate the representation and the projection?<a class="headerlink" href="#why-separate-the-representation-and-the-projection" title="Permanent link">&para;</a></h3>
+<p>The contrastive objective encourages the model to suppress information affected by the augmentations. If colour jitter is used, for example, colour-sensitive information becomes inconvenient for the contrastive task. Applying that pressure directly to <span class="arithmatex">\(\mathbf{h}\)</span> could cause the reusable representation to discard information that is still useful downstream.</p>
+<p>The projection head provides a disposable training space:</p>
+<div class="arithmatex">\[
+\mathbf{x} \longrightarrow \mathbf{h} \longrightarrow \mathbf{z}
+\]</div>
+<p>The loss is evaluated on <span class="arithmatex">\(\mathbf{z}\)</span>, which allows the projector to specialise in augmentation invariance while giving <span class="arithmatex">\(\mathbf{h}\)</span> room to remain richer. This separation is not mathematically guaranteed, since gradients still flow through both the projector and the encoder. But the architecture creates an inductive bias that lets the projector absorb some of the strongest pressure imposed by the objective.</p>
+<p>After training, the projector is discarded and the encoder output <span class="arithmatex">\(\mathbf{h}\)</span> is used.</p>
+<h2 id="moco-a-queue-of-historical-negatives">MoCo: a queue of historical negatives<a class="headerlink" href="#moco-a-queue-of-historical-negatives" title="Permanent link">&para;</a></h2>
+<p>SimCLR obtains its negatives from the current minibatch, so using more negatives normally requires a larger batch and more GPU memory. <strong>Momentum Contrast (MoCo)</strong> keeps the contrastive objective but changes how negatives are supplied. It introduces two separate paths: a <em>query</em> encoder and projector, and a <em>key</em> encoder and projector.</p>
+<div class="admonition quote">
+<p class="admonition-title">Reference</p>
+<p>He, Fan, Wu, Xie &amp; Girshick (2020), <a href="https://arxiv.org/abs/1911.05722"><em>Momentum Contrast for Unsupervised Visual Representation Learning</em></a>, CVPR.</p>
+</div>
+<pre class="mermaid"><code>graph LR
+    X((x)) --&gt; AQ[Query augmentation]
+    X((x)) --&gt; AK[Key augmentation]
+
+    AQ --&gt; FQ[Query encoder]
+    FQ --&gt; GQ[Query projector]
+    GQ --&gt; Q((q))
+
+    AK --&gt; FK[Key encoder]
+    FK --&gt; GK[Key projector]
+    GK --&gt; KP((k⁺))
+
+    Q --&gt; L[InfoNCE loss]
+    KP --&gt; L
+    Queue[FIFO queue of historical keys] --&gt; L
+
+    FQ -. EMA .-&gt; FK
+    GQ -. EMA .-&gt; GK
+    KP --&gt; Queue</code></pre>
+<p>For each image, the query is compared with one positive key generated from another view of the same image, and with a large queue <span class="arithmatex">\(\mathcal{Q}\)</span> of keys generated from previous minibatches. The loss has the same broad form as SimCLR:</p>
+<div class="arithmatex">\[
+\mathcal{L} = -\log \frac{\exp \big( \text{sim}(\mathbf{q}, \mathbf{k}^+) / \tau \big)}{\exp \big( \text{sim}(\mathbf{q}, \mathbf{k}^+) / \tau \big) + \sum_{\mathbf{k}^- \in \mathcal{Q}} \exp \big( \text{sim}(\mathbf{q}, \mathbf{k}^-) / \tau \big)}
+\]</div>
+<p>The query must identify its positive key among the queued negatives. The queue operates on a first-in, first-out basis: new keys are appended after each step and the oldest are dropped. This decouples the number of negatives from the minibatch size, so that</p>
+<div class="arithmatex">\[
+\text{number of negatives} \approx \text{queue length}
+\]</div>
+<p>rather than being tied to the batch size.</p>
+<p>The query-side parameters <span class="arithmatex">\(\theta_q\)</span> are optimised by backpropagation. The key-side parameters <span class="arithmatex">\(\theta_k\)</span> receive no gradients; they are updated as an exponential moving average of the query-side parameters:</p>
+<div class="arithmatex">\[
+\theta_k \leftarrow m \, \theta_k + (1 - m) \, \theta_q, \qquad m \in [0, 1)
+\]</div>
+<p>The key encoder therefore changes slowly. This matters because the queue holds keys generated during earlier iterations, and a rapidly changing key encoder would make old and new keys mutually inconsistent. Momentum updating keeps the queued representations approximately compatible.</p>
+<p>MoCo does not eliminate the need for negatives. It provides a memory-efficient way to maintain a great many of them.</p>
+<h2 id="byol-learning-without-negatives">BYOL: learning without negatives<a class="headerlink" href="#byol-learning-without-negatives" title="Permanent link">&para;</a></h2>
+<p><strong>Bootstrap Your Own Latent (BYOL)</strong> asks whether useful representations can be learned without explicitly pushing independent images apart. It has two paths: an <em>online</em> path updated by gradient descent, and a <em>target</em> path updated through an exponential moving average.</p>
+<div class="admonition quote">
+<p class="admonition-title">Reference</p>
+<p>Grill et al. (2020), <a href="https://arxiv.org/abs/2006.07733"><em>Bootstrap Your Own Latent: A New Approach to Self-Supervised Learning</em></a>, NeurIPS.</p>
+</div>
+<pre class="mermaid"><code>graph LR
+    X((x)) --&gt; A1[Augmentation 1]
+    X((x)) --&gt; A2[Augmentation 2]
+
+    A1 --&gt; FO[Online encoder]
+    FO --&gt; GO[Online projector]
+    GO --&gt; P[Predictor]
+    P --&gt; PO((p))
+
+    A2 --&gt; FT[Target encoder]
+    FT --&gt; GT[Target projector]
+    GT --&gt; ZT((z'))
+
+    PO --&gt; L[Matching loss]
+    ZT --&gt; SG[Stop-gradient]
+    SG --&gt; L
+
+    FO -. EMA .-&gt; FT
+    GO -. EMA .-&gt; GT</code></pre>
+<p>The online branch contains three learned modules, encoder <span class="arithmatex">\(\rightarrow\)</span> projector <span class="arithmatex">\(\rightarrow\)</span> predictor, while the target branch contains only encoder <span class="arithmatex">\(\rightarrow\)</span> projector. The online prediction is trained to match the target projection:</p>
+<div class="arithmatex">\[
+\mathcal{L}_{\text{BYOL}} = \left\| \frac{\mathbf{p}}{\|\mathbf{p}\|_2} - \text{sg} \left( \frac{\mathbf{z}'}{\|\mathbf{z}'\|_2} \right) \right\|_2^2
+\]</div>
+<p>Here <span class="arithmatex">\(\text{sg}(\cdot)\)</span> denotes <strong>stop-gradient</strong>: the target representation participates in the loss but is treated as a constant during backpropagation.</p>
+<p>The same loss updates the online encoder, projector and predictor. The target encoder and projector are not updated by the loss; they slowly follow their online counterparts through an exponential moving average, exactly as in MoCo. The process can be read as <em>a rapidly learning online network predicting the representation produced by a slowly moving target network</em>.</p>
+<p>Fresh augmentations are drawn at each training step, so over time the online network learns to predict representations that remain stable across many different views of each image.</p>
+<p>BYOL's central surprise is that this works without negatives. Collapse is avoided through the asymmetry between the two branches: stop-gradient prevents both sides from moving together within the same optimisation step, the predictor exists only on the online side, and the target network evolves slowly.</p>
+<h2 id="simsiam-stripping-byol-down-to-its-essentials">SimSiam: stripping BYOL down to its essentials<a class="headerlink" href="#simsiam-stripping-byol-down-to-its-essentials" title="Permanent link">&para;</a></h2>
+<p><strong>SimSiam</strong> asks a natural follow-up question:</p>
+<blockquote>
+<p>Is the momentum target network actually necessary?</p>
+</blockquote>
+<p>BYOL contains several candidate anti-collapse mechanisms:</p>
+<ul>
+<li>an online predictor;</li>
+<li>stop-gradient on the target branch;</li>
+<li>two separate parameter sets;</li>
+<li>an EMA target network.</li>
+</ul>
+<p>SimSiam removes the momentum encoder and shows that useful representations can still be learned. Both views now pass through the <strong>same shared encoder and projector</strong>.</p>
+<div class="admonition quote">
+<p class="admonition-title">Reference</p>
+<p>Chen &amp; He (2021), <a href="https://arxiv.org/abs/2011.10566"><em>Exploring Simple Siamese Representation Learning</em></a>, CVPR.</p>
+</div>
+<pre class="mermaid"><code>graph LR
+    X((x)) --&gt; A1[Augmentation 1]
+    X((x)) --&gt; A2[Augmentation 2]
+
+    A1 --&gt; F1[Shared encoder f]
+    A2 --&gt; F2[Shared encoder f]
+
+    F1 --&gt; G1[Shared projector g]
+    F2 --&gt; G2[Shared projector g]
+
+    G1 --&gt; Z1((z₁))
+    G2 --&gt; Z2((z₂))
+
+    Z1 --&gt; P1[Shared predictor q]
+    Z2 --&gt; P2[Shared predictor q]
+
+    P1 --&gt; L12[Match p₁ to sg z₂]
+    Z2 --&gt; SG2[Stop-gradient]
+    SG2 --&gt; L12
+
+    P2 --&gt; L21[Match p₂ to sg z₁]
+    Z1 --&gt; SG1[Stop-gradient]
+    SG1 --&gt; L21</code></pre>
+<p>The two branches share parameters:</p>
+<div class="arithmatex">\[
+\mathbf{x}_1 \rightarrow f \rightarrow \mathbf{h}_1 \rightarrow g \rightarrow \mathbf{z}_1, \qquad \mathbf{x}_2 \rightarrow f \rightarrow \mathbf{h}_2 \rightarrow g \rightarrow \mathbf{z}_2
+\]</div>
+<p>and a predictor is applied to each projection, <span class="arithmatex">\(\mathbf{p}_1 = q(\mathbf{z}_1)\)</span> and <span class="arithmatex">\(\mathbf{p}_2 = q(\mathbf{z}_2)\)</span>.</p>
+<p>Training is symmetric in value but asymmetric in gradient flow. In one direction the prediction from view 1 is matched to the stopped projection from view 2, and in the other direction the roles switch:</p>
+<div class="arithmatex">\[
+\mathcal{L}_{1 \rightarrow 2} = D \big( \mathbf{p}_1, \text{sg}(\mathbf{z}_2) \big), \qquad \mathcal{L}_{2 \rightarrow 1} = D \big( \mathbf{p}_2, \text{sg}(\mathbf{z}_1) \big)
+\]</div>
+<p>The total loss averages the two:</p>
+<div class="arithmatex">\[
+\mathcal{L} = \tfrac{1}{2} \big( \mathcal{L}_{1 \rightarrow 2} + \mathcal{L}_{2 \rightarrow 1} \big)
+\]</div>
+<p>where <span class="arithmatex">\(D\)</span> is typically the negative cosine similarity:</p>
+<div class="arithmatex">\[
+D(\mathbf{p}, \mathbf{z}) = - \frac{\mathbf{p}}{\|\mathbf{p}\|_2} \cdot \frac{\mathbf{z}}{\|\mathbf{z}\|_2}
+\]</div>
+<h3 id="what-stop-gradient-changes">What stop-gradient changes<a class="headerlink" href="#what-stop-gradient-changes" title="Permanent link">&para;</a></h3>
+<p>Consider the first direction, <span class="arithmatex">\(\mathbf{p}_1 \rightarrow \text{sg}(\mathbf{z}_2)\)</span>. The value of <span class="arithmatex">\(\mathbf{z}_2\)</span> is used as the target, but no gradient flows through it, so within that loss term only the path producing <span class="arithmatex">\(\mathbf{p}_1\)</span> is changed. For the reverse term the roles switch. Each branch therefore alternates between two roles:</p>
+<ul>
+<li>predictor being optimised;</li>
+<li>fixed target for the other branch.</li>
+</ul>
+<p>The network is shared, but the gradient paths are not symmetric within each loss term.</p>
+<h3 id="how-this-differs-from-byol">How this differs from BYOL<a class="headerlink" href="#how-this-differs-from-byol" title="Permanent link">&para;</a></h3>
+<p>BYOL maintains two parameter sets:</p>
+<div class="highlight"><pre><span></span><code>Online network: updated by gradient descent
+Target network: updated by EMA
+</code></pre></div>
+<p>SimSiam uses only one:</p>
+<div class="highlight"><pre><span></span><code>Shared network: updated by gradient descent
+Target output:  detached for each directional loss
+</code></pre></div>
+<p>There is therefore no momentum encoder, no EMA update, no queue and no negatives. The architecture is much simpler, yet it still avoids collapse.</p>
+<h3 id="what-does-simsiam-reveal">What does SimSiam reveal?<a class="headerlink" href="#what-does-simsiam-reveal" title="Permanent link">&para;</a></h3>
+<p>SimSiam demonstrates that a slowly moving teacher is not essential. The critical structure is the asymmetric prediction problem created by a predictor on the optimised side and a stop-gradient on the target side.</p>
+<p>It is slightly too strong to say that stop-gradient by itself prevents collapse. In the SimSiam architecture, removing stop-gradient causes collapse, and the predictor is also an important part of the successful configuration. The safer conclusion is that predictor asymmetry and stop-gradient are together <em>sufficient</em> to learn useful representations without negatives or a momentum target.</p>
+<p>The theoretical explanation remains subtle. A collapsed representation is still mathematically compatible with the matching objective; it is the optimisation dynamics created by the stop-gradient and the predictor that steer training away from that solution. The resulting progression is:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\text{BYOL} &amp;= \text{predictor} + \text{stop-gradient} + \text{EMA target} \\
+\text{SimSiam} &amp;= \text{predictor} + \text{stop-gradient}
+\end{aligned}
+\]</div>
+<h2 id="four-answers-to-the-same-problem">Four answers to the same problem<a class="headerlink" href="#four-answers-to-the-same-problem" title="Permanent link">&para;</a></h2>
+<p>These methods are best understood as different answers to one question: <em>how can two views of the same image be made similar without mapping every image to the same representation?</em></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Negatives</th>
+<th>Anti-collapse mechanism</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SimCLR</td>
+<td>in-batch</td>
+<td>contrastive loss over other images</td>
+</tr>
+<tr>
+<td>MoCo</td>
+<td>FIFO queue</td>
+<td>contrastive loss plus momentum key encoder</td>
+</tr>
+<tr>
+<td>BYOL</td>
+<td>none</td>
+<td>predictor, stop-gradient, EMA target</td>
+</tr>
+<tr>
+<td>SimSiam</td>
+<td>none</td>
+<td>predictor, stop-gradient</td>
+</tr>
+</tbody>
+</table>
+<p>In every case the final product is the encoder representation <span class="arithmatex">\(\mathbf{h}\)</span>. The projection heads, predictors, queues and momentum networks are training mechanisms used to shape that representation, and they are discarded once self-supervised training is complete.</p>
+<details class="info" open="open">
+<summary>Evaluating a self-supervised encoder</summary>
+<p>The standard protocol is the <strong>linear probe</strong>: freeze the encoder, train a
+single linear classifier on <span class="arithmatex">\(\mathbf{h}\)</span> using labelled data, and report its
+accuracy. A good self-supervised representation makes the classes linearly
+separable, so the quality of <span class="arithmatex">\(f\)</span> can be measured without fine-tuning it.</p>
+</details>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

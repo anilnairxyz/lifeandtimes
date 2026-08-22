@@ -8,7 +8,6 @@ categories:
 tags:
   - ai
   - evaluation
-  - fid
   - genai
 ---
 Evaluating generative models is notoriously difficult. Unlike discriminative tasks (classification) where accuracy is a clear metric, "generation quality" is subjective and multidimensional. How do we define if a generated image is "good"? It needs to be realistic (fidelity) but the model also needs to generate a wide variety of images (diversity) and not just copy the training set (novelty).

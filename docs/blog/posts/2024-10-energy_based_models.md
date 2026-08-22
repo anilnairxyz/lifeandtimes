@@ -7,7 +7,6 @@ categories:
   - generative ai
 tags:
   - ai
-  - ebm
   - genai
 ---
 **Energy-Based Models (EBMs)** offer a highly flexible framework for generative modeling. While VAEs and Flows restrict the model architecture to ensure tractability, EBMs allow us to use *any* function $f_\theta(\mathbf{x})$ to define a probability distribution.

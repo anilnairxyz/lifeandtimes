@@ -7,7 +7,6 @@ categories:
   - generative ai
 tags:
   - ai
-  - sde
   - genai
 ---
 Diffusion models are currently the state-of-the-art in generative AI, powering tools like DALL-E 2, Stable Diffusion, and Imagen. They unify the concepts of Iterative Refinement (from Score-Based Models) and Variational inference.

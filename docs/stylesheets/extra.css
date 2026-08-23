@@ -58,3 +58,20 @@
   background: #7c92a0;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 4px 18px rgba(255, 255, 255, 0.22);
 }
+
+/* Blockquotes: replace the default grey-border/dimmed-text treatment with
+   the site's rust accent as a left border plus a faint tint background,
+   and full-strength (not dimmed) italic text, so a pulled-out line actually
+   stands out instead of reading as muted secondary content. */
+.md-typeset blockquote {
+  background: rgba(161, 82, 44, 0.06);
+  color: var(--md-default-fg-color);
+  font-style: italic;
+}
+[dir="ltr"] .md-typeset blockquote {
+  border-left-color: #a1522c;
+}
+[data-md-color-scheme="slate"] .md-typeset blockquote {
+  border-left-color: #e08b6f;
+  background: rgba(224, 139, 111, 0.08);
+}

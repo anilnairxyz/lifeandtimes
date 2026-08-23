@@ -98,7 +98,7 @@ plugins:
         - tags
 
 extra_css:
-  - stylesheets/extra.css?v=7
+  - stylesheets/extra.css?v=12
 
 extra_javascript:
   - javascripts/mathjax.js

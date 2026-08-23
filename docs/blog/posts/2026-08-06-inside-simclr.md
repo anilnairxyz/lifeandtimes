@@ -13,7 +13,7 @@ tags:
   - mechanistic-interpretability
   - genai
 ---
- Having understood the theory behind [contrastive self-supervised learning methods](2026-08-05-ssl-contrastive.md), we choose SimCLR, the simplest of these methods, is what we implement. The setup is a bigger step up from MNIST which we used for VAEs. CIFAR-10 is 60,000 real colour photographs: ten classes, 32×32 pixels and three channels.
+ Having understood the theory behind [contrastive self-supervised learning methods](2026-08-05-ssl-contrastive.md), we choose SimCLR, the simplest of these methods, to implement. The setup is a bigger step up from MNIST which we used for VAEs. **CIFAR-10**{: .rust} is 60,000 real colour photographs: ten classes, 32×32 pixels and three channels. We train the SimCLR on this corpus and see how effectively it identifies features by using a linear probe as well as a k-NN classifier to measure discrimination before and after training.
 
 <!-- more -->
 
@@ -21,11 +21,11 @@ Unlike the VAE, there is no reconstruction signal to lean on. No labels enter th
 
 ## The setup
 
-The primary encoder is a ResNet-18 with one deliberate adaptation. The standard ImageNet stem, a 7×7 stride-2 convolution followed by a stride-2 max-pool throws away most of a 32×32 image before the first residual block ever sees it, so it is swapped for a single 3×3 stride-1 convolution with no pooling. The rest is the usual four residual stages, ending in a 512-dimensional vector after global average pooling. That 512-D vector *is* the representation for everything that follows.
+The **primary encoder is a ResNet-18**{: .rust} with one deliberate adaptation. The standard ImageNet stem, a 7×7 stride-2 convolution followed by a stride-2 max-pool throws away most of a 32×32 image before the first residual block ever sees it, so it is swapped for a single 3×3 stride-1 convolution with no pooling. The rest is the usual four residual stages, ending in a 512-dimensional vector after global average pooling. That 512-D vector *is* the representation for everything that follows.
 
-On top of it sits a small, disposable projector: `Linear → BatchNorm → ReLU → Linear`, 512 → 512 → 128 used only during training and thrown away afterwards. The contrastive loss is computed on the projector's 128-D output, not the primary's 512-D one, so that the pressure to discard augmentation-sensitive information (colour, if colour jitter is in the recipe) lands on the disposable projector rather than the representation we actually care about.
+On top of it sits a small, **disposable projector**{: .rust}: `Linear → BatchNorm → ReLU → Linear`, 512 → 512 → 128 used only during training and thrown away afterwards. The contrastive loss is computed on the projector's 128-D output, not the primary's 512-D one, so that the pressure to discard augmentation-sensitive information (colour, if colour jitter is in the recipe) lands on the disposable projector rather than the representation we actually care about.
 
-We train for 200 epochs, batch size 256, SGD with momentum and a cosine schedule with linear warm-up. As with the VAE, **the model never sees labels during training**. It appears to start off worse than the VAE, in fact, since photos sharing a class are also contrasted, with only crops coming from the same source image being 'labelled' as augmentations.
+We train for 200 epochs, batch size 256, SGD with momentum and a cosine schedule with linear warm-up. As with the VAE, **the model never sees labels during training**{: .rust}. It appears to start off worse than the VAE, in fact, since photos sharing a class are also contrasted, with only crops coming from the same source image being 'labelled' as augmentations.
 
 ???+ success "Collapse-proofing, and its sanity check"
 
@@ -37,7 +37,7 @@ Before training buys anything, how much does the architecture alone give away fo
 
 ![](../images/simclr_random_scatter.png)
 
-A linear probe on these random features reaches **37.9%** (a ten-class problem, so chance is 10%), and a k-NN classifier reaches **28.6%**. Diffuse, weakly separated, but not nothing. This is the number every trained method has to clear by a wide margin, exactly as the untrained VAE's ~543-nat reconstruction cost was the number training had to beat.
+A linear probe on these random features reaches **37.9%**{: .rust} (a ten-class problem, so chance is 10%), and a k-NN classifier reaches **28.6%**{: .rust}. Diffuse, weakly separated, but not trivial. This is the number every trained method has to clear by a wide margin, exactly as the untrained VAE's ~543-nat reconstruction cost was the number training had to beat.
 
 ## Training, and a loss curve worth distrusting
 
@@ -49,10 +49,10 @@ NT-Xent drops sharply during the ten-epoch warm-up, then spends the remaining 19
 
 ## Does it actually work?
 
-| | random floor | SimCLR, 200 epochs |
-| --- | --- | --- |
-| linear probe | 37.9% | **88.1%** |
-| k-NN | 28.6% | **86.6%** |
+|              | random floor | SimCLR, 200 epochs |
+| ------------ | ------------ | ------------------ |
+| linear probe | 37.9%        | **88.1%**          |
+| k-NN         | 28.6%        | **86.6%**          |
 
 More than double the floor on both metrics! A healthy, non-trivial result for this scale. Equally interesting is how the *gap* between those two metrics moved over the course of training:
 
@@ -64,7 +64,7 @@ More than double the floor on both metrics! A healthy, non-trivial result for th
 | 128 | 85.3% | 82.4% | 2.9 pts |
 | 200 | 88.1% | 86.6% | 1.6 pts |
 
-???+ success "Why the k-NN gap closes"
+???+ success "Why does the k-NN gap close"
 
     A linear probe *fits* new weights to whatever the features look like, so it can always find some useful direction even in a fairly disorganised space. k-NN fits nothing. It just asks which training images are nearest in raw Euclidean distance, and that is only a good question once training has actually reshaped the geometry so that "nearby" means "similar." Watching the two metrics converge is a free, parameter-free signal that the representation is becoming genuinely organised, not just linearly decodable by an adaptive classifier.
 
@@ -97,12 +97,12 @@ The aggregate numbers hide a nested classification worth pulling apart, since CI
 
 Two things stand out. 
 
-1. Every single class's top confusion stays inside its own broad category. Vehicles get mistaken for other vehicles, animals for other animals, with not one cross-category error appearing as anyone's leading mistake. That structure was never trained for. It fell out of an objective that only ever asked "is this the same photo or not."
+1. Every single class's **top confusion stays inside its own broad category**{: .rust}. Vehicles get mistaken for other vehicles, animals for other animals, with not one cross-category error appearing as anyone's leading mistake. That structure was never trained for. It fell out of an objective that only ever asked "is this the same photo or not."
 
-2. One pair is a clear outlier. Cats and dogs confuse each other at 12–13%, three to five times the rate of every other pair, and tellingly, almost symmetrically in both directions. This is the CIFAR-10 analogue of the VAE's MNIST 4/9 tangle, and it does come with a caveat in favour of SimCLR. Cat-versus-dog is the notoriously hardest pair in CIFAR-10 for nearly every architecture ever thrown at it, contrastive or supervised, because the two classes share pose, indoor/outdoor context, texture, and scale far more than any other pair in the dataset.
+2. One pair is a clear outlier. **Cats and dogs confuse each other**{: .rust} at 12–13%, three to five times the rate of every other pair, and tellingly, almost symmetrically in both directions. This is the CIFAR-10 analogue of the VAE's MNIST 4/9 tangle, and it does come with a caveat in favour of SimCLR. Cat-versus-dog is the notoriously hardest pair in CIFAR-10 for nearly every architecture ever thrown at it, contrastive or supervised, because the two classes share pose, indoor/outdoor context, texture, and scale far more than any other pair in the dataset.
 
 ## What a contrastive representation keeps
 
-The VAE kept whatever a two-dimensional bottleneck needed to rebuild pixels i.e. a compressed, generative summary. SimCLR keeps whatever survives augmentation and still tells 512 numbers apart from 511 near-neighbours in a batch. It retains a discriminative summary, built with no reconstruction signal and no labels of any kind. Different objective, different mechanism, no decoder and yet the *shape* of what emerged rhymes pretty impressively. We obtained a clean separation for the visually distinctive classes, and one genuinely hard, symmetric tangle for the classes that legitimately look alike.
+The VAE kept whatever a two-dimensional bottleneck needed to rebuild pixels i.e. a compressed, generative summary. SimCLR keeps whatever survives augmentation and still tells 512 numbers apart from 511 near-neighbours in a batch. It retains a **discriminative summary**{: .rust}, built with no reconstruction signal and no labels of any kind. Different objective, different mechanism, no decoder and yet the *shape* of what emerged rhymes pretty impressively. We obtained a clean separation for the visually distinctive classes, and one genuinely hard, symmetric tangle for the classes that legitimately look alike.
 
 Other SSL paradigms like SimSiam and VICReg avoid collapse and aim to achieve similar discriminations through completely different mechanisms which we will explore next.

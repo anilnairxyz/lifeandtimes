@@ -1,8 +1,8 @@
 ---
-title: "Inside a Confidence Audit: Do Language Models Know When They're Wrong?"
-draft: true
+title: "Confidence Audit: Do Language Models Know When They're Wrong?"
+draft: false
 date: 2026-11-08
-slug: inside-a-confidence-audit
+slug: A-confidence-audit-over-LLMs
 description: Asking nine language models 680 questions seven different ways, and checking whether their confidence tells right answers from wrong ones. What they say and what they do turn out to know very different things.
 categories:
   - evaluation

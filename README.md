@@ -14,6 +14,7 @@ Every post has **exactly one** category — it's the single shelf a post lives o
 - `gis` — mapping/geographic posts
 - `engineering` — applied systems posts (tax copilot, enterprise knowledge fabric)
 - `cryptography`
+- `evaluation` — evaluating language models: calibration, self-knowledge, honesty (the Epic 2 series, starting with the confidence audit)
 
 If a post's topic doesn't fit its category cleanly, use a **tag** instead of adding a second category (e.g. a philosophy post that touches on genai gets the `genai` tag, not a second category).
 

@@ -13,9 +13,30 @@ tags:
   - calibration
   - genai
 ---
-Ask a language model a question and you get an answer. Ask it how sure it is and you get a number. The interesting question is whether that number means anything: **can a model tell the answers it has right from the ones it has wrong?**{: .rust} Accuracy doesn't tell you. A model that is right 80% of the time and says "95%" every time is a usable answerer and a useless judge of itself. In this post we audit that second skill across nine models, 680 questions and seven ways of asking for confidence, and find that what a model *says* about its confidence and what its *behaviour* reveals are two quite different things.
+Ask a language model any question today and you can expect an answer. Ask it how sure it is and you promptly get a confidence score. Both seem convincing and LLMs seem to know what they are doing. But does that number mean anything? **Can a model tell the answers it got right from the ones it got wrong?**{: .rust} Accuracy doesn't tell you that. A model that is right 80% of the time and exudes "95% confidence" every time is a usable answerer but a poor judge of itself. Here we audit that second skill across nine models, 680 questions and seven ways of asking for confidence, and find that what a model *says* about its confidence and what its *behaviour* reveals are two quite different things.
 
 <!-- more -->
+
+Most language models have become adept at answering questions convincingly. With reasoning models going through several stages and iterations, the accuracy of their answers have increased while hallucinations have decreased.
+
+## Hallucination is a confidence problem
+
+A **hallucination**{: .rust} is a plausible but false statement made by a model, as Kalai et al. put it in *Why Language Models Hallucinate*. Their argument is that hallucinations are not a mysterious glitch but a statistical consequence of how models are built. Pre-training makes some errors unavoidable, especially on facts that appear rarely in the training data. Post-training then optimises models for benchmarks that score a right answer 1 and both a wrong answer and "I don't know" 0. Under that grading, guessing always beats admitting uncertainty, so a model learns to answer confidently whether or not it knows.
+
+That makes hallucination as much about confidence as about accuracy. A wrong answer flagged as uncertain is one a user, or a system built around the model, can check. The same wrong answer delivered with full confidence is the one that does the damage. If a model's confidence reliably separates its right answers from its wrong ones, its hallucinations can be caught; if it doesn't, they can't. That separation is what this audit measures.
+
+Reasoning models sharpen the question. Thinking before answering raises accuracy, sometimes dramatically, but it does not follow that a model knows better when it is *still* wrong. Mei et al. (*Reasoning about Uncertainty: Do Reasoning Models Know When They Don't Know?*, 2025) found that reasoning models typically state 85% confidence or more even on answers they get wrong, and that on those wrong answers they grow **more overconfident the longer they reason**{: .rust}. Zeng et al. (*Thinking Out Loud: Do Reasoning Models Know When They're Right?*, EMNLP 2025) found that reasoning training improves calibration on reasoning-heavy tasks but much less consistently on factual questions, where open reasoning models say "I don't know" far less often than ordinary instruction-tuned ones. One intuition: a chain of thought builds an argument for its answer, and the argument persuades the model that wrote it as much as the reader. The audit includes one model with thinking on and off, on the same weights, to test this directly.
+
+## What this builds on
+
+Four papers shaped the design:
+
+- **[Why Language Models Hallucinate](https://arxiv.org/abs/2509.04664)** (Kalai et al., 2025). The theory above, two predictions the audit tests (pre-training yields calibrated probabilities and post-training erodes them; a model that knows its confidence should abstain more as the penalty for a wrong answer rises), and one of the seven methods: a confidence threshold stated in the prompt.
+- **[ConfidenceBench](https://arxiv.org/abs/2607.20526)** (ffrench-Constant et al., 2026). Verbal confidence from 15 frontier models on 200 multiple-choice questions in four categories, one of them unknowable, scored with Brier. It found that the most accurate model is not the best calibrated, but it reports no results per category. Grading self-knowledge separately for each kind of question, with difficulty held fixed, is what this audit adds.
+- **[Towards Fully Exploiting LLM Internal States to Enhance Knowledge Boundary Perception](https://aclanthology.org/2025.acl-long.1184/)** (Ni et al., ACL 2025). A probe on a model's hidden states predicts whether it will answer a factual question correctly, almost as well *before* it generates the answer as after. That raises the question of whether confidence asked before answering differs from confidence asked after, which the audit tests on the words, and the next post tests on the hidden states.
+- **[ForecastBench](https://arxiv.org/abs/2409.19839)** (Karger et al., 2024). Questions about events that had not happened when the models were trained, so the answers cannot have been memorised. The audit's forecasting questions come from its question sets.
+
+The other confidence signals in the audit, agreement across a model's own samples and the probability it puts on its answer tokens, are standard measures from the wider calibration literature.
 
 The audit is built from the test side. Rather than one overall calibration score, which can hide a model that is overconfident on obscure facts and underconfident on arithmetic, we sort questions by **what it takes to answer them**{: .rust}, give each kind a difficulty dial, and grade self-knowledge separately on each.
 
@@ -137,6 +158,12 @@ Psychologists have long seen people overconfident on hard questions and undercon
 
 GPT-4o's stated confidence (blue) sits at 1.0 on the hardest multiplications, where it is right 0% of the time. It looks calibrated on easy questions only because it happens to be right there; there is no underconfidence on the easy end, just a line pinned at the top. Its sample agreement (green) and token probability (yellow) fall with accuracy. The base model's lines follow accuracy almost exactly. GPT-5 nano is the one model that errs the other way: it is nearly always right on computation and perception, and still says about 0.8.
 
+## Thinking on: more right, not more aware
+
+Qwen3-8B with thinking on and off is the same weights answering the same questions, so the pair isolates what reasoning does. It transforms accuracy where the answer can be worked out: computation goes from 34% right to 100%, perception from 23% to 89%, and the model corrects 68% of false premises instead of 15%. On facts it helps far less, 34% right against 25%, because no amount of reasoning recovers a fact the model doesn't hold.
+
+Those facts are where the overconfidence shows. After thinking, the probability the model puts on its final answer averages **0.95 on recall questions it gets right only a third of the time**{: .rust}; without thinking, the same measure averaged 0.39. The reasoning settles on an answer and the answer is then written out with near certainty, so the token probability loses most of its signal: within-level AUROC 0.57, against 0.81 without thinking. Stated confidence after thinking is also high, 0.88 on average at 32% right, although it separates right from wrong a little better than without thinking (0.78 against 0.66), and so does sample agreement (0.90 against 0.77). On computation thinking leaves no errors to measure, so the test of its self-knowledge rests on facts and spelling.
+
 ## Before or after answering?
 
 Is confidence more honest before the model commits to an answer, a feeling of knowing, than after, when it has an answer to defend? On the same questions, within levels:
@@ -182,12 +209,14 @@ No model beats always guessing the base rate, and the crowd beats them all. The 
 
 ## What the audit teaches
 
-Three things stand out.
+Four things stand out.
 
 **Self-knowledge is not one skill.** The same model can know which facts it doesn't know, have a rough sense of which sums are hard, and be completely blind to its spelling mistakes. A single calibration number would average these into something meaningless.
 
 **The model's behaviour knows more than its words.** Agreement across a model's own samples and the probability it puts on its answer separate right from wrong far better than anything it says about itself, and the base model, never taught to talk about its confidence, is the best calibrated of all. Whatever instruction tuning does to stated confidence, it mostly teaches models to say "very sure".
 
 **Knowing the stakes isn't the same as acting on them.** Told the cost of being wrong, models notice that there is a cost but not how large it is, and some respond by trying harder rather than by holding back.
+
+**Thinking fixes answers, not self-knowledge.** Reasoning makes a model right far more often, but where it is still wrong, on facts it doesn't hold, it writes the wrong answer with near certainty. The more convincing the answers become, the more it matters that the confidence behind them can be checked.
 
 Which leaves the obvious next question. If sampling reveals self-knowledge that the words hide, is that knowledge already sitting in the model's hidden states before it writes a single token? That's the subject of the next post.

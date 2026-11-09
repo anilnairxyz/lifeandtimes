@@ -18,6 +18,12 @@ The [confidence audit](2026-11-08-confidence-audit.md) ended on a question. A mo
 
 <!-- more -->
 
+## Where the first post left off
+
+The audit framed hallucination as a confidence problem: a wrong answer is only dangerous when it comes with confidence the model hasn't earned, so a model whose confidence separates right from wrong is one whose hallucinations can be caught. It then found that the words fail that test. Stated confidence sits near 0.9 whatever the accuracy, and carries no information at all on spelling and letter-counting. Signals from the model's behaviour do much better: how often its own samples agree, and how much probability it puts on its answer. And thinking made things worse in one telling way. After reasoning, Qwen3-8B put an average probability of 0.95 on recall answers it got right only a third of the time.
+
+Kalai et al. offer an explanation that the audit could only test from outside. In their account, pre-training leaves a model with a reasonable sense of what it knows, and post-training, rewarded for answering rather than abstaining, teaches it to speak over that sense. If they are right, the uncertainty is still represented somewhere inside the model, and a confident hallucination is a case of the output not reporting what the network already holds. That is a claim about hidden states, so this post reads them.
+
 ## Reading a model's mind with a ruler
 
 The tool is a **probe**{: .rust}: a simple classifier trained on a model's internal activations to predict something about the model's behaviour. Here, the something is "will the answer be right?". If a plain linear classifier can read correctness off a layer's activations, the information is there, in a form the rest of the network could easily use.
@@ -36,6 +42,18 @@ flowchart LR
 Position 2 is the key one for "before": it is the state from which the model predicts the first token of its answer, so it holds everything the model has worked out about the question, and nothing about what it is going to say. Position 3 has seen the whole answer. The comparison between them tells us **when**{: .rust} the model's knowledge of its own correctness appears.
 
 This follows Ni et al. (*Towards Fully Exploiting LLM Internal States to Enhance Knowledge Boundary Perception*, ACL 2025), who found that a probe before generation is almost as good as one after. But they tested factual question answering only. The audit's categories let us ask the question they couldn't: does the same hold when the answer has to be *computed*?
+
+## What earlier probes found
+
+Reading self-knowledge from inside a model has a short but busy history:
+
+- **[Language Models (Mostly) Know What They Know](https://arxiv.org/abs/2207.05221)** (Kadavath et al., 2022). Trained models to predict P(IK), the probability that they know the answer to a question, *before* proposing any answer. A predictor trained on trivia separated answerable from unanswerable questions in maths, code and other tasks, but its calibration on those new tasks was weak. Self-knowledge before answering was there, and it didn't transfer cleanly.
+- **[The Internal State of an LLM Knows When It's Lying](https://arxiv.org/abs/2304.13734)** (Azaria and Mitchell, Findings of EMNLP 2023). A classifier on hidden activations told true statements from false ones with 71% to 83% accuracy on topics it had not been trained on, where prompting the model to judge them did little better than chance. It was one of the first direct measurements of a model "knowing" more than it says.
+- **[LLMs Know More Than They Show](https://arxiv.org/abs/2410.02707)** (Orgad et al., 2024). Found the truthfulness signal concentrated in the tokens of the answer itself, and found that probes do not generalise across tasks, only between tasks that need similar skills. Their conclusion: there is no universal "truthfulness" direction. They also found cases where the model encodes the right answer and still generates a wrong one.
+- **[Towards Fully Exploiting LLM Internal States](https://aclanthology.org/2025.acl-long.1184/)** (Ni et al., ACL 2025). The design this post follows. On NQ and HotpotQA, open-ended factual questions, a probe before generation came within a couple of points of one after; on MMLU, the one set needing some reasoning, the gap was larger. They read one middle layer with a small neural network, and used the probe for C3, a method that checks whether the model's confidence holds up when the question is rephrased as multiple choice.
+- **[Reasoning Models Know When They're Right](https://arxiv.org/abs/2504.05419)** (Zhang et al., 2025). Probed reasoning models during their chain of thought and found the hidden states predict whether each intermediate answer is correct, with well-calibrated scores, sometimes before that answer is written. Using the probe to stop reasoning early saved 24% of the tokens without losing accuracy. The models encode their correctness but don't use it.
+
+So the signal is known to exist, mostly for facts. Three things are missing, and this post supplies them. First, a test on answers that have to be *computed* or *perceived*, where Ni et al.'s before ≈ after has no reason to hold. Second, a control for difficulty: a probe that merely learns "obscure subjects are hard" or "long multiplications are hard" looks good on most benchmarks without knowing anything about the particular answer. Third, a comparison on the same answers with every confidence method from the audit, and between a base model and its instruction-tuned version, which is the direct test of Kalai's account.
 
 ## The setup
 
@@ -87,7 +105,7 @@ Now put the probe next to every method from the audit, on the same test question
 
 The bottom two rows are the probes; the top two are what the model *says*. On perception, where the audit found stated confidence carries no information at all (0.48), the probe reads 0.70 *before the model has answered* and 0.79 after, and after answering it beats sample agreement and token probability too. On computation the probe before answering is level with them and well above the confidence stated after answering (0.51).
 
-**The information is in the model; the words just don't use it.**{: .rust} This is Kalai et al.'s point about hallucination measured directly: the model represents its uncertainty, and the output overrides it.
+**The information is in the model; the words just don't use it.**{: .rust} This is Kalai et al.'s point about hallucination measured directly: the model represents its uncertainty, and the output overrides it. It is also Azaria and Mitchell's and Orgad et al.'s finding, now on questions where the difficulty is held fixed: what the hidden state knows on top of "this is a hard question" is still far more than the words report.
 
 ## Post-training changes the words, not the knowledge
 
@@ -95,7 +113,7 @@ In the audit the base model was the best calibrated of all, and the instruct mod
 
 ![](../images/confidence_probe_base_vs_instruct.png)
 
-The two lines lie on top of each other. After answering, base and instruct models know almost exactly as much about their own correctness; the only gap is before answering on computation, where the base model is slightly ahead. Post-training leaves the knowledge in place and teaches the model to talk over it.
+The two lines lie on top of each other. After answering, base and instruct models know almost exactly as much about their own correctness; the only gap is before answering on computation, where the base model is slightly ahead. Post-training leaves the knowledge in place and teaches the model to talk over it. This is the second half of Kalai et al.'s account seen from inside: the base model's calibrated probabilities in the audit and the instruct model's uninformative words come from the same internal knowledge, used differently.
 
 ## No single "I know this" switch
 
@@ -103,7 +121,7 @@ If there were one direction in the network meaning "I'm on solid ground", a prob
 
 ![](../images/confidence_probe_transfer.png)
 
-A probe trained on recall scores 0.42 on perception, slightly *worse* than chance. Arithmetic transfers partly to facts, but not the other way round. Yet a single probe trained on all three kinds at once does almost as well as the three specialised ones, so the directions sit side by side without interfering. The model's self-knowledge is a set of separate signals, one per way of failing, which fits the audit's finding that it can know its gaps in facts while being blind to its spelling.
+A probe trained on recall scores 0.42 on perception, slightly *worse* than chance. Arithmetic transfers partly to facts, but not the other way round. Yet a single probe trained on all three kinds at once does almost as well as the three specialised ones, so the directions sit side by side without interfering. The model's self-knowledge is a set of separate signals, one per way of failing, which fits the audit's finding that it can know its gaps in facts while being blind to its spelling. It also matches what Orgad et al. found on other tasks, and Kadavath et al.'s weak calibration on new tasks: self-knowledge travels between questions that need the same skill, and not much further.
 
 ???+ warning "What to keep in mind"
     - **After-answer states can see the answer.** A probe there can learn that some answers are more often right (a famous name, a small count). The raw embedding alone reaches up to 0.88 at those positions, so part of the "after" signal is the answer itself. The before-answer results, the key test, have no such issue.
@@ -127,3 +145,5 @@ The predictions were written down before the runs.
 The audit showed that what a model says about its confidence and what its behaviour reveals are different things. Looking inside explains why. The knowledge is there, much of it before the model writes a word, and instruction tuning doesn't remove it; the model simply doesn't report it. And the timing of that knowledge follows the kind of question. A model can know in advance that it doesn't know a fact, because remembering happens in the forward pass; it cannot know in advance that it will slip on a multiplication, because the slip hasn't happened yet.
 
 That suggests where honest confidence will have to come from. Asking a model to state its confidence asks it to read a signal it was never trained to report. Reading the signal directly, or training the model to report it, are both on the table, and the first is just a linear classifier away.
+
+It also suggests where to look next. The audit's thinking model wrote its wrong recall answers with near certainty, and this post probed only models answering without thinking. Zhang et al.'s result says a reasoning model's hidden states track whether each step is right even when the model presses on regardless. If that holds here, the overconfidence of reasoning models is the same story told at greater length: the knowledge of being wrong is in the network, and the chain of thought, like the final answer, doesn't report it. Probing the thinking model step by step, to see when its computation signal appears and whether its confident wrong facts look uncertain from inside, is the natural next experiment.

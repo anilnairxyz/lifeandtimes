@@ -17,24 +17,24 @@ Ask a language model any question today and you can expect an answer. Ask it how
 
 <!-- more -->
 
-Most language models have become adept at answering questions convincingly. With reasoning models going through several stages and iterations, the accuracy of their answers have increased while hallucinations have decreased.
+Most language models have become adept at answering questions convincingly. With reasoning models going through several stages and iterations, the accuracy of their answers have increased. But models, both the vanilla ones and the more sophisticated reasoning ones, hallucinate. 
 
-## Hallucination is a confidence problem
+## Hallucination as a confidence problem
 
-A **hallucination**{: .rust} is a plausible but false statement made by a model, as Kalai et al. put it in *Why Language Models Hallucinate*. Their argument is that hallucinations are not a mysterious glitch but a statistical consequence of how models are built. Pre-training makes some errors unavoidable, especially on facts that appear rarely in the training data. Post-training then optimises models for benchmarks that score a right answer 1 and both a wrong answer and "I don't know" 0. Under that grading, guessing always beats admitting uncertainty, so a model learns to answer confidently whether or not it knows.
+In [Why Language Models Hallucinate](https://arxiv.org/abs/2509.04664), Kalai et al. explain a **hallucination**{: .rust} as a plausible but false statement made by a model. Hallucinations according to them, are not a mysterious glitch but a statistical consequence of how models are built. Pre-training makes some errors unavoidable, especially on **singleton facts**{: .rust} that appear rarely in the training data, but which the model is still forced to accommodate due to binary classification pressures. Post-training then optimises models for **test-taking benchmarks**{: .rust} that score a right answer as 1 and both a wrong answer and an "I don't know" as 0. Under that grading, guessing always beats admitting uncertainty, so a model learns to answer confidently whether or not it knows.
 
-That makes hallucination as much about confidence as about accuracy. A wrong answer flagged as uncertain is one a user, or a system built around the model, can check. The same wrong answer delivered with full confidence is the one that does the damage. If a model's confidence reliably separates its right answers from its wrong ones, its hallucinations can be caught; if it doesn't, they can't. That separation is what this audit measures.
+That makes hallucination as much about confidence as about accuracy. A wrong answer flagged as uncertain is one a user, or a system built around the model, can check. The same wrong answer delivered with full confidence is the one that does the damage. But what about reasoning models?
 
-Reasoning models sharpen the question. Thinking before answering raises accuracy, sometimes dramatically, but it does not follow that a model knows better when it is *still* wrong. Mei et al. (*Reasoning about Uncertainty: Do Reasoning Models Know When They Don't Know?*, 2025) found that reasoning models typically state 85% confidence or more even on answers they get wrong, and that on those wrong answers they grow **more overconfident the longer they reason**{: .rust}. Zeng et al. (*Thinking Out Loud: Do Reasoning Models Know When They're Right?*, EMNLP 2025) found that reasoning training improves calibration on reasoning-heavy tasks but much less consistently on factual questions, where open reasoning models say "I don't know" far less often than ordinary instruction-tuned ones. One intuition: a chain of thought builds an argument for its answer, and the argument persuades the model that wrote it as much as the reader. The audit includes one model with thinking on and off, on the same weights, to test this directly.
+Thinking before answering raises accuracy, sometimes dramatically, but it does not follow that a model knows better when it is *still* wrong. In [Reasoning about Uncertainty: Do Reasoning Models Know When They Don't Know?](https://arxiv.org/abs/2506.18183) Mei et al. found that reasoning models typically state 85% confidence or more even on answers they get wrong, and that on those wrong answers they grow **more overconfident the longer they reason**{: .rust}. Zeng et al. in [Thinking Out Loud: Do Reasoning Models Know When They're Right?](https://arxiv.org/abs/2504.06564) found that reasoning training improves calibration on reasoning-heavy tasks but much less consistently on factual questions, where open reasoning models say "I don't know" far less often than ordinary instruction-tuned ones.
 
-## What this builds on
+Pre-trained base models are naturally well-calibrated because they are optimised using cross-entropy loss. But reasoning models undergo post-training with methods like RLHF and instruction tuning which are often incentivised for confidence by their human rewarders, thereby losing their base calibration. Another intuition: a chain of thought builds an argument for its answer, and the argument persuades the model that wrote it as much as the reader. That is what leads to autoregressive stubbornness where a mistake made in an earlier stage of reasoning is justified and compounded further down the chain. The audit includes one model with thinking on and off, on the same weights, to test this directly.
 
-Four papers shaped the design:
+## What we build on
 
-- **[Why Language Models Hallucinate](https://arxiv.org/abs/2509.04664)** (Kalai et al., 2025). The theory above, two predictions the audit tests (pre-training yields calibrated probabilities and post-training erodes them; a model that knows its confidence should abstain more as the penalty for a wrong answer rises), and one of the seven methods: a confidence threshold stated in the prompt.
-- **[ConfidenceBench](https://arxiv.org/abs/2607.20526)** (ffrench-Constant et al., 2026). Verbal confidence from 15 frontier models on 200 multiple-choice questions in four categories, one of them unknowable, scored with Brier. It found that the most accurate model is not the best calibrated, but it reports no results per category. Grading self-knowledge separately for each kind of question, with difficulty held fixed, is what this audit adds.
-- **[Towards Fully Exploiting LLM Internal States to Enhance Knowledge Boundary Perception](https://aclanthology.org/2025.acl-long.1184/)** (Ni et al., ACL 2025). A probe on a model's hidden states predicts whether it will answer a factual question correctly, almost as well *before* it generates the answer as after. That raises the question of whether confidence asked before answering differs from confidence asked after, which the audit tests on the words, and the next post tests on the hidden states.
-- **[ForecastBench](https://arxiv.org/abs/2409.19839)** (Karger et al., 2024). Questions about events that had not happened when the models were trained, so the answers cannot have been memorised. The audit's forecasting questions come from its question sets.
+We base this study on other works that try to tackle the confidence measurement problem.
+
+- [ConfidenceBench](https://arxiv.org/abs/2607.20526) (ffrench-Constant et al., 2026) extracts verbal confidence from 15 frontier models on 200 multiple-choice questions in four categories, one of them unknowable, scored with Brier. It found that the most accurate model is not the best calibrated, but it reports no results per category. Grading self-knowledge separately for each kind of question, with difficulty held fixed, is what this audit adds.
+- [ForecastBench](https://arxiv.org/abs/2409.19839) (Karger et al., 2024). Questions about events that had not happened when the models were trained, so the answers cannot have been memorised. The audit's forecasting questions come from its question sets.
 
 The other confidence signals in the audit, agreement across a model's own samples and the probability it puts on its answer tokens, are standard measures from the wider calibration literature.
 
@@ -77,20 +77,20 @@ Two of these are things the model *says* (A after answering, D before it, a feel
 
 The nine configurations were picked to exercise the methods rather than to rank vendors:
 
-| Model | Where | What it tests |
-| --- | --- | --- |
-| Qwen3-1.7B, 8B, 14B | local RTX 4090 | size within one family, every method including E |
-| Qwen3-8B, thinking on | local | reasoning on vs off, same weights |
-| Qwen3-8B-Base | local | base vs instruct (few-shot; P, B, E only) |
-| GPT-4o, Grok 4.1 Fast | Azure AI Foundry | other vendors, with token probabilities |
-| GPT-5 nano | Azure AI Foundry | a closed reasoning model, no token probabilities |
-| Claude Haiku 5.5 | Anthropic API | no temperature control, no token probabilities |
+| Model                 | Where            | What it tests                                    |
+| --------------------- | ---------------- | ------------------------------------------------ |
+| Qwen3-1.7B, 8B, 14B   | local RTX 4090   | size within one family, every method including E |
+| Qwen3-8B, thinking on | local RTX 4090   | reasoning on vs off, same weights                |
+| Qwen3-8B-Base         | local RTX 4090   | base vs instruct (few-shot; P, B, E only)        |
+| GPT-4o, Grok 4.1 Fast | Azure AI Foundry | other vendors, with token probabilities          |
+| GPT-5 nano            | Azure AI Foundry | a closed reasoning model, no token probabilities |
+| Claude Haiku 5.5      | Anthropic API    | no temperature control, no token probabilities   |
 
 The whole thing came to about 100,000 model calls and **under $7**{: .rust}: about $5.80 on Foundry, $0.30 for Claude, and the 4090's electricity.
 
 ## Grading without fooling ourselves
 
-Arithmetic and spelling can be marked by code. "Who wrote X?" mostly can too, by matching against known aliases. But "did this response correct the false premise?" needs a judge, and the first judge we tried (Qwen3-14B) agreed with a hand-labelled set only 77 times out of 120. It stumbled on bare refusals like "Unknown." and on denials that happened to contain a year.
+Arithmetic and spelling can be marked by code. "Who wrote X?" mostly can too, by matching against known aliases. But "did this response correct the false premise?" needs a judge, and the first judge we tried (Qwen3-14B) agreed with a hand-labelled set only 77 times out of 120. It stumbled on bare refusals like "Unknown" and on denials that happened to contain a year.
 
 ```mermaid
 flowchart LR
@@ -111,11 +111,14 @@ So we built the grader the other way round: code rules for everything they can d
 
 ## Two kinds of self-knowledge
 
-Before the results, one distinction that decides how to read them. The standard measure of whether confidence separates right from wrong is AUROC: the chance that a randomly chosen right answer carries more confidence than a randomly chosen wrong one (0.5 is a coin toss, 1.0 is perfect). But a model can score well on it by knowing only that *long multiplications are risky and short ones are safe*. That's real self-knowledge, but coarse. The finer skill is knowing which of several equally hard answers is the wrong one.
+Before getting into the results, there is one distinction that helps us on how to read them. The standard measure of whether confidence separates right from wrong is [AUROC](https://en.wikipedia.org/wiki/Receiver_operating_characteristic), the chance that a randomly chosen right answer carries more confidence than a randomly chosen wrong one (0.5 is a coin toss, 1.0 is perfect). But a model can score well on it by knowing only that *long multiplications are risky and short ones are safe*. That's real self-knowledge, but coarse. The finer skill is knowing which of several equally hard answers is the wrong one.
 
 ![](../images/confidence_within_level_explainer.png)
 
-**Within-level AUROC**{: .rust} keeps only the second kind, by comparing right and wrong answers only inside the same difficulty level. (The obvious tool from human metacognition research, meta-d′, needs a two-choice task to measure against; open-ended answers don't have one, so we control for difficulty this way instead, plus a regression with a separate baseline for every model × category × level.)
+**Within-level AUROC**{: .rust} keeps only the second kind, by comparing right and wrong answers only inside the same difficulty level. 
+
+???+ info "Parallels with human metacognition research"
+    The corresponding tool from human metacognition research, **meta-d′**{: .rust}, (see [A signal detection theoretic approach for estimating metacognitive sensitivity from confidence ratings](https://www.sciencedirect.com/science/article/pii/S1053810011002303),) needs a two-choice task to measure against; open-ended answers don't have one, so we control for difficulty this way instead, plus a regression with a separate baseline for every model × category × level.
 
 ## What they say vs what they do
 
@@ -152,7 +155,7 @@ That fits the mechanism. A model has some internal sense of how familiar a fact 
 
 ## The hard-easy effect, but only in the words
 
-Psychologists have long seen people overconfident on hard questions and underconfident on easy ones. The models show half of it:
+Psychologists have long seen people overconfident on hard questions and underconfident on easy ones (see Lichtenstein, S. & Fischhoff, B. [Do those who know more also know more about how much they know?](https://www.sciencedirect.com/science/article/pii/0030507377900010). The models show half of it:
 
 ![](../images/confidence_hard_easy.png)
 
@@ -201,7 +204,7 @@ The penalty has a less welcome effect on false premises: models stop correcting 
 
 ## Forecasting, for completeness
 
-Confidence about the world rather than about oneself, so it is kept apart. On 75 market questions that resolved after every model's training cutoff:
+This shows confidence about the world rather than about oneself, so it is kept apart. On 75 market questions that resolved after every model's training cutoff:
 
 ![](../images/confidence_forecasts.png)
 

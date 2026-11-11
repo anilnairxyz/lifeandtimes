@@ -155,7 +155,7 @@ That fits the mechanism. A model has some internal sense of how familiar a fact 
 
 ## The hard-easy effect, but only in the words
 
-Psychologists have long seen people overconfident on hard questions and underconfident on easy ones (see Lichtenstein, S. & Fischhoff, B. [Do those who know more also know more about how much they know?](https://www.sciencedirect.com/science/article/pii/0030507377900010). The models show half of it:
+Psychologists have long seen people overconfident on hard questions and underconfident on easy ones (see Lichtenstein, S. & Fischhoff, B. [Do those who know more also know more about how much they know?](https://www.sciencedirect.com/science/article/pii/0030507377900010)). The models show half of it, the former half.
 
 ![](../images/confidence_hard_easy.png)
 

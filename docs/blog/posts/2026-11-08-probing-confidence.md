@@ -14,15 +14,17 @@ tags:
   - mechanistic-interpretability
   - genai
 ---
-The [confidence audit](2026-11-08-confidence-audit.md) ended on a question. A model's own samples and token probabilities reveal much more about whether it is right than anything it *says* about its confidence. So is that knowledge already inside the model, in its hidden states, before it writes a single token? This post opens the model up to find out. The answer depends on what the question takes: **for a fact, the model knows before it answers whether it will get it right; for a multiplication, it only finds out once the answer is written.**{: .rust} And in both cases, the hidden state knows far more than the words that come out.
+The [confidence audit](2026-11-08-confidence-audit.md) showed us that a model's own samples and token probabilities reveal much more about whether it is right than anything it *says* about its confidence. So is that knowledge already buried inside the model, in its hidden states, before it outputs a single token? This post opens the model up to find out. And the answer depends on what the question involves: **for a factual question, the model knows before it answers whether it will get it right; for a calculation, it only finds out once the answer is written.**{: .rust} And in both cases, the hidden state knows far more than the words that come out.
 
 <!-- more -->
 
-## Where the first post left off
+The Confidence Audit framed hallucination as a confidence problem. And reasoning made things worse in one telling way. After reasoning, Qwen3-8B for instance put an average probability of 0.95 on recall answers it got right only a third of the time.
 
-The audit framed hallucination as a confidence problem: a wrong answer is only dangerous when it comes with confidence the model hasn't earned, so a model whose confidence separates right from wrong is one whose hallucinations can be caught. It then found that the words fail that test. Stated confidence sits near 0.9 whatever the accuracy, and carries no information at all on spelling and letter-counting. Signals from the model's behaviour do much better: how often its own samples agree, and how much probability it puts on its answer. And thinking made things worse in one telling way. After reasoning, Qwen3-8B put an average probability of 0.95 on recall answers it got right only a third of the time.
+Kalai et al. offer an explanation that the audit could only test from outside. In their account, pre-training leaves a model with a reasonable sense of what it knows, and post-training, rewarded for answering rather than abstaining, teaches it to speak over that sense. If they are right, the uncertainty is still represented somewhere inside the model, and a confident hallucination is a case of the output not reporting what the network intrinsically holds. 
 
-Kalai et al. offer an explanation that the audit could only test from outside. In their account, pre-training leaves a model with a reasonable sense of what it knows, and post-training, rewarded for answering rather than abstaining, teaches it to speak over that sense. If they are right, the uncertainty is still represented somewhere inside the model, and a confident hallucination is a case of the output not reporting what the network already holds. That is a claim about hidden states, so this post reads them.
+ [Towards Fully Exploiting LLM Internal States to Enhance Knowledge Boundary Perception](https://aclanthology.org/2025.acl-long.1184/) (Ni et al., ACL 2025), shifts perspective from behavioural evaluations (like ConfidenceBench) and theoretical game structures (like Kalai et al.) down to the **mechanistic, hidden representations** inside the model. Instead of asking a model _after_ it talks whether it is confident, or relying on vulnerable verbalised scores, they explore how to read a model’s internal states _before_ and _during_ generation to perceive its true epistemic boundaries.
+
+These are claim about hidden states, so in this experiment we attempt to unravel them.
 
 ## Reading a model's mind with a ruler
 
@@ -39,9 +41,7 @@ flowchart LR
     T1 -.-> P4["4: mean over the answer"]
 ```
 
-Position 2 is the key one for "before": it is the state from which the model predicts the first token of its answer, so it holds everything the model has worked out about the question, and nothing about what it is going to say. Position 3 has seen the whole answer. The comparison between them tells us **when**{: .rust} the model's knowledge of its own correctness appears.
-
-This follows Ni et al. (*Towards Fully Exploiting LLM Internal States to Enhance Knowledge Boundary Perception*, ACL 2025), who found that a probe before generation is almost as good as one after. But they tested factual question answering only. The audit's categories let us ask the question they couldn't: does the same hold when the answer has to be *computed*?
+Position 2 is the key one for "before": it is the state from which the model predicts the first token of its answer, so it holds everything the model has worked out about the question, and nothing about what it is going to say. Position 3 has seen the whole answer. The comparison between them tells us **when**{: .rust} the model's knowledge of its own correctness appears. This follows Ni et al., who found that a probe before generation is almost as good as one after.
 
 ## What earlier probes found
 

@@ -1,0 +1,1309 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Asking nine language models 680 questions seven different ways, and checking whether their confidence tells right answers from wrong ones. What they say and what they do turn out to know very different things.">
+      
+      
+      
+        <link rel="canonical" href="https://anilnairxyz.github.io/lifeandtimes/blog/2026/11/01/A-confidence-audit-over-LLMs/">
+      
+      
+        <link rel="prev" href="../../../08/23/inside-vicreg/">
+      
+      
+        <link rel="next" href="../../08/probing-llm-confidence/">
+      
+      
+        
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Confidence Audit: Do Language Models Know When They're Wrong? - life & times</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1%207.775V2.75C1%201.784%201.784%201%202.75%201h5.025c.464%200%20.91.184%201.238.513l6.25%206.25a1.75%201.75%200%200%201%200%202.474l-5.026%205.026a1.75%201.75%200%200%201-2.474%200l-6.25-6.25A1.75%201.75%200%200%201%201%207.775m1.5%200c0%20.066.026.13.073.177l6.25%206.25a.25.25%200%200%200%20.354%200l5.025-5.025a.25.25%200%200%200%200-.354l-6.25-6.25a.25.25%200%200%200-.177-.073H2.75a.25.25%200%200%200-.25.25ZM6%205a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.5%201.75v11.5c0%20.138.112.25.25.25h3.17a.75.75%200%200%201%200%201.5H2.75A1.75%201.75%200%200%201%201%2013.25V1.75C1%20.784%201.784%200%202.75%200h8.5C12.216%200%2013%20.784%2013%201.75v7.736a.75.75%200%200%201-1.5%200V1.75a.25.25%200%200%200-.25-.25h-8.5a.25.25%200%200%200-.25.25m13.274%209.537zl-4.557%204.45a.75.75%200%200%201-1.055-.008l-1.943-1.95a.75.75%200%200%201%201.062-1.058l1.419%201.425%204.026-3.932a.75.75%200%201%201%201.048%201.074M4.75%204h4.5a.75.75%200%200%201%200%201.5h-4.5a.75.75%200%200%201%200-1.5M4%207.75A.75.75%200%200%201%204.75%207h2a.75.75%200%200%201%200%201.5h-2A.75.75%200%200%201%204%207.75%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.5%207.75A.75.75%200%200%201%207.25%207h1a.75.75%200%200%201%20.75.75v2.75h.25a.75.75%200%200%201%200%201.5h-2a.75.75%200%200%201%200-1.5h.25v-2h-.25a.75.75%200%200%201-.75-.75M8%206a1%201%200%201%201%200-2%201%201%200%200%201%200%202%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M3.499.75a.75.75%200%200%201%201.5%200v.996C5.9%202.903%206.793%203.65%207.662%204.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873%2010.794-.045%2012.622.26%2014.408.558%2016%201.94%2016%204.25c0%201.278-.954%202.575-2.44%202.734l.146.508.065.22c.203.701.412%201.455.476%202.226.142%201.707-.4%203.03-1.487%203.898C11.714%2014.671%2010.27%2015%208.75%2015h-6a.75.75%200%200%201%200-1.5h1.376a4.5%204.5%200%200%201-.563-1.191%203.84%203.84%200%200%201-.05-2.063%204.65%204.65%200%200%201-2.025-.293.75.75%200%200%201%20.525-1.406c1.357.507%202.376-.006%202.698-.318l.009-.01a.747.747%200%200%201%201.06%200%20.75.75%200%200%201-.012%201.074c-.912.92-.992%201.835-.768%202.586.221.74.745%201.337%201.196%201.621H8.75c1.343%200%202.398-.296%203.074-.836.635-.507%201.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.4%202.4%200%200%201-.507-.441%203.1%203.1%200%200%201-.633-1.248.75.75%200%200%201%201.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738%200%201.25-.615%201.25-1.25%200-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706%201.345-.46.92-.27%201.774.019%203.062l.042.19.01.05c.348.443.666.949.94%201.553a.75.75%200%201%201-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7%205.527c-.814-.68-1.75-1.462-2.692-2.619a3.7%203.7%200%200%200-1.023.88c-.406.495-.663%201.036-.722%201.508.116.122.306.21.591.239.388.038.797-.06%201.032-.19a.75.75%200%200%201%20.728%201.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75%205.677V5.5c0-.984.48-1.94%201.077-2.664.46-.559%201.05-1.055%201.673-1.353z%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M13.78%204.22a.75.75%200%200%201%200%201.06l-7.25%207.25a.75.75%200%200%201-1.06%200L2.22%209.28a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018L6%2010.94l6.72-6.72a.75.75%200%200%201%201.06%200%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.92%206.085h.001a.749.749%200%201%201-1.342-.67c.169-.339.436-.701.849-.977C6.845%204.16%207.369%204%208%204a2.76%202.76%200%200%201%201.637.525c.503.377.863.965.863%201.725%200%20.448-.115.83-.329%201.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6%206%200%200%200-.26.16%201%201%200%200%200-.276.245.75.75%200%200%201-1.248-.832c.184-.264.42-.489.692-.661q.154-.1.313-.195l.007-.004c.1-.061.182-.11.258-.161a1%201%200%200%200%20.277-.245C8.96%206.514%209%206.427%209%206.25a.61.61%200%200%200-.262-.525A1.27%201.27%200%200%200%208%205.5c-.369%200-.595.09-.74.187a1%201%200%200%200-.34.398M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M6.457%201.047c.659-1.234%202.427-1.234%203.086%200l6.082%2011.378A1.75%201.75%200%200%201%2014.082%2015H1.918a1.75%201.75%200%200%201-1.543-2.575Zm1.763.707a.25.25%200%200%200-.44%200L1.698%2013.132a.25.25%200%200%200%20.22.368h12.164a.25.25%200%200%200%20.22-.368Zm.53%203.996v2.5a.75.75%200%200%201-1.5%200v-2.5a.75.75%200%200%201%201.5%200M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.344%202.343za8%208%200%200%201%2011.314%2011.314A8.002%208.002%200%200%201%20.234%2010.089a8%208%200%200%201%202.11-7.746m1.06%2010.253a6.5%206.5%200%201%200%209.108-9.275%206.5%206.5%200%200%200-9.108%209.275M6.03%204.97%208%206.94l1.97-1.97a.749.749%200%200%201%201.275.326.75.75%200%200%201-.215.734L9.06%208l1.97%201.97a.749.749%200%200%201-.326%201.275.75.75%200%200%201-.734-.215L8%209.06l-1.97%201.97a.749.749%200%200%201-1.275-.326.75.75%200%200%201%20.215-.734L6.94%208%204.97%206.03a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M9.504.43a1.516%201.516%200%200%201%202.437%201.713L10.415%205.5h2.123c1.57%200%202.346%201.909%201.22%203.004l-7.34%207.142a1.25%201.25%200%200%201-.871.354h-.302a1.25%201.25%200%200%201-1.157-1.723L5.633%2010.5H3.462c-1.57%200-2.346-1.909-1.22-3.004zm1.047%201.074L3.286%208.571A.25.25%200%200%200%203.462%209H6.75a.75.75%200%200%201%20.694%201.034l-1.713%204.188%206.982-6.793A.25.25%200%200%200%2012.538%207H9.25a.75.75%200%200%201-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005%200-.009.004%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M4.72.22a.75.75%200%200%201%201.06%200l1%20.999a3.5%203.5%200%200%201%202.441%200l.999-1a.748.748%200%200%201%201.265.332.75.75%200%200%201-.205.729l-.775.776c.616.63.995%201.493.995%202.444v.327q0%20.15-.025.292c.408.14.764.392%201.029.722l1.968-.787a.75.75%200%200%201%20.556%201.392L13%207.258V9h2.25a.75.75%200%200%201%200%201.5H13v.5q-.002.615-.141%201.186l2.17.868a.75.75%200%200%201-.557%201.392l-2.184-.873A5%205%200%200%201%208%2016a5%205%200%200%201-4.288-2.427l-2.183.873a.75.75%200%200%201-.558-1.392l2.17-.868A5%205%200%200%201%203%2011v-.5H.75a.75.75%200%200%201%200-1.5H3V7.258L.971%206.446a.75.75%200%200%201%20.558-1.392l1.967.787c.265-.33.62-.583%201.03-.722a1.7%201.7%200%200%201-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72%201.28a.75.75%200%200%201%200-1.06m.53%206.28a.75.75%200%200%200-.75.75V11a3.5%203.5%200%201%200%207%200V7.25a.75.75%200%200%200-.75-.75ZM6.173%205h3.654A.17.17%200%200%200%2010%204.827V4.5a2%202%200%201%200-4%200v.327c0%20.096.077.173.173.173%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5%205.782V2.5h-.25a.75.75%200%200%201%200-1.5h6.5a.75.75%200%200%201%200%201.5H11v3.282l3.666%205.76C15.619%2013.04%2014.543%2015%2012.767%2015H3.233c-1.776%200-2.852-1.96-1.899-3.458Zm-2.4%206.565a.75.75%200%200%200%20.633%201.153h9.534a.75.75%200%200%200%20.633-1.153L12.225%2010.5h-8.45ZM9.5%202.5h-3V6c0%20.143-.04.283-.117.403L4.73%209h6.54L9.617%206.403A.75.75%200%200%201%209.5%206Z%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1.75%202.5h10.5a.75.75%200%200%201%200%201.5H1.75a.75.75%200%200%201%200-1.5m4%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5m0%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5M2.5%207.75v6a.75.75%200%200%201-1.5%200v-6a.75.75%200%200%201%201.5%200%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../stylesheets/extra.css?v=12">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#hallucination-as-a-confidence-problem" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="life &amp; times" class="md-header__button md-logo" aria-label="life & times" data-md-component="logo">
+      
+  <img src="../../../../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            life & times
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Confidence Audit: Do Language Models Know When They're Wrong?
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="life &amp; times" class="md-nav__button md-logo" aria-label="life & times" data-md-component="logo">
+      
+  <img src="../../../../../logo.png" alt="logo">
+
+    </a>
+    life & times
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About This Site
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Essays
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Essays
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Categories
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Categories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/cryptography/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cryptography
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/dataviz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dataviz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    engineering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/evaluation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    evaluation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/generative-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    generative ai
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/gis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/machine-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    machine learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/philosophy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    philosophy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/representations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    representations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hallucination-as-a-confidence-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hallucination as a confidence problem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-we-build-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What we build on
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seven-ways-of-asking-how-sure-are-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seven ways of asking "how sure are you?"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grading-without-fooling-ourselves" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grading without fooling ourselves
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-kinds-of-self-knowledge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two kinds of self-knowledge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-they-say-vs-what-they-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What they say vs what they do
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-category-matters-not-just-the-difficulty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The category matters, not just the difficulty
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-hard-easy-effect-but-only-in-the-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The hard-easy effect, but only in the words
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thinking-on-more-right-not-more-aware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thinking on: more right, not more aware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-or-after-answering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before or after answering?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#questions-without-a-proper-answer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Questions without a proper answer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#telling-the-model-the-stakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Telling the model the stakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forecasting-for-completeness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forecasting, for completeness
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-audit-teaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the audit teaches
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2026-11-01 00:00:00+00:00" class="md-ellipsis">November 1, 2026</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/evaluation/">evaluation</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              15 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:ai" class="md-tag">ai</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:calibration" class="md-tag">calibration</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:evaluation" class="md-tag">evaluation</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:genai" class="md-tag">genai</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:llm" class="md-tag">llm</a>
+      
+    
+  </nav>
+
+
+
+  <h1>Confidence Audit: Do Language Models Know When They're Wrong?</h1>
+
+<p>Ask a language model any question today and you can expect an answer. Ask it how sure it is and you promptly get a confidence score. Both seem convincing and LLMs seem to know what they are doing. But does that number mean anything? <strong class="rust">Can a model tell the answers it got right from the ones it got wrong?</strong> Accuracy doesn't tell you that. A model that is right 80% of the time and exudes "95% confidence" every time is a usable answerer but a poor judge of itself. Here we audit that second skill across nine models, 680 questions and seven ways of asking for confidence, and find that what a model <em>says</em> about its confidence and what its <em>behaviour</em> reveals are two quite different things.</p>
+<!-- more -->
+
+<p>Most language models have become adept at answering questions convincingly. With reasoning models going through several stages and iterations, the accuracy of their answers have increased. But models, both the vanilla ones and the more sophisticated reasoning ones, hallucinate. </p>
+<h2 id="hallucination-as-a-confidence-problem">Hallucination as a confidence problem<a class="headerlink" href="#hallucination-as-a-confidence-problem" title="Permanent link">&para;</a></h2>
+<p>In <a href="https://arxiv.org/abs/2509.04664">Why Language Models Hallucinate</a>, Kalai et al. explain a <strong class="rust">hallucination</strong> as a plausible but false statement made by a model. Hallucinations according to them, are not a mysterious glitch but a statistical consequence of how models are built. Pre-training makes some errors unavoidable, especially on <strong class="rust">singleton facts</strong> that appear rarely in the training data, but which the model is still forced to accommodate due to binary classification pressures. Post-training then optimises models for <strong class="rust">test-taking benchmarks</strong> that score a right answer as 1 and both a wrong answer and an "I don't know" as 0. Under that grading, guessing always beats admitting uncertainty, so a model learns to answer confidently whether or not it knows.</p>
+<p>That makes hallucination as much about confidence as about accuracy. A wrong answer flagged as uncertain is one a user, or a system built around the model, can check. The same wrong answer delivered with full confidence is the one that does the damage. But what about reasoning models?</p>
+<p>Thinking before answering raises accuracy, sometimes dramatically, but it does not follow that a model knows better when it is <em>still</em> wrong. In <a href="https://arxiv.org/abs/2506.18183">Reasoning about Uncertainty: Do Reasoning Models Know When They Don't Know?</a> Mei et al. found that reasoning models typically state 85% confidence or more even on answers they get wrong, and that on those wrong answers they grow <strong class="rust">more overconfident the longer they reason</strong>. Zeng et al. in <a href="https://arxiv.org/abs/2504.06564">Thinking Out Loud: Do Reasoning Models Know When They're Right?</a> found that reasoning training improves calibration on reasoning-heavy tasks but much less consistently on factual questions, where open reasoning models say "I don't know" far less often than ordinary instruction-tuned ones.</p>
+<p>Pre-trained base models are naturally well-calibrated because they are optimised using cross-entropy loss. But reasoning models undergo post-training with methods like RLHF and instruction tuning which are often incentivised for confidence by their human rewarders, thereby losing their base calibration. Another intuition: a chain of thought builds an argument for its answer, and the argument persuades the model that wrote it as much as the reader. That is what leads to autoregressive stubbornness where a mistake made in an earlier stage of reasoning is justified and compounded further down the chain. The audit includes one model with thinking on and off, on the same weights, to test this directly.</p>
+<h2 id="what-we-build-on">What we build on<a class="headerlink" href="#what-we-build-on" title="Permanent link">&para;</a></h2>
+<p>We base this study on other works that try to tackle the confidence measurement problem.</p>
+<ul>
+<li><a href="https://arxiv.org/abs/2607.20526">ConfidenceBench</a> (ffrench-Constant et al., 2026) extracts verbal confidence from 15 frontier models on 200 multiple-choice questions in four categories, one of them unknowable, scored with Brier. It found that the most accurate model is not the best calibrated, but it reports no results per category. Grading self-knowledge separately for each kind of question, with difficulty held fixed, is what this audit adds.</li>
+<li><a href="https://arxiv.org/abs/2409.19839">ForecastBench</a> (Karger et al., 2024). Questions about events that had not happened when the models were trained, so the answers cannot have been memorised. The audit's forecasting questions come from its question sets.</li>
+</ul>
+<p>The other confidence signals in the audit, agreement across a model's own samples and the probability it puts on its answer tokens, are standard measures from the wider calibration literature.</p>
+<p>The audit is built from the test side. Rather than one overall calibration score, which can hide a model that is overconfident on obscure facts and underconfident on arithmetic, we sort questions by <strong class="rust">what it takes to answer them</strong>, give each kind a difficulty dial, and grade self-knowledge separately on each.</p>
+<h2 id="the-questions">The questions<a class="headerlink" href="#the-questions" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart LR
+    Q[680 questions] --&gt; R[Has a right answer]
+    Q --&gt; N[Has a right behaviour]
+    Q --&gt; F[Has an outcome]
+    R --&gt; R1["Recall&lt;br/&gt;Who wrote X?&lt;br/&gt;dial: how famous X is"]
+    R --&gt; R2["Computation&lt;br/&gt;What is 2139 × 7874?&lt;br/&gt;dial: number of digits"]
+    R --&gt; R3["Perception&lt;br/&gt;Spell 'dialogue' backwards&lt;br/&gt;dial: word length"]
+    N --&gt; N1["False premise&lt;br/&gt;When did Kafka write When I Have Fears?&lt;br/&gt;right: correct the premise"]
+    N --&gt; N2["Ambiguous title&lt;br/&gt;Who directed The Rescue?&lt;br/&gt;right: ask which one"]
+    N --&gt; N3["Unknowable&lt;br/&gt;Who will be President of France in 2079?&lt;br/&gt;right: say it can't be known"]
+    F --&gt; F1["Forecast&lt;br/&gt;75 markets resolved after every model's cutoff&lt;br/&gt;scored against what happened"]</code></pre>
+<p>The three answerable categories are each 150 questions, 30 at each of five difficulty levels, and they are chosen because they fail for different reasons. <strong class="rust">Recall</strong> fails when a fact is rare in the training data. <strong class="rust">Computation</strong> fails when errors pile up digit by digit during generation. <strong class="rust">Perception</strong> fails because a model sees tokens, not letters, so counting the n's in "recommendations" is a blind spot it may not know it has. The dials do their job: accuracy falls level by level for every model, from near 100% to near 0.</p>
+<p><img alt="" src="../../../../images/confidence_accuracy_levels.png" /></p>
+<h2 id="seven-ways-of-asking-how-sure-are-you">Seven ways of asking "how sure are you?"<a class="headerlink" href="#seven-ways-of-asking-how-sure-are-you" title="Permanent link">&para;</a></h2>
+<p>Every question goes to every model in sixteen separate calls, each a fresh conversation, so the methods can be compared question by question.</p>
+<pre class="mermaid"><code>flowchart LR
+    Q[One question] --&gt; P["P: just answer&lt;br/&gt;(+ token probabilities: E)"]
+    Q --&gt; B["B: answer 10 more times at T=1&lt;br/&gt;how many agree with P?"]
+    Q --&gt; A["A: answer, then give confidence"]
+    Q --&gt; D["D: give confidence, then answer"]
+    Q --&gt; C["C: answer only if more than t sure&lt;br/&gt;wrong costs t/(1-t), t = 0, .5, .75, .9"]</code></pre>
+<p>Two of these are things the model <em>says</em> (A after answering, D before it, a feeling-of-knowing). Two are things it <em>does</em>: whether its own samples agree (B) and how much probability it puts on its answer tokens (E, where the provider exposes them). The last (C) states the stakes in the prompt, using the scoring rule Kalai et al. proposed in <em>Why Language Models Hallucinate</em>: under it, answering only pays when you are more than t sure, so a model that knows its own confidence should abstain more as t rises.</p>
+<p>The nine configurations were picked to exercise the methods rather than to rank vendors:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Where</th>
+<th>What it tests</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen3-1.7B, 8B, 14B</td>
+<td>local RTX 4090</td>
+<td>size within one family, every method including E</td>
+</tr>
+<tr>
+<td>Qwen3-8B, thinking on</td>
+<td>local RTX 4090</td>
+<td>reasoning on vs off, same weights</td>
+</tr>
+<tr>
+<td>Qwen3-8B-Base</td>
+<td>local RTX 4090</td>
+<td>base vs instruct (few-shot; P, B, E only)</td>
+</tr>
+<tr>
+<td>GPT-4o, Grok 4.1 Fast</td>
+<td>Azure AI Foundry</td>
+<td>other vendors, with token probabilities</td>
+</tr>
+<tr>
+<td>GPT-5 nano</td>
+<td>Azure AI Foundry</td>
+<td>a closed reasoning model, no token probabilities</td>
+</tr>
+<tr>
+<td>Claude Haiku 5.5</td>
+<td>Anthropic API</td>
+<td>no temperature control, no token probabilities</td>
+</tr>
+</tbody>
+</table>
+<p>The whole thing came to about 100,000 model calls and <strong class="rust">under $7</strong>: about $5.80 on Foundry, $0.30 for Claude, and the 4090's electricity.</p>
+<h2 id="grading-without-fooling-ourselves">Grading without fooling ourselves<a class="headerlink" href="#grading-without-fooling-ourselves" title="Permanent link">&para;</a></h2>
+<p>Arithmetic and spelling can be marked by code. "Who wrote X?" mostly can too, by matching against known aliases. But "did this response correct the false premise?" needs a judge, and the first judge we tried (Qwen3-14B) agreed with a hand-labelled set only 77 times out of 120. It stumbled on bare refusals like "Unknown" and on denials that happened to contain a year.</p>
+<pre class="mermaid"><code>flowchart LR
+    R[Response] --&gt; Rules{"Code rules&lt;br/&gt;exact answer, alias,&lt;br/&gt;bare refusal"}
+    Rules -- decided --&gt; L[Label]
+    Rules -- not decided --&gt; J["Judge: Qwen3-14B&lt;br/&gt;thinking off,&lt;br/&gt;rubric with examples"]
+    J --&gt; L
+    G["Gold set: 120 hand labels&lt;br/&gt;+ 88 blind held-out"] -. checks .-&gt; Rules
+    G -. checks .-&gt; J</code></pre>
+<p>So we built the grader the other way round: code rules for everything they can decide, the judge only for the rest, and both checked against hand labels. Claude drafted 120 labels, which were reviewed by hand, and the rubrics were rewritten until rules plus judge agreed on 114. Then came the honest test: two <strong class="rust">blind held-out sets</strong>, labelled with the judge's answer hidden.</p>
+<p><img alt="" src="../../../../images/confidence_judge_check.png" /></p>
+<details class="info" open="open">
+<summary>Thinking off was the better judge</summary>
+<p>Letting the judge reason before labelling scored 112/120 against 114 with thinking off. Among its new mistakes: it marked "Trent Reznor and Atticus Ross" wrong as the composers of <em>The Social Network</em>, a score the two of them wrote. On the API models' held-out set, all five disagreements had the judge <em>stricter</em> than the hand label, so if anything the scores below understate the models.</p>
+</details>
+<h2 id="two-kinds-of-self-knowledge">Two kinds of self-knowledge<a class="headerlink" href="#two-kinds-of-self-knowledge" title="Permanent link">&para;</a></h2>
+<p>Before getting into the results, there is one distinction that helps us on how to read them. The standard measure of whether confidence separates right from wrong is <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic">AUROC</a>, the chance that a randomly chosen right answer carries more confidence than a randomly chosen wrong one (0.5 is a coin toss, 1.0 is perfect). But a model can score well on it by knowing only that <em>long multiplications are risky and short ones are safe</em>. That's real self-knowledge, but coarse. The finer skill is knowing which of several equally hard answers is the wrong one.</p>
+<p><img alt="" src="../../../../images/confidence_within_level_explainer.png" /></p>
+<p><strong class="rust">Within-level AUROC</strong> keeps only the second kind, by comparing right and wrong answers only inside the same difficulty level. </p>
+<details class="info" open="open">
+<summary>Parallels with human metacognition research</summary>
+<p>The corresponding tool from human metacognition research, <strong class="rust">meta-d′</strong>, (see <a href="https://www.sciencedirect.com/science/article/pii/S1053810011002303">A signal detection theoretic approach for estimating metacognitive sensitivity from confidence ratings</a>,) needs a two-choice task to measure against; open-ended answers don't have one, so we control for difficulty this way instead, plus a regression with a separate baseline for every model × category × level.</p>
+</details>
+<h2 id="what-they-say-vs-what-they-do">What they say vs what they do<a class="headerlink" href="#what-they-say-vs-what-they-do" title="Permanent link">&para;</a></h2>
+<p>Here is the main result in one picture: within-level AUROC for every model, category and method.</p>
+<p><img alt="" src="../../../../images/confidence_auroc_within.png" /></p>
+<p>Read it by column. The two "said" columns (A and D) are informative on recall and drift to 0.5, no information at all, on computation and perception. The two "done" columns (B and E) stay well above 0.5 almost everywhere. Grok's token probabilities are the exception, saturated near certainty on everything.</p>
+<p>The same split shows up in calibration. Take one set of weights, Qwen3-8B, and read its confidence three ways:</p>
+<p><img alt="" src="../../../../images/confidence_reliability.png" /></p>
+<p>Its stated confidence is a single dot: <strong class="rust">nearly every answer is stated at 0.9 or more</strong>, whether the accuracy behind it is 20% or 40%. Its sample agreement is a proper curve, if an overconfident one. And the base model, before any instruction tuning, sits close to the diagonal on recall, which is exactly what Kalai et al. predict: pre-training produces calibrated probabilities, and post-training erodes them.</p>
+<p>The practical upshot is a simple rule. When a model says it is sure but its own samples scatter, believe the samples:</p>
+<p><img alt="" src="../../../../images/confidence_says_vs_samples.png" /></p>
+<details class="example">
+<summary>What that looks like</summary>
+<p>Grok 4.1 Fast, asked <strong>What is 2139 × 7874?</strong> (16,842,486) three separate times, answered 16,834,486, then 16,843,086, then 16,845,186, each time with <strong>confidence 1.0</strong>. Only 2 of its 10 samples agreed with its first answer. GPT-4o, asked who wrote the screenplay for the Kannada film <em>Kotigobba</em>, named K. S. Ravikumar at confidence 0.9; 3 of 10 samples agreed, and the answer was wrong.</p>
+</details>
+<h2 id="the-category-matters-not-just-the-difficulty">The category matters, not just the difficulty<a class="headerlink" href="#the-category-matters-not-just-the-difficulty" title="Permanent link">&para;</a></h2>
+<p>Is perception just harder? The regression says no. With a separate baseline for every model × category × level cell, the slope tells how much more likely a model's most confident answer is to be right than its least confident one, at the same difficulty:</p>
+<p><img alt="" src="../../../../images/confidence_regression_slopes.png" /></p>
+<p>Perception sits below recall for <strong class="rust">every</strong> method, and for the two stated methods its slope is indistinguishable from zero. Plotting every cell at its own accuracy shows the same thing without the model: at matched accuracy, stated confidence works on recall and is flat on perception, while sample agreement keeps working on both.</p>
+<p><img alt="" src="../../../../images/confidence_acc_vs_auroc.png" /></p>
+<p>That fits the mechanism. A model has some internal sense of how familiar a fact is; it has no view at all of the letters inside a token, so it cannot know that it has miscounted them.</p>
+<h2 id="the-hard-easy-effect-but-only-in-the-words">The hard-easy effect, but only in the words<a class="headerlink" href="#the-hard-easy-effect-but-only-in-the-words" title="Permanent link">&para;</a></h2>
+<p>Psychologists have long seen people overconfident on hard questions and underconfident on easy ones (see Lichtenstein, S. &amp; Fischhoff, B. <a href="https://www.sciencedirect.com/science/article/pii/0030507377900010">Do those who know more also know more about how much they know?</a>). The models show half of it, the former half.</p>
+<p><img alt="" src="../../../../images/confidence_hard_easy.png" /></p>
+<p>GPT-4o's stated confidence (blue) sits at 1.0 on the hardest multiplications, where it is right 0% of the time. It looks calibrated on easy questions only because it happens to be right there; there is no underconfidence on the easy end, just a line pinned at the top. Its sample agreement (green) and token probability (yellow) fall with accuracy. The base model's lines follow accuracy almost exactly. GPT-5 nano is the one model that errs the other way: it is nearly always right on computation and perception, and still says about 0.8.</p>
+<h2 id="thinking-on-more-right-not-more-aware">Thinking on: more right, not more aware<a class="headerlink" href="#thinking-on-more-right-not-more-aware" title="Permanent link">&para;</a></h2>
+<p>Qwen3-8B with thinking on and off is the same weights answering the same questions, so the pair isolates what reasoning does. It transforms accuracy where the answer can be worked out: computation goes from 34% right to 100%, perception from 23% to 89%, and the model corrects 68% of false premises instead of 15%. On facts it helps far less, 34% right against 25%, because no amount of reasoning recovers a fact the model doesn't hold.</p>
+<p>Those facts are where the overconfidence shows. After thinking, the probability the model puts on its final answer averages <strong class="rust">0.95 on recall questions it gets right only a third of the time</strong>; without thinking, the same measure averaged 0.39. The reasoning settles on an answer and the answer is then written out with near certainty, so the token probability loses most of its signal: within-level AUROC 0.57, against 0.81 without thinking. Stated confidence after thinking is also high, 0.88 on average at 32% right, although it separates right from wrong a little better than without thinking (0.78 against 0.66), and so does sample agreement (0.90 against 0.77). On computation thinking leaves no errors to measure, so the test of its self-knowledge rests on facts and spelling.</p>
+<h2 id="before-or-after-answering">Before or after answering?<a class="headerlink" href="#before-or-after-answering" title="Permanent link">&para;</a></h2>
+<p>Is confidence more honest before the model commits to an answer, a feeling of knowing, than after, when it has an answer to defend? On the same questions, within levels:</p>
+<p><img alt="" src="../../../../images/confidence_d_vs_a.png" /></p>
+<p>There is <strong class="rust">no general winner</strong>. Asking first helps Qwen3-8B and GPT-4o on computation, hurts Qwen3-14B, and on recall asking after is as good or better. An early version of this analysis said "before beats after on computation"; that turned out to be mostly the coarse kind of self-knowledge, knowing which levels are hard, and it largely vanished within levels.</p>
+<details class="warning" open="open">
+<summary>Claude Haiku shows its work</summary>
+<p>Asked for an answer plus a confidence in JSON, Claude Haiku 5.5 often ignored "Reply with only a JSON object" and worked the problem out first: <code>777 × 933 = 777×900 + 777×33 = 699300 + 25641 = 724941</code>, then the JSON. That lifts its accuracy and means its "before" confidence on arithmetic isn't really before. Those replies are flagged and left out of this comparison.</p>
+</details>
+<h2 id="questions-without-a-proper-answer">Questions without a proper answer<a class="headerlink" href="#questions-without-a-proper-answer" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="../../../../images/confidence_behaviour.png" /></p>
+<p>Unknowable questions are easy for everyone. False premises and ambiguous titles are where the models separate, and Claude Haiku is in a class of its own: it corrects every false premise and asks which work is meant on three ambiguous titles in four ("Ambiguous: several films are titled 'The Rescue.'"). GPT-4o names the directors of one of them and moves on.</p>
+<p>Confidence itself turns slippery here. GPT-4o answered "Cannot be determined" to <em>Who will be President of France on 1 January 2079?</em> with confidence <strong>1.0</strong> after answering, and <strong>0.0</strong> when asked before. Both are reasonable: after, it rates the response ("I'm sure this can't be known"); before, it rates its ability to answer. The models don't agree on which reading to use:</p>
+<p><img alt="" src="../../../../images/confidence_unknowable_confidence.png" /></p>
+<h2 id="telling-the-model-the-stakes">Telling the model the stakes<a class="headerlink" href="#telling-the-model-the-stakes" title="Permanent link">&para;</a></h2>
+<p>The threshold prompt is the cleanest test of whether a model can <em>use</em> its confidence. If a wrong answer costs 9 points at t = 0.9 and only 1 at t = 0.5, a model that knows when it is unsure should abstain far more at 0.9.</p>
+<p><img alt="" src="../../../../images/confidence_kalai_answer_rates.png" /></p>
+<p>They don't. Answer rates drop once, when a penalty appears at all, and then stay flat. <strong class="rust">Models react to the existence of a penalty, not to its size.</strong> GPT-5 nano and Claude Haiku answer every arithmetic question at every threshold.</p>
+<p>Haiku's response to the stakes is the most interesting: instead of abstaining, it shows its working, and gets more right.</p>
+<p><img alt="" src="../../../../images/confidence_haiku_working.png" /></p>
+<p>The penalty has a less welcome effect on false premises: models stop correcting them and simply decline. Haiku corrects every false premise in the plain prompt but abstains on 60% of them at t = 0.9, and most Qwen configurations stop correcting premises altogether under the threshold prompt, even at t = 0.</p>
+<h2 id="forecasting-for-completeness">Forecasting, for completeness<a class="headerlink" href="#forecasting-for-completeness" title="Permanent link">&para;</a></h2>
+<p>This shows confidence about the world rather than about oneself, so it is kept apart. On 75 market questions that resolved after every model's training cutoff:</p>
+<p><img alt="" src="../../../../images/confidence_forecasts.png" /></p>
+<p>No model beats always guessing the base rate, and the crowd beats them all. The models' forecasts are mostly miscalibrated rather than uninformed, but they are not very informed either.</p>
+<h2 id="what-the-audit-teaches">What the audit teaches<a class="headerlink" href="#what-the-audit-teaches" title="Permanent link">&para;</a></h2>
+<p>Four things stand out.</p>
+<p><strong>Self-knowledge is not one skill.</strong> The same model can know which facts it doesn't know, have a rough sense of which sums are hard, and be completely blind to its spelling mistakes. A single calibration number would average these into something meaningless.</p>
+<p><strong>The model's behaviour knows more than its words.</strong> Agreement across a model's own samples and the probability it puts on its answer separate right from wrong far better than anything it says about itself, and the base model, never taught to talk about its confidence, is the best calibrated of all. Whatever instruction tuning does to stated confidence, it mostly teaches models to say "very sure".</p>
+<p><strong>Knowing the stakes isn't the same as acting on them.</strong> Told the cost of being wrong, models notice that there is a cost but not how large it is, and some respond by trying harder rather than by holding back.</p>
+<p><strong>Thinking fixes answers, not self-knowledge.</strong> Reasoning makes a model right far more often, but where it is still wrong, on facts it doesn't hold, it writes the wrong answer with near certainty. The more convincing the answers become, the more it matters that the confidence behind them can be checked.</p>
+<p>Which leaves the obvious next question. If sampling reveals self-knowledge that the words hide, is that knowledge already sitting in the model's hidden states before it writes a single token? That's the subject of the next post.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,77 @@
+/* Muted rust/terracotta highlight, via attr_list attached to an existing
+   inline element, e.g. **text**{: .rust } or *text*{: .rust }.
+   Warm against the theme's cool blue-grey/teal palette, so it never reads as a link. */
+.rust {
+  color: #a1522c;
+}
+[data-md-color-scheme="slate"] .rust {
+  color: #e08b6f;
+}
+
+/* Light mode: two distinct shades of blue for base link vs. hover,
+   replacing the default indigo base + teal hover pairing. */
+[data-md-color-scheme="default"][data-md-color-primary="blue-grey"] {
+  --md-typeset-a-color: #1976d2;
+}
+[data-md-color-scheme="default"] .md-typeset a:hover {
+  color: #42a5f5;
+}
+
+/* Dark mode: base link color replaces the default, which inherits the
+   primary color (blue-grey) and reads as blue on a dark background.
+   Hover gets its own distinct light-blue, since the theme's accent teal
+   was too close to the muted-teal base to read as a state change. */
+[data-md-color-scheme="slate"][data-md-color-primary="blue-grey"] {
+  --md-typeset-a-color: #4db6ac;
+}
+[data-md-color-scheme="slate"] .md-typeset a:hover {
+  color: #4fc3f7;
+}
+
+/* Bold the "Essays" top-level entry in the primary sidebar to draw attention. */
+.md-nav--primary a.md-nav__link[href$="blog/"] {
+  font-weight: 700;
+}
+
+/* Frame post images (mostly matplotlib plots with a baked-in white
+   background) in a fixed light "paper" card, rounded and bordered, so the
+   white plot sits deliberately inside a frame instead of floating loose on
+   the page. Deliberately the same in light and dark mode: the point is a
+   consistent light surface for white plot backgrounds to land on, not a
+   theme-matched one. */
+.md-typeset img {
+  display: block;
+  margin: 1.5rem auto;
+  padding: 0.35rem;
+  max-width: 100%;
+  border-radius: 10px;
+  border: 1px solid #e2ded4;
+  background: #f7f5f0;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
+}
+/* Dark mode: card background matches the page header color instead of the
+   light-mode paper tone. A dark shadow disappears against the near-black
+   page background, so this uses a brighter, tighter light-based glow plus
+   a crisp 1px rim to make the edge and "lift" actually read. */
+[data-md-color-scheme="slate"] .md-typeset img {
+  border-color: #5c7683;
+  background: #7c92a0;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 4px 18px rgba(255, 255, 255, 0.22);
+}
+
+/* Blockquotes: replace the default grey-border/dimmed-text treatment with
+   the site's rust accent as a left border plus a faint tint background,
+   and full-strength (not dimmed) italic text, so a pulled-out line actually
+   stands out instead of reading as muted secondary content. */
+.md-typeset blockquote {
+  background: rgba(161, 82, 44, 0.06);
+  color: var(--md-default-fg-color);
+  font-style: italic;
+}
+[dir="ltr"] .md-typeset blockquote {
+  border-left-color: #a1522c;
+}
+[data-md-color-scheme="slate"] .md-typeset blockquote {
+  border-left-color: #e08b6f;
+  background: rgba(224, 139, 111, 0.08);
+}
